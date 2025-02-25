@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import SignUpForm from './SignUpForm'
+import SignInForm from './SignInForm'
 
 const Layout:FC = () => {
     return (
@@ -14,10 +14,10 @@ const Layout:FC = () => {
                     width="50"
                 />
                 <h2 className='mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900'>
-                    Sign in to Shopy
+                    Login to Shopy
                 </h2>
             </div>
-            <SignUpForm />
+            <SignInForm />
         </div>
     )
 }

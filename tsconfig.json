@@ -18,7 +18,8 @@
       "@Pages/*": ["./src/pages/*"],
       "@Libs/*": ["./libs/*"],
       "@Components/*": ["./src/Components/*"],
-      "@AuthSignUp/*": ["./src/Components/auth/signup/*"],
+      "@Auth/*": ["./src/Components/auth/*"],
+      "@Contracts/*": ["./src/contracts/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
