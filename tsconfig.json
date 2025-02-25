@@ -15,8 +15,10 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@libs/*": ["./libs/*"],
+      "@Pages/*": ["./src/pages/*"],
+      "@Libs/*": ["./libs/*"],
+      "@Components/*": ["./src/Components/*"],
+      "@AuthSignUp/*": ["./src/Components/auth/signup/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
