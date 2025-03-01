@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-// ...
+import authentication from "./authReducer"
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = configureStore({
   reducer: {
-    
+    authentication
   },
+  // devTools:composeWithDevTools
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

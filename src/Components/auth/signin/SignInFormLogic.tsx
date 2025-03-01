@@ -3,6 +3,7 @@ import { FormikProps } from "formik";
 import Button from "../Button";
 import Input from "../Input";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 
 
@@ -12,6 +13,10 @@ const Form = ({
     handleSubmit,
 }: FormikProps<LoginFormValuesInterface>) => {
     const { password, email } = values;
+    const ref = useRef<HTMLInputElement | any>(null)
+    useEffect(()=>{
+        ref?.current?.focus()
+    },[ref])
     return (
         <div className='mt-10 sm:mx-auto border p-6 rounded shadow sm:w-full sm:max-w-sm'>
             <form
@@ -24,6 +29,7 @@ const Form = ({
                     value={email}
                     label='Email Address'
                     name='email'
+                    ref={ref}
                 />
                 <Input
                     value={password}

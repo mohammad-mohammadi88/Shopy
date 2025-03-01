@@ -20,6 +20,7 @@
       "@Components/*": ["./src/Components/*"],
       "@Auth/*": ["./src/Components/auth/*"],
       "@Contracts/*": ["./src/contracts/*"],
+      "@Apis/*": ["./src/apis/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
