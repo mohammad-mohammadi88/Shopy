@@ -1,31 +1,34 @@
 import { LoginFormValuesInterface } from "@Contracts/auth";
+import { Bounce, toast } from "react-toastify";
+import { LoginApi } from "@Apis/api";
 import Form from "./SignInFormLogic";
 import { object, string } from "yup";
 import { withFormik } from "formik";
 import Router from "next/router";
-import { LoginApi } from "@Apis/api";
-import { Bounce, toast } from "react-toastify";
+import { addPhoneVerifyToken } from "@Libs/authReducer";
 
-const handleSubmit = async (values:LoginFormValuesInterface,{ props }:any) => {
-    const { status, data } = await LoginApi(values)
+interface LoginFormPropsInterface{
+    dispatch : any
+}
+
+const handleSubmit = async (values:LoginFormValuesInterface,{ props }:{props:LoginFormPropsInterface}) => {
+    const { data, status } = await LoginApi(values)
     if(status === 200){
-        props.setCookies('shopy-token',data.token,{
-            maxAge: 7 * 60 * 60 * 24
-        })
-        toast.success('Hello '+data.name, {
+        toast.info('Your varify code is ' + data.code, {
             position: "bottom-right",
-            autoClose: 5000,
+            autoClose: 10000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
-            draggable: true,
+            draggable: false,
             progress: undefined,
             theme: "light",
             transition: Bounce,
         });
-        Router.push('/dashboard')
+        props.dispatch(addPhoneVerifyToken(data.token))
+        Router.push('login-verify')
     } else {
-        toast.error(status === 400 ? data : data.errors.email, {
+        toast.error(status === 422 ? data.errors.phone : data.message, {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -40,16 +43,12 @@ const handleSubmit = async (values:LoginFormValuesInterface,{ props }:any) => {
 }
 
 const validationSchema = object({
-    email: string().required().email(),
-    password: string().required().min(6),
+    phone:string().required().min(11).max(15).matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/ ,'your mobile is not valid!')
 });
-interface LoginFormProps{
-    setCookies:any
-}
-const SignInForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
+
+const SignInForm = withFormik<LoginFormPropsInterface, LoginFormValuesInterface>({
     mapPropsToValues: () => ({
-        email: "",
-        password: "",
+        phone: "",
     }),
     validationSchema,
     handleSubmit

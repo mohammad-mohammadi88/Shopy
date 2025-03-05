@@ -1,9 +1,12 @@
-import SignInLayout from "@Auth/signup/Layout";
+import SignInLayout from "@Auth/signup";
 import type { NextPage } from "next";
+import FormsLayout from "@Auth/FormsLayout"
 
 const register: NextPage = () => {
     return (
-        <SignInLayout />
+        <FormsLayout title="Sign up to Shopy">
+            <SignInLayout />
+        </FormsLayout>
     );
 };
 

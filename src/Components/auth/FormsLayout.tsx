@@ -1,10 +1,11 @@
 import Image from 'next/image'
-import { FC } from 'react'
-import SignInForm from './SignInForm'
-import { useCookies } from 'react-cookie'
+import { FC, ReactNode } from 'react'
 
-const Layout:FC = () => {
-    const [ cookie, setCookies ] = useCookies(['shopy-token'])
+interface Props{
+    children:ReactNode,
+    title:string
+}
+const Layout:FC<Props> = ({children,title}) => {
     return (
         <div className='flex flex-col justify-center items-center px-6 py-12 lg:px-8'>
             <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
@@ -16,10 +17,10 @@ const Layout:FC = () => {
                     width="50"
                 />
                 <h2 className='mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900'>
-                    Login to Shopy
+                    {title}
                 </h2>
             </div>
-            <SignInForm setCookies={setCookies} />
+            {children}
         </div>
     )
 }

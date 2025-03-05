@@ -1,4 +1,4 @@
-import { LoginFormValuesInterface } from "@Contracts/auth";
+import { VerifyFormValuesInterface } from "@Contracts/auth";
 import { useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 import Button from "../Button";
@@ -7,12 +7,13 @@ import Link from "next/link";
 
 
 
+
 const Form = ({
     values,
     handleChange,
     handleSubmit,
-}: FormikProps<LoginFormValuesInterface>) => {
-    const { phone } = values;
+}: FormikProps<VerifyFormValuesInterface>) => {
+    const { code } = values;
     const ref = useRef<HTMLInputElement | any>(null)
     useEffect(()=>{
         ref?.current?.focus()
@@ -26,12 +27,12 @@ const Form = ({
             >
                 <Input
                     setValue={handleChange}
-                    value={phone}
-                    label='Mobile Phone'
-                    name='phone'
+                    value={code}
+                    label='Verify Code'
+                    name='code'
                     ref={ref}
                 />
-                <Button value='Login' />
+                <Button value='Verify Code' />
             </form>
             <div className='mt-3 underline hover:no-underline text-sm text-blue-700'>
                 <Link href='register'>Make a new account</Link>

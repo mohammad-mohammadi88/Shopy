@@ -8,7 +8,8 @@ import Router from 'next/router';
 
 
 const handleSubmit = async (values:SignUpFormValuesInterface)=>{
-    const { status, message } =  await signUpApi(values)
+    const { status, errors } = await signUpApi(values)
+    
     if(status === 201){
         toast.success('Your new account created!', {
             position: "bottom-right",
@@ -23,24 +24,38 @@ const handleSubmit = async (values:SignUpFormValuesInterface)=>{
         });
         Router.push('/auth/login')
     } else {
-        toast.error(message, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
+        if(status === 500){
+            toast.error(errors, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
+        errors?.forEach((error:string)=>{
+            toast.error(error, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        })
     }
 }
 const validationSchema = object({
     name:string().required().min(4),
     phone:string().required().min(11).max(15).matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/ ,'your mobile is not valid!')
 })
-// 
 
 const SignUpForm = withFormik<{},SignUpFormValuesInterface>({
     mapPropsToValues: () => ({

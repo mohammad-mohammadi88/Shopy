@@ -1,7 +1,10 @@
 
 export interface LoginFormValuesInterface {
-    email: string;
-    password: string;
+    phone: string;
+}
+
+export interface VerifyFormValuesInterface {
+    code: string
 }
 
 export interface SignUpFormValuesInterface {
