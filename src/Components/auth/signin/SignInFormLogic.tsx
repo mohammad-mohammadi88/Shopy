@@ -1,17 +1,17 @@
+'use client';
+
 import { LoginFormValuesInterface } from "@Contracts/auth";
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 import Button from "../Button";
 import Input from "../Input";
 import Link from "next/link";
 
-
-
 const Form = ({
     values,
     handleChange,
     handleSubmit,
-}: FormikProps<LoginFormValuesInterface>) => {
+}: FormikProps<LoginFormValuesInterface>) :ReactNode => {
     const { phone } = values;
     const ref = useRef<HTMLInputElement | any>(null)
     useEffect(()=>{

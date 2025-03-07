@@ -1,9 +1,9 @@
+'use client';
+
 import { VerifyFormValuesInterface } from "@Contracts/auth";
 import Form from "./VerifyFormLogic";
 import { object, string } from "yup";
 import { withFormik } from "formik";
-
-
 
 const validationSchema = object({
     code: string().required().matches(/^[0-9]+$/,'Only number is allowed').length(6),

@@ -1,11 +1,13 @@
+'use client';
 import Image from 'next/image'
+
 import { FC, ReactNode } from 'react'
 
 interface Props{
     children:ReactNode,
     title:string
 }
-const Layout:FC<Props> = ({children,title}) => {
+const Layout:FC<Props> = ({children,title}) :ReactNode => {
     return (
         <div className='flex flex-col justify-center items-center px-6 py-12 lg:px-8'>
             <div className='sm:mx-auto sm:w-full sm:max-w-sm'>

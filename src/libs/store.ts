@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, Store } from '@reduxjs/toolkit'
 import authentication from "./authReducer"
 
-const store = configureStore({
+const store:Store = configureStore({
   reducer: {
     authentication
   },

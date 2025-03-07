@@ -1,9 +1,10 @@
-import { useAppSelector } from '@Libs/hooks'
-import { FC } from 'react'
+'use client';
+
+import { FC, ReactNode } from 'react'
 interface Props{
     value:string
 }
-const Button:FC<Props> = ({value}) => {
+const Button:FC<Props> = ({value}) :ReactNode => {
     return (
         <button
             type='submit'

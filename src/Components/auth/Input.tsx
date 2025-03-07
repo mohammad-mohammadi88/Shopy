@@ -1,6 +1,8 @@
+'use client';
+
 import { ErrorMessage } from 'formik'
 import { Field } from 'formik'
-import { ChangeEventHandler, FC, Ref } from 'react'
+import { ChangeEventHandler, FC, ReactNode, Ref } from 'react'
 interface Props{
     setValue:ChangeEventHandler<HTMLInputElement>,
     inputType?:string,
@@ -9,7 +11,7 @@ interface Props{
     label:string,
     name:string,
 }
-const Input:FC<Props> = ({name,inputType='text',value,setValue,label,ref}) => {
+const Input:FC<Props> = ({name,inputType='text',value,setValue,label,ref}) :ReactNode => {
     return (
         <div>
             <label

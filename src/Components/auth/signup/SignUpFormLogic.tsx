@@ -1,15 +1,17 @@
+'use client';
+
 import { SignUpFormValuesInterface } from "@Contracts/auth";
+import { ReactNode, useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 import Button from "../Button";
 import Input from "../Input";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 
 const Form = ({
     values,
     handleChange,
     handleSubmit,
-}: FormikProps<SignUpFormValuesInterface>) => {
+}: FormikProps<SignUpFormValuesInterface>): ReactNode => {
     const { phone, name } = values;
     const ref = useRef<HTMLInputElement | any>(null)
     useEffect(()=>{
