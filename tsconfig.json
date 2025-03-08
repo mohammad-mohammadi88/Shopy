@@ -24,6 +24,9 @@
       "@Pages/*": [
         "./src/pages/*"
       ],
+      "@App/*": [
+        "./src/app/*"
+      ],
       "@Libs/*": [
         "./src/libs/*"
       ],
@@ -38,6 +41,9 @@
       ],
       "@Helpers/*": [
         "./src/helpers/*"
+      ],
+      "@Hooks/*": [
+        "./src/hooks/*"
       ]
     },
     "plugins": [
