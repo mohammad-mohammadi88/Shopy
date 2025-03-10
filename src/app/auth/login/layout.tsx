@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react'
+import FormsLayout from "@Auth/FormsLayout";
+import { redirect } from 'next/navigation';
 import useAuth from '@Hooks/useAuth';
-import { redirect, useRouter } from 'next/navigation';
+import React from 'react';
 
 const layout = ({
     children,
@@ -11,10 +12,11 @@ const layout = ({
 }>) => {
     const { user } = useAuth();
     console.log('user',user)
-    const router = useRouter()
     if(user) redirect('/panel')
     return (
-        <>{children}</>
+        <FormsLayout title='Login to Shopy'>
+            {children}
+        </FormsLayout>
     )
 }
 

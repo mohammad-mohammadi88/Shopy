@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import cookie from "cookie";
+import { serialize } from "cookie";
 
 export default function handler(req:NextApiRequest,res:NextApiResponse){
     if(req.method === "DELETE"){
         try{
             res.setHeader(
                 'Set-Cookie',
-                cookie.serialize('shopy-user-token',"",{
+                serialize('shopy-user-token',"",{
                     httpOnly: true,
                     path: '/',
                     maxAge: 0,

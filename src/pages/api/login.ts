@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import cookie from "cookie"
+import { serialize } from "cookie"
 
 interface ExtendedNextRequest extends NextApiRequest{
     body:{
-        token:string
+        token:string,
+        maxDay:number
     }
 }
 export default function handler(
@@ -11,18 +12,21 @@ export default function handler(
     res:NextApiResponse<string>
 ){
     if(req.method === "POST"){
+        const maxAge = req?.body?.maxDay || 10
+        console.log(req.body)
         try{
             res.setHeader(
                 'Set-Cookie',
-                cookie.serialize('shopy-user-token',req?.body?.token,{
+                serialize('shopy-user-token',req?.body?.token,{
                     httpOnly: true,
                     path: '/',
-                    maxAge: 10 * 24 * 3600,
+                    maxAge: maxAge * 24 * 3600,
                     sameSite : "lax"
-                })
+                }),
             )
             res.status(201).send('the cookie set successfully!')
         } catch(err) {
+            console.log('err',err)
             res.status(500).send('Something went wrong while setting cookie')
         }
     } else {

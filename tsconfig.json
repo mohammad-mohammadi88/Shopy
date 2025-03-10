@@ -42,6 +42,9 @@
       "@Helpers/*": [
         "./src/helpers/*"
       ],
+      "@Panel/*": [
+        "./src/Components/panel/*"
+      ],
       "@Hooks/*": [
         "./src/hooks/*"
       ]

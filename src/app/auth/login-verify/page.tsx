@@ -1,13 +1,12 @@
 'use client';
 
-import { useAppSelector } from '@Libs/hooks'
 import { storeUserToken } from '@Helpers/userToken';
-import { ReactNode } from 'react';
 import { showToast } from '@Contracts/auth/toast';
 import { VerifyPhoneApi } from "@Helpers/authApi";
+import { useAppSelector } from '@Libs/hooks';
 import { useRouter } from 'next/navigation';
 import VerifyForm from '@Auth/signinVerify';
-import FormsLayout from "@Auth/FormsLayout";
+import { ReactNode } from 'react';
 import { NextPage } from 'next';
 import {
     AuthInitialStateInterface,
@@ -30,9 +29,7 @@ const loginVerify: NextPage = () :ReactNode => {
     }
 
     return (
-        <FormsLayout title='Verify the code'>
-            <VerifyForm handleSubmit={handleSubmit} />
-        </FormsLayout>
+        <VerifyForm handleSubmit={handleSubmit} />
     )
 }
 

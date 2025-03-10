@@ -1,16 +1,15 @@
 'use client';
 
+import { LoginFormValuesInterface } from "@Contracts/auth";
 import { addPhoneVerifyToken } from "@Libs/authReducer";
 import { showToast } from "@Contracts/auth/toast";
 import { useAppDispatch } from '@Libs/hooks';
-import FormsLayout from "@Auth/FormsLayout";
-import { Dispatch } from '@reduxjs/toolkit';
 import { LoginApi } from "@/helpers/authApi";
+import { useRouter } from "next/navigation";
+import { Dispatch } from '@reduxjs/toolkit';
 import SignInLayout from '@Auth/signin';
 import type { NextPage } from 'next';
 import { ReactNode } from 'react';
-import { LoginFormValuesInterface } from "@Contracts/auth";
-import { useRouter } from "next/navigation";
 
 const login: NextPage = () :ReactNode => {
     const router = useRouter()
@@ -24,9 +23,7 @@ const login: NextPage = () :ReactNode => {
         }
     }
     return (
-        <FormsLayout title='Login to Shopy'>
-            <SignInLayout handleSubmit={handleSubmit}/>
-        </FormsLayout>
+        <SignInLayout handleSubmit={handleSubmit}/>
     )
 }
 

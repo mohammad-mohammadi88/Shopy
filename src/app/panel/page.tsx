@@ -7,25 +7,24 @@ import Link from 'next/link';
 import { ReactNode } from 'react'
 import { queryClient } from '../layout';
 
-const index:NextPage = () :ReactNode => {
-    // const router = useRouter()
-    const { user, isLoading, refetch } = useAuth()
-    
-    if(isLoading){ return <h1>Loading...</h1>}
-    const handleLogout = async () => {
-
-        await removeUserToken();
-        queryClient.removeQueries({ queryKey: ['user_info'] })
-    }
-    // console.log(error)
-    if(user){
-        return (
+const page:NextPage = () :ReactNode => {
+    const { user, refetch } = useAuth()
+    // const handleLogout = async () => {
+    //     await removeUserToken();
+    //     queryClient.removeQueries({ queryKey: ['user_info'] })
+    //     await refetch()
+    // }
+    return (
+        <>
+            {user &&
             <>
                 <div>{user?.name}</div>
-                <Link href='/'><button onClick={handleLogout}>logout</button></Link>
-            </>
-        )
-    }
+                <Link href="panel/admin">admin</Link><br />
+                {/* <Link href='/'><button onClick={handleLogout}>logout</button></Link> */}
+            </>}
+        </>
+    )
+    
 }
 
-export default index
+export default page

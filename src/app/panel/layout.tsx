@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import { showToast } from '@Contracts/auth/toast';
+import { useRouter } from 'next/navigation';
 import useAuth from '@Hooks/useAuth';
+import React from 'react';
 
 
 const layout = ({
@@ -10,14 +11,19 @@ const layout = ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const {user,error} = useAuth();
+    const {user,error,isPending,isSuccess} = useAuth();
     const router = useRouter()
     if(error && !user){
-        redirect('/auth/login')
+        showToast(false,'',0,1,'Please login first')
+        router.push('/auth/login')
     }
    
     return (
-        <>{children}</>
+
+        <>
+            {isPending && <h2>Loading...</h2>}
+            {isSuccess && children}
+        </>
     )
 }
 

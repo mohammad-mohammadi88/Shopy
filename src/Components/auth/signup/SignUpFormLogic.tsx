@@ -3,8 +3,8 @@
 import { SignUpFormValuesInterface } from "@Contracts/auth";
 import { ReactNode, useEffect, useRef } from "react";
 import { FormikProps } from "formik";
-import Button from "../Button";
-import Input from "../Input";
+import Button from "../../../contracts/Button";
+import Input from "../../../contracts/Input";
 import Link from "next/link";
 
 const Form = ({

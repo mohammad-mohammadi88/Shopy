@@ -1,8 +1,9 @@
 'use client';
 
-import React, {useEffect } from 'react';
 import { useAppSelector } from '@Libs/hooks';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import FormsLayout from "@Auth/FormsLayout";
+import React, {useEffect } from 'react';
 import useAuth from '@Hooks/useAuth';
 import {
     AuthInitialStateInterface,
@@ -28,7 +29,7 @@ const layout = ({
         if( checkVerifyToken ) router.push('login');
     },[authState])
     return (
-        <>{children}</>
+        <FormsLayout title='Verify the code'>{children}</FormsLayout>
     )
 }
 

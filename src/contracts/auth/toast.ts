@@ -21,7 +21,7 @@ export function showToast(
             transition: Bounce,
         });
     } else {
-        if(status === 500){
+        if(status === 500 || !Array.isArray(errors)){
             toast.error(errors, {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -33,19 +33,21 @@ export function showToast(
                 theme: "light",
                 transition: Bounce,
             });
+        } else {
+            errors?.forEach((error:string)=>{
+                toast.error(error, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            })
         }
-        errors?.forEach((error:string)=>{
-            toast.error(error, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            });
-        })
+      
     }
 }

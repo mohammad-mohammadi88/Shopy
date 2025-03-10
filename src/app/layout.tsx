@@ -1,14 +1,14 @@
 'use client';
 
-
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/styles/globals.css";
-import { Bounce, ToastContainer } from "react-toastify";
-import { Provider } from "react-redux";
-import store from "@Libs/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import { Bounce, ToastContainer } from "react-toastify";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Provider } from "react-redux";
+import type { Metadata } from "next";
+import store from "@Libs/store";
+import "@/styles/globals.css";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <head>
         <title>next app router</title>
       </head>
