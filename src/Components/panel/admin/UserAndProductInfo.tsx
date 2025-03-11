@@ -1,19 +1,25 @@
+import useWindowWidth from "@Helpers/useWindowWidth";
 import { FC } from "react";
 
 interface Props {
-    title: string;
+    about: string;
     name: string;
+    info: string
 }
-const UserAndProductInfo: FC<Props> = ({ name, title }) => {
+const UserAndProductInfo: FC<Props> = ({ name, about,info }) => {
+    const windowWidth = useWindowWidth()
     return (
         <tr className="table-auto justify-between sm:table-row">
             <td className='max-w-36 lg:max-w-52 truncate py-4 pr-4 pl-3 text-sm font-medium text-gray-900 sm:pr-6' title={name}>
                 {name}
             </td>
-            <td className='hidden sm:block max-w-40 lg:max-w-52 truncate px-3 py-4 text-sm text-gray-500' title={title}>
-                {title}
-            </td>
-            <td className='relative whitespace-nowrap py-4 pr-3 pl-4 text-right text-sm font-medium sm:pl-6'>
+            { windowWidth >= 640 && <td className='invisible sm:visible max-w-40 lg:max-w-52 truncate px-3 py-4 text-sm text-gray-500' title={about}>
+                {about}
+            </td>}
+            { windowWidth >= 1024 && <td className='invisible md:visible max-w-40 lg:max-w-52 truncate px-3 py-4 text-sm text-gray-500' title={info}>
+                {info}
+            </td>}
+            <td className=' relative py-4 pr-3 pl-4 text-right text-sm font-medium sm:pl-6'>
                 <a
                     href='#'
                     className='text-indigo-600 hover:text-indigo-900 mr-4'

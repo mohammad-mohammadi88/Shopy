@@ -3,7 +3,7 @@ import { FC } from "react";
 
 const UsersPagination:FC = () => {
     return (
-        <div className='p-4 mt-2 border-t border-gray-200'>
+        <div className='p-4 mt-2 text-center border-t border-gray-200'>
             <nav
                 className='isolate inline-flex -space-x-px rounded-md shadow-sm'
                 aria-label='Pagination'

@@ -1,4 +1,4 @@
-'use client'
+'use server'
 
 import Dashboard from '@Panel/Dashboard';
 import { FC, ReactNode } from 'react';

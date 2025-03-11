@@ -25,7 +25,7 @@ const Form = ({
                 onSubmit={handleSubmit}
             >
                 <Input
-                    setValue={handleChange}
+                    onChange={handleChange}
                     value={phone}
                     label='Mobile Phone'
                     name='phone'

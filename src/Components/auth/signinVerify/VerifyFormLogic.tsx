@@ -25,7 +25,7 @@ const Form = ({
                 onSubmit={handleSubmit}
             >
                 <Input
-                    setValue={handleChange}
+                    onChange={handleChange}
                     value={code}
                     label='Verify Code'
                     name='code'

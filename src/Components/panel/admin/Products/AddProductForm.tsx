@@ -2,39 +2,67 @@ import Input from "@Contracts/Input";
 import { FormikProps } from "formik";
 import Link from "next/link";
 
-export interface UserFormValuesInterface{
-    name:string,
-    phone:string,
+export interface Option{
+    value:string
+}
+const options:Option[] = [
+    {value:"Back-end"},
+    {value:"Front-end"},
+    {value:"Mobile"},
+    {value:"Game"},
+    {value:"AI"},
+    {value:"Data Science"},
+    {value:"Desktop"},
+]
+
+export interface ProductFormValuesInterface{
+    product:string,
+    price:number,
     discription:string;
+    category:string
 }
 const AddProductForm = ({
     values,
     handleChange,
     handleSubmit,
-}: FormikProps<UserFormValuesInterface>) => {
-    const { phone, name, discription } = values;
+}:FormikProps<ProductFormValuesInterface>) => {
+    const { price, product, discription,category } = values;
     return (
-        <form onSubmit={handleSubmit} autoComplete={"off"}>
-            <div className='p-6 grid  grid-cols-1 gap-y-6 sm:grid-cols-4 sm:gap-x-8'>
-                <div className='sm:col-span-2'>
+        <form onSubmit={handleSubmit}>
+            <div className='p-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 xl:grid-cols-3 sm:gap-x-8'>
+                <div className='sm:col-span-1'>
                     <Input
-                        name='name'
-                        value={name}
+                        name='product'
+                        value={product}
                         onChange={handleChange}
-                        label='User name'
+                        label='Product name'
                     />
                 </div>
 
-                <div className='sm:col-span-2'>
+                <div className='sm:col-span-1'>
                     <Input
-                        name='phone'
-                        value={phone}
+                        name='price'
+                        value={price}
                         onChange={handleChange}
-                        label='Phone'
+                        label='Price'
+                        inputType="number"
                     />
                 </div>
 
-                <div className='sm:col-span-4'>
+                <div className='sm:col-span-2 xl:col-span-1'>
+                    <Input 
+                        as="select"
+                        name="category"
+                        label="Category"
+                        selectedvalue="Back-end"
+                        className="resize-y h-auto min-h-10 max-h-32"
+                        value={category}
+                        onChange={handleChange}
+                        options={options}
+                    />
+                </div>
+
+                <div className='sm:col-span-full'>
                     <Input 
                         as="textarea"
                         name="discription"
@@ -45,6 +73,7 @@ const AddProductForm = ({
                         onChange={handleChange}
                     />
                 </div>
+                
             </div>
 
             <div className='p-6 py-4 border-t border-gray-200 flex items-center'>
@@ -52,13 +81,13 @@ const AddProductForm = ({
                     type='submit'
                     className='mr-2 inline-flex items-center px-3 py-2 border border-transparent text-sm rounded-md shadow-sm text-white bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-700 '
                 >
-                    Create User
+                    Create product
                 </button>
-                <Link href="/panel/admin/users">
+                <Link href="/panel/admin/products">
                     <button
                         type='button'
                         className='inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                    >
+                        >
                         Cancel
                     </button>
                 </Link>

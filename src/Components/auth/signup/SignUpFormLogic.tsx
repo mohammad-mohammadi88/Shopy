@@ -28,13 +28,13 @@ const Form = ({
                     name="name"
                     value={name}
                     label="UserName"
-                    setValue={handleChange}
+                    onChange={handleChange}
                     ref={ref}
                 />
                 <Input 
                     name="phone"
                     value={phone}
-                    setValue={handleChange}
+                    onChange={handleChange}
                     label="Mobile Phone"
                 />
 

@@ -3,60 +3,54 @@
 import UserInfo from "@Panel/admin/UserAndProductInfo";
 import UsersPagination from "@Panel/admin/Pagination";
 import UsersListHeader from "@Panel/admin/Header";
-import UsersTHead from "@/Components/panel/admin/THead";
 import UsersListBody from "@Panel/admin/Body";
-import { lazy, Suspense, useState } from "react";
+import UsersTHead from "@Panel/admin/THead";
 import { NextPage } from "next";
 
 const people = [
     {
         id: "1",
-        name: "Lindsay Waltonjjjjjjjjjjjjjjjjjhh",
+        name: "Lindsay Walton",
         title: "Front-end Developer",
-        email: "lindsay.walton@example.com",
+        phone: "01548725412",
         role: "Member",
     },
     {
         id: "2",
         name: "Mohammad dev",
         title: "Full-stack Developer",
-        email: "mohammaddev09@gmail.com",
+        phone: "09146360528",
         role: "Member",
     },
 ];
 
 const page: NextPage = () => {
-    const [showAddProduct, setShowAddProduct] = useState(false);
-    const AddProductModal = lazy(()=>import("@Panel/admin/Producs/AddProductModal"))
     return (
-        <>  
-            <Suspense>
-                <AddProductModal
-                    showAddProduct={showAddProduct}
-                    setShowAddProduct={setShowAddProduct}
-                />
-            </Suspense>
+        <>
             <div className='px-4 sm:px-6 lg:px-8'>
                 <UsersListHeader
-                    setShowModal={setShowAddProduct}
+                    href='/panel/admin/users/addUser'
                     buttonTitle='Add User'
                     paragraph='You can see users list in this page.'
                 />
                 <UsersListBody>
                     <table className='min-w-full divide-y divide-gray-300'>
-                        <UsersTHead title="UserName" discription="discription"/>
+                        <UsersTHead
+                            info="Phone"
+                            title='UserName'
+                            about='About'
+                        />
                         <tbody className='divide-y divide-gray-200 bg-white'>
-                            {people.map(
-                                ({ name, title, id }) => (
-                                    <UserInfo
-                                        key={id}
-                                        // email={email}
-                                        name={name}
-                                        // id={id}
-                                        title={title}
-                                    />
-                                )
-                            )}
+                            {people.map(({ name, title, phone, id }) => (
+                                <UserInfo
+                                    key={id}
+                                    // email={email}
+                                    name={name}
+                                    // id={id}
+                                    info={phone}
+                                    about={title}
+                                />
+                            ))}
                         </tbody>
                     </table>
                     <UsersPagination />
