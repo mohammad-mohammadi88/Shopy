@@ -1,6 +1,6 @@
 'use client';
 
-import { showToast } from '@Contracts/auth/toast';
+import { showToast } from '@/contracts/toast';
 import { useRouter } from 'next/navigation';
 import useAuth from '@Hooks/useAuth';
 import React from 'react';

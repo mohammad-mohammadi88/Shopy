@@ -24,6 +24,9 @@
       "@Pages/*": [
         "./src/pages/*"
       ],
+      "@Styles/*": [
+        "./src/styles/*"
+      ],
       "@App/*": [
         "./src/app/*"
       ],
@@ -44,6 +47,9 @@
       ],
       "@Panel/*": [
         "./src/Components/panel/*"
+      ],
+      "@Interfaces/*": [
+        "./src/interfaces/*"
       ],
       "@Hooks/*": [
         "./src/hooks/*"

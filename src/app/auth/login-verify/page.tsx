@@ -1,7 +1,7 @@
 'use client';
 
 import { storeUserToken } from '@Helpers/userToken';
-import { showToast } from '@Contracts/auth/toast';
+import { showToast } from '@/contracts/toast';
 import { VerifyPhoneApi } from "@Helpers/authApi";
 import { useAppSelector } from '@Libs/hooks';
 import { useRouter } from 'next/navigation';

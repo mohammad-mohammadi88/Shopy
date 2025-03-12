@@ -1,8 +1,8 @@
-import useWindowWidth from "@Helpers/useWindowWidth";
+import useWindowWidth from "@Hooks/useWindowWidth";
 import { FC } from "react";
 
 interface Props {
-    about: string;
+    about: any;
     name: string;
     info: string
 }
@@ -13,8 +13,8 @@ const UserAndProductInfo: FC<Props> = ({ name, about,info }) => {
             <td className='max-w-36 lg:max-w-52 truncate py-4 pr-4 pl-3 text-sm font-medium text-gray-900 sm:pr-6' title={name}>
                 {name}
             </td>
-            { windowWidth >= 640 && <td className='invisible sm:visible max-w-40 lg:max-w-52 truncate px-3 py-4 text-sm text-gray-500' title={about}>
-                {about}
+            { windowWidth >= 640 && <td className='invisible sm:visible max-w-40 lg:max-w-52 truncate px-3 py-4 text-sm text-gray-500' title={String(about)}>
+                {String(about)}
             </td>}
             { windowWidth >= 1024 && <td className='invisible md:visible max-w-40 lg:max-w-52 truncate px-3 py-4 text-sm text-gray-500' title={info}>
                 {info}

@@ -17,7 +17,7 @@ export default function handler(
         try{
             res.setHeader(
                 'Set-Cookie',
-                serialize('shopy-user-token',req?.body?.token,{
+                serialize('shopy_user_token',req?.body?.token,{
                     httpOnly: true,
                     path: '/',
                     maxAge: maxAge * 24 * 3600,

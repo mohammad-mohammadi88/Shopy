@@ -1,5 +1,5 @@
-import { Dialog } from "@headlessui/react";
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react'
+import { Dialog } from "@headlessui/react";
 
 interface Props{
     showModal:boolean,

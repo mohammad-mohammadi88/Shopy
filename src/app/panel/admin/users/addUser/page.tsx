@@ -1,24 +1,34 @@
 'use client';
 
-import { FC } from "react";
+import { SignUpFormValuesInterface } from "@Interfaces/forms";
+import AddUserForm from "@Panel/admin/Users/AddUserForm";
+import { showToast } from "@/contracts/toast";
+import { boolean, object, string } from "yup";
+import { signUpApi } from "@Helpers/authApi";
+import { useRouter } from "next/navigation";
 import { Formik } from "formik";
-import { object, string } from "yup";
-import AddUserForm, { UserFormValuesInterface } from "@Panel/admin/Users/AddUserForm";
+import { FC } from "react";
 
-const initialValues:UserFormValuesInterface = {
+const initialValues:SignUpFormValuesInterface = {
     name: "",
     phone: "",
-    discription: ""
+    isAdmin: false
 };
 
 const validationSchema = object().shape({
     name: string().required().min(4).max(25),
     phone:string().required().matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/ ,'your mobile is not valid!').min(11).max(15),
-    discription: string().required().min(5).max(200),
+    isAdmin: boolean().required(),
 });
 
 const AddUser: FC = () => {
-    const handleSubmit = (values:UserFormValuesInterface) => {console.log(values)};
+    const router = useRouter()
+    const handleSubmit = async (values:SignUpFormValuesInterface) :Promise<void> =>{
+        console.log('first')
+        const { status, errors } = await signUpApi(values)
+        showToast( false , 'Your new account created!' , status , 201  , errors)
+        if(status === 201) router.push('/panel/admin/users')
+    }
     return (
         <>
             <h2 className='text-xl font-bold leading-tight text-gray-800 py-5 px-7  border-b'>
@@ -29,11 +39,10 @@ const AddUser: FC = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
                 >
-                {({ values, handleChange, handleSubmit,...props }) => (
+                {({ values, handleChange,...props }) => (
                     <AddUserForm
                         handleChange={handleChange}
                         values={values}
-                        handleSubmit={handleSubmit}
                         {...props}
                         />
                     )}

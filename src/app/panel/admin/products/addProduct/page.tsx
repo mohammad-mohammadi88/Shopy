@@ -1,16 +1,19 @@
-'use client';
-import { FC } from "react";
-import { Formik } from "formik";
+"use client";
+
+import { createProduct } from "@Helpers/productApi";
 import { number, object, string } from "yup";
-import AddProductForm, { ProductFormValuesInterface } from "@Panel/admin/Products/AddProductForm";
+import { Formik } from "formik";
+import { FC } from "react";
+import AddProductForm, {
+    ProductFormValuesInterface,
+} from "@Panel/admin/Products/AddProductForm";
+import { useRouter } from "next/navigation";
 
-
-
-const initialValues:ProductFormValuesInterface = {
+const initialValues: ProductFormValuesInterface = {
     product: "",
     price: 0,
     discription: "",
-    category: "Back-end"
+    category: "Back-end",
 };
 
 const validationSchema = object().shape({
@@ -21,7 +24,19 @@ const validationSchema = object().shape({
 });
 
 const AddProduct: FC = () => {
-    const handleSubmit = (values:ProductFormValuesInterface) => {console.log(values)};
+    const { mutate, data, error, isPending, isSuccess } = createProduct();
+    const router = useRouter()
+    const handleSubmit = (values: ProductFormValuesInterface) => {
+        mutate(values);
+        router.push('/panel/admin/products')
+    };
+    console.log("🚀 ~ { mutate,data,error,isPending,isSuccess }:", {
+        mutate,
+        data,
+        error,
+        isPending,
+        isSuccess,
+    });
     return (
         <>
             <h2 className='text-xl font-bold leading-tight text-gray-800 py-5 px-7  border-b'>
@@ -32,14 +47,14 @@ const AddProduct: FC = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-                {({ values, handleChange, handleSubmit,...props }) => (
+                {({ values, handleChange, handleSubmit, ...props }) => (
                     <AddProductForm
                         handleChange={handleChange}
                         values={values}
                         handleSubmit={handleSubmit}
                         {...props}
-                        />
-                    )}
+                    />
+                )}
             </Formik>
         </>
     );

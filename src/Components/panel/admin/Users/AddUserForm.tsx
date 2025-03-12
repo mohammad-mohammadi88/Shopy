@@ -1,20 +1,18 @@
+import { SignUpFormValuesInterface } from "@Interfaces/forms";
+import Checkbox from "@Contracts/Checkbox";
+import { Form, FormikProps } from "formik";
+import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
-import { FormikProps } from "formik";
 import Link from "next/link";
 
-export interface UserFormValuesInterface{
-    name:string,
-    phone:string,
-    discription:string;
-}
+
 const AddProductForm = ({
     values,
     handleChange,
-    handleSubmit,
-}: FormikProps<UserFormValuesInterface>) => {
-    const { phone, name, discription } = values;
+}: FormikProps<SignUpFormValuesInterface>) => {
+    const { phone, name, isAdmin } = values;
     return (
-        <form onSubmit={handleSubmit} autoComplete={"off"}>
+        <Form>
             <div className='p-6 grid  grid-cols-1 gap-y-6 sm:grid-cols-4 sm:gap-x-8'>
                 <div className='sm:col-span-2'>
                     <Input
@@ -34,26 +32,21 @@ const AddProductForm = ({
                     />
                 </div>
 
-                <div className='sm:col-span-4'>
-                    <Input 
-                        as="textarea"
-                        name="discription"
-                        label="Discription"
-                        className="resize-y h-auto min-h-10 max-h-32"
-                        rows="5"
-                        value={discription}
-                        onChange={handleChange}
+                <div className='col-span-full'>
+                    <Checkbox 
+                        label="Is this user an admin (not admin)"
+                        name="isAdmin"
+                        checked={isAdmin}
                     />
                 </div>
             </div>
 
             <div className='p-6 py-4 border-t border-gray-200 flex items-center'>
-                <button
-                    type='submit'
+                <Button
                     className='mr-2 inline-flex items-center px-3 py-2 border border-transparent text-sm rounded-md shadow-sm text-white bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-700 '
-                >
-                    Create User
-                </button>
+                    value="Create User"
+                />
+                   
                 <Link href="/panel/admin/users">
                     <button
                         type='button'
@@ -63,7 +56,7 @@ const AddProductForm = ({
                     </button>
                 </Link>
             </div>
-        </form>
+        </Form>
     );
 };
 

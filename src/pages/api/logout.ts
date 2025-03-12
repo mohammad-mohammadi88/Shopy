@@ -6,7 +6,7 @@ export default function handler(req:NextApiRequest,res:NextApiResponse){
         try{
             res.setHeader(
                 'Set-Cookie',
-                serialize('shopy-user-token',"",{
+                serialize('shopy_user_token',"",{
                     httpOnly: true,
                     path: '/',
                     maxAge: 0,

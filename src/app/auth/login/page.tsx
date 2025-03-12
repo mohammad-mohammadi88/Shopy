@@ -1,8 +1,8 @@
 'use client';
 
-import { LoginFormValuesInterface } from "@Contracts/auth";
+import { LoginFormValuesInterface } from "@/interfaces/forms";
 import { addPhoneVerifyToken } from "@Libs/authReducer";
-import { showToast } from "@Contracts/auth/toast";
+import { showToast } from "@/contracts/toast";
 import { useAppDispatch } from '@Libs/hooks';
 import { LoginApi } from "@/helpers/authApi";
 import { useRouter } from "next/navigation";

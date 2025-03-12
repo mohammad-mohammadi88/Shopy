@@ -10,5 +10,6 @@ export interface VerifyFormValuesInterface {
 export interface SignUpFormValuesInterface {
     name: string;
     phone: string;
+    isAdmin?: boolean
 }
 

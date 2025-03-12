@@ -11,16 +11,14 @@ const people = [
     {
         id: "1",
         name: "Lindsay Walton",
-        title: "Front-end Developer",
         phone: "01548725412",
-        role: "Member",
+        isAdmin: false,
     },
     {
         id: "2",
         name: "Mohammad dev",
-        title: "Full-stack Developer",
         phone: "09146360528",
-        role: "Member",
+        isAdmin: true,
     },
 ];
 
@@ -38,17 +36,16 @@ const page: NextPage = () => {
                         <UsersTHead
                             info="Phone"
                             title='UserName'
-                            about='About'
+                            about='Is Admin'
                         />
                         <tbody className='divide-y divide-gray-200 bg-white'>
-                            {people.map(({ name, title, phone, id }) => (
+                            {people.map(({ name,isAdmin , phone, id }) => (
                                 <UserInfo
                                     key={id}
-                                    // email={email}
                                     name={name}
                                     // id={id}
                                     info={phone}
-                                    about={title}
+                                    about={isAdmin}
                                 />
                             ))}
                         </tbody>

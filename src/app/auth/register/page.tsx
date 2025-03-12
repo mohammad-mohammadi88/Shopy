@@ -1,7 +1,7 @@
 'use client';
 
-import { SignUpFormValuesInterface } from "@Contracts/auth";
-import { showToast } from "@/contracts/auth/toast";
+import { SignUpFormValuesInterface } from "@/interfaces/forms";
+import { showToast } from "@/contracts/toast";
 import { signUpApi } from "@/helpers/authApi";
 import { useRouter } from "next/navigation";
 import SignInLayout from "@Auth/signup";
