@@ -1,4 +1,3 @@
-import { ProductFormInterFace } from "@Interfaces/forms";
 import Input from "@Contracts/Input";
 import { FormikProps } from "formik";
 import Link from "next/link";
@@ -18,19 +17,19 @@ const options:Option[] = [
 ]
 
 
-const AddProductForm = ({
+const UpdateProductForm = ({
     values,
     handleChange,
     handleSubmit,
-}:FormikProps<ProductFormInterFace>) => {
-    const { price, product, discription,category } = values;
+}:FormikProps<any>) => {
+    const { price, title, body, category } = values;
     return (
         <form onSubmit={handleSubmit}>
             <div className='p-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 xl:grid-cols-3 sm:gap-x-8'>
                 <div className='sm:col-span-1'>
                     <Input
-                        name='product'
-                        value={product}
+                        name='title'
+                        value={title}
                         onChange={handleChange}
                         label='Product name'
                     />
@@ -62,11 +61,11 @@ const AddProductForm = ({
                 <div className='sm:col-span-full'>
                     <Input 
                         as="textarea"
-                        name="discription"
+                        name="body"
                         label="Discription"
                         className="resize-y h-auto min-h-10 max-h-32"
                         rows="5"
-                        value={discription}
+                        value={body}
                         onChange={handleChange}
                     />
                 </div>
@@ -93,4 +92,4 @@ const AddProductForm = ({
     );
 };
 
-export default AddProductForm;
+export default UpdateProductForm;

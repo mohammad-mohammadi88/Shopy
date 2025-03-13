@@ -13,3 +13,9 @@ export interface SignUpFormValuesInterface {
     isAdmin?: boolean
 }
 
+export interface ProductFormInterFace{
+    product: string,
+    price: number,
+    discription: string,
+    category: string,
+}

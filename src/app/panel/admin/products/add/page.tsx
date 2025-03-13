@@ -1,15 +1,15 @@
 "use client";
 
-import { createProduct } from "@Helpers/productApi";
+import AddProductForm from "@Panel/admin/Products/AddProductForm";
+import { ProductFormInterFace } from "@Interfaces/forms";
+import { useCreateProduct } from "@Helpers/productApi";
 import { number, object, string } from "yup";
-import { Formik } from "formik";
-import { FC } from "react";
-import AddProductForm, {
-    ProductFormValuesInterface,
-} from "@Panel/admin/Products/AddProductForm";
 import { useRouter } from "next/navigation";
+import { Formik } from "formik";
+import { NextPage } from "next";
+import { queryClient } from "@/app/layout";
 
-const initialValues: ProductFormValuesInterface = {
+const initialValues: ProductFormInterFace = {
     product: "",
     price: 0,
     discription: "",
@@ -23,20 +23,14 @@ const validationSchema = object().shape({
     category: string().required(),
 });
 
-const AddProduct: FC = () => {
-    const { mutate, data, error, isPending, isSuccess } = createProduct();
+const AddProduct: NextPage = () => {
+    const { mutate } = useCreateProduct();
     const router = useRouter()
-    const handleSubmit = (values: ProductFormValuesInterface) => {
+    const handleSubmit = (values: ProductFormInterFace) => {
         mutate(values);
+        queryClient.invalidateQueries({queryKey:['products',"page",1]})
         router.push('/panel/admin/products')
     };
-    console.log("🚀 ~ { mutate,data,error,isPending,isSuccess }:", {
-        mutate,
-        data,
-        error,
-        isPending,
-        isSuccess,
-    });
     return (
         <>
             <h2 className='text-xl font-bold leading-tight text-gray-800 py-5 px-7  border-b'>
