@@ -1,10 +1,10 @@
 'use client';
 
-import { LoginFormValuesInterface } from "@/interfaces/forms";
+import { LoginFormValuesInterface } from "@Interfaces/forms";
 import { addPhoneVerifyToken } from "@Libs/authReducer";
-import { showToast } from "@/contracts/toast";
+import { showAuthToast } from "@Contracts/toast";
 import { useAppDispatch } from '@Libs/hooks';
-import { LoginApi } from "@/helpers/authApi";
+import { LoginApi } from "@Helpers/authApi";
 import { useRouter } from "next/navigation";
 import { Dispatch } from '@reduxjs/toolkit';
 import SignInLayout from '@Auth/signin';
@@ -16,7 +16,7 @@ const login: NextPage = () :ReactNode => {
     const dispatch:Dispatch = useAppDispatch()
     const handleSubmit = async (values:LoginFormValuesInterface) :Promise<void> => {
         const { data, status, errors } = await LoginApi(values)
-        showToast( true , 'Your verify code is ' + data?.code , status , 200  , errors )
+        showAuthToast( true , 'Your verify code is ' + data?.code , status , 200  , errors )
         if(status === 200){
             dispatch(addPhoneVerifyToken(data.token));
             router.push('login-verify')

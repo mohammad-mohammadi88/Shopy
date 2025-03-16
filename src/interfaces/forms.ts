@@ -14,8 +14,15 @@ export interface SignUpFormValuesInterface {
 }
 
 export interface ProductFormInterFace{
-    product: string,
+    title: string,
     price: number,
-    discription: string,
+    body: string,
     category: string,
+}
+
+export interface UserFormInterFace{
+    id?:any
+    name: string,
+    phone: string,
+    isAdmin: boolean,
 }

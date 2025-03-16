@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const storeUserToken = async (token:string,maxDay:number = 10) :Promise<void> => {
     await fetch('/api/login',{
         method:'POST',

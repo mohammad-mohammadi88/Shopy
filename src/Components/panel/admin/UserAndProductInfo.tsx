@@ -6,7 +6,7 @@ interface Props {
     about: any;
     name: string;
     info: string;
-    id:number;
+    id: number;
     handleDelete:() => void
     updateHref: string;
 }

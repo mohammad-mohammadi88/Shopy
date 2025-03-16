@@ -1,7 +1,7 @@
 "use client";
 
+import type { FC, ReactNode } from "react";
 import { Field } from "formik";
-import { FC, ReactNode } from "react";
 interface Props {
     label: string;
     name: string;

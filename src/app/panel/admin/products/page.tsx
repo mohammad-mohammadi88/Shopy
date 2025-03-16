@@ -1,26 +1,25 @@
 "use client";
 
+import { useDeleteProduct, useReadProduct } from "@Helpers/productApi";
 import ProductInfo from "@Panel/admin/UserAndProductInfo";
 import ProductsPagination from "@Panel/admin/Pagination";
 import ProductsListHeader from "@Panel/admin/Header";
-import { useDeleteProduct, useReadProduct } from "@Helpers/productApi";
 import ProductsListBody from "@Panel/admin/Body";
 import ProductsTHead from "@Panel/admin/THead";
 import { Product } from "@Interfaces/product";
 import { useEffect, useState } from "react";
-import { NextPage } from "next";
-import { showToast } from "@Contracts/toast";
 import { queryClient } from "@App/layout";
+import { NextPage } from "next";
 
 const page: NextPage = () => {
     const [ page, setPage ] = useState<number>(1);
-    const { data, isSuccess, refetch, isLoading, isError } = useReadProduct(page);
-    const { data:response, mutate,isSuccess:isDeleted,error } = useDeleteProduct()
-    const handleDelete = (id:string) => {
+    const { data, isSuccess, refetch, isLoading, isError } = useReadProduct(page); 
+    const { data:response, mutate,isSuccess:isDeleted} = useDeleteProduct()
+
+    const handleDelete = async (id:string) => {
         mutate(id)
         console.log(response)
         queryClient.invalidateQueries({queryKey:['products',"page"]})
-        showToast(false,'This Product deleted successfully!', isDeleted ? 200 : 500,200,error)
     }
     useEffect(()=>{
         refetch()

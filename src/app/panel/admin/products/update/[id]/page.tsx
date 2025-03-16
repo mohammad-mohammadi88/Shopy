@@ -1,21 +1,19 @@
 "use client";
 
+import { useReadOneProduct, useUpdateProduct } from "@Helpers/productApi";
 import UpdateProductForm from "@Panel/admin/Products/UpdateProductForm";
-import { ProductFormInterFace } from "@Interfaces/forms";
-import { useCreateProduct, useReadOneProduct, useUpdateProduct } from "@Helpers/productApi";
-import { number, object, string } from "yup";
 import { useParams, useRouter } from "next/navigation";
+import { number, object, string } from "yup";
+import { queryClient } from "@/app/layout";
 import { Formik } from "formik";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import { queryClient } from "@/app/layout";
 
 
 const validationSchema = object().shape({
-    title: string().required().min(4).max(25),
-    price: number().required().min(1),
-    body: string().required().min(5).max(1000),
-    category: string().required()
+    title: string().min(4).max(25),
+    price: number().min(1),
+    body: string().min(5).max(1000),
+    category: string()
 });
 
 const UpdateProduct:NextPage = () => {
@@ -24,7 +22,7 @@ const UpdateProduct:NextPage = () => {
     const { data } = useReadOneProduct(params?.id)
     const { mutate, error } = useUpdateProduct(params?.id);
     console.log("🚀 ~ error:", error)
-    const handleSubmit = (values: any) => {
+    const handleFormSubmit = (values: any) => {
         mutate(values);
         queryClient.invalidateQueries({queryKey:['products',"page"]})
         router.push('/panel/admin/products')
@@ -41,15 +39,14 @@ const UpdateProduct:NextPage = () => {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
+                    onSubmit={handleFormSubmit}
                 >
-                    {({ values, handleChange, handleSubmit, ...props }) => (
+                    {({ values, handleChange, ...props }) => (
                         <UpdateProductForm
                             handleChange={handleChange}
                             values={values}
-                            handleSubmit={handleSubmit}
                             {...props}
-                            />
+                        />
                     )}
                 </Formik>}
             </>

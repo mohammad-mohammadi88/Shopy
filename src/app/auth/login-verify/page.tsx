@@ -1,13 +1,13 @@
 'use client';
 
 import { storeUserToken } from '@Helpers/userToken';
-import { showToast } from '@/contracts/toast';
+import { showAuthToast } from '@/contracts/toast';
 import { VerifyPhoneApi } from "@Helpers/authApi";
 import { useAppSelector } from '@Libs/hooks';
 import { useRouter } from 'next/navigation';
 import VerifyForm from '@Auth/signinVerify';
+import type { NextPage } from 'next';
 import { ReactNode } from 'react';
-import { NextPage } from 'next';
 import {
     AuthInitialStateInterface,
     authSelector
@@ -20,7 +20,7 @@ const loginVerify: NextPage = () :ReactNode => {
     async function handleSubmit(code:number) : Promise<void> {
         const verifyToken:string = authState.phoneVerifyToken ?? ''; 
         const { status, data, errors } = await VerifyPhoneApi(code,verifyToken)
-        showToast( false , 'Hello ' + data?.name , status , 200 , errors)
+        showAuthToast( false , 'Hello ' + data?.name , status , 200 , errors)
         if(status === 200){
             const { token } = data;
             storeUserToken(token)

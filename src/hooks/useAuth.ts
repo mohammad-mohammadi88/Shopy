@@ -1,6 +1,13 @@
-import { getUser } from "@Helpers/userApi";
 import { useQuery } from "@tanstack/react-query"
-//, () => getUser()
+import axios from "axios"
+
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+axios.defaults.withCredentials = true;
+
+export const getUser = () => {
+    return axios.get('/user')
+}
+
 const useAuth = () => {
     const queryKey = ['user_info'];
     const queryFn = () => getUser()

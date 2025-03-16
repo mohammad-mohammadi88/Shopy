@@ -2,7 +2,7 @@
 
 import { SignUpFormValuesInterface } from "@Interfaces/forms";
 import AddUserForm from "@Panel/admin/Users/AddUserForm";
-import { showToast } from "@/contracts/toast";
+import { showAuthToast } from "@/contracts/toast";
 import { boolean, object, string } from "yup";
 import { signUpApi } from "@Helpers/authApi";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ const initialValues:SignUpFormValuesInterface = {
 };
 
 const validationSchema = object().shape({
-    name: string().required().min(4).max(25),
+    name: string().required().min(2).max(25),
     phone:string().required().matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/ ,'your mobile is not valid!').min(11).max(15),
     isAdmin: boolean().required(),
 });
@@ -24,9 +24,8 @@ const validationSchema = object().shape({
 const AddUser: FC = () => {
     const router = useRouter()
     const handleSubmit = async (values:SignUpFormValuesInterface) :Promise<void> =>{
-        console.log('first')
         const { status, errors } = await signUpApi(values)
-        showToast( false , 'Your new account created!' , status , 201  , errors)
+        showAuthToast( false , 'New user account created!' , status , 201  , errors)
         if(status === 201) router.push('/panel/admin/users')
     }
     return (
@@ -44,8 +43,8 @@ const AddUser: FC = () => {
                         handleChange={handleChange}
                         values={values}
                         {...props}
-                        />
-                    )}
+                    />
+                )}
             </Formik>
         </>
     );

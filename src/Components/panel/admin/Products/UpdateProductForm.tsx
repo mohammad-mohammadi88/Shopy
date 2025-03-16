@@ -1,3 +1,4 @@
+import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
 import { FormikProps } from "formik";
 import Link from "next/link";
@@ -20,7 +21,7 @@ const options:Option[] = [
 const UpdateProductForm = ({
     values,
     handleChange,
-    handleSubmit,
+    handleSubmit
 }:FormikProps<any>) => {
     const { price, title, body, category } = values;
     return (
@@ -73,12 +74,11 @@ const UpdateProductForm = ({
             </div>
 
             <div className='p-6 py-4 border-t border-gray-200 flex items-center'>
-                <button
-                    type='submit'
+                <Button
                     className='mr-2 inline-flex items-center px-3 py-2 border border-transparent text-sm rounded-md shadow-sm text-white bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-700 '
-                >
-                    Create product
-                </button>
+                    value="Update product"
+                />
+                
                 <Link href="/panel/admin/products">
                     <button
                         type='button'

@@ -1,9 +1,9 @@
 "use client";
 
 import { Option } from "@Panel/admin/Products/AddProductForm";
+import type { FC, ReactNode, Ref } from "react";
 import { ErrorMessage } from "formik";
 import { Field } from "formik";
-import { FC, ReactNode, Ref } from "react";
 interface Props {
     inputType?: string;
     ref?: Ref<null>;

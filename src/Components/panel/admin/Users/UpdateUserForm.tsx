@@ -1,16 +1,16 @@
-import { SignUpFormValuesInterface } from "@Interfaces/forms";
 import Checkbox from "@Contracts/Checkbox";
-import { FormikProps } from "formik";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
+import { FormikProps } from "formik";
 import Link from "next/link";
 
 
-const AddProductForm = ({
+
+const UpdateProductForm = ({
     values,
     handleChange,
     handleSubmit
-}: FormikProps<SignUpFormValuesInterface>) => {
+}:FormikProps<any>) => {
     const { phone, name, isAdmin } = values;
     return (
         <form onSubmit={handleSubmit}>
@@ -37,15 +37,15 @@ const AddProductForm = ({
                     <Checkbox 
                         label="Is this user an admin (not admin)"
                         name="isAdmin"
-                        checked={isAdmin}
+                        defaultChecked={isAdmin}
                     />
                 </div>
             </div>
 
             <div className='p-6 py-4 border-t border-gray-200 flex items-center'>
                 <Button
-                    className='mr-2 inline-flex items-center px-3 py-2 border border-transparent text-sm rounded-md shadow-sm text-white bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-700 '
-                    value="Create User"
+                    className='mr-2 inline-flex items-center px-3 py-2 border border-transparent text-sm rounded-md shadow-sm text-white bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-700'
+                    value="Update User"
                 />
                    
                 <Link href="/panel/admin/users">
@@ -61,4 +61,4 @@ const AddProductForm = ({
     );
 };
 
-export default AddProductForm;
+export default UpdateProductForm;

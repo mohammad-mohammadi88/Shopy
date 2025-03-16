@@ -10,23 +10,23 @@ import { NextPage } from "next";
 import { queryClient } from "@/app/layout";
 
 const initialValues: ProductFormInterFace = {
-    product: "",
+    title: "",
     price: 0,
-    discription: "",
+    body: "",
     category: "Back-end",
 };
 
 const validationSchema = object().shape({
-    product: string().required().min(4).max(25),
+    title: string().required().min(4).max(25),
     price: number().required().min(1),
-    discription: string().required().min(5).max(1000),
+    body: string().required().min(5).max(1000),
     category: string().required(),
 });
 
 const AddProduct: NextPage = () => {
     const { mutate } = useCreateProduct();
     const router = useRouter()
-    const handleSubmit = (values: ProductFormInterFace) => {
+    const handleFormSubmit = (values: ProductFormInterFace) => {
         mutate(values);
         queryClient.invalidateQueries({queryKey:['products',"page",1]})
         router.push('/panel/admin/products')
@@ -39,7 +39,7 @@ const AddProduct: NextPage = () => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={handleSubmit}
+                onSubmit={handleFormSubmit}
             >
                 {({ values, handleChange, handleSubmit, ...props }) => (
                     <AddProductForm

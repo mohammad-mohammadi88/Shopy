@@ -1,17 +1,16 @@
 "use client";
 
+import useAuth from "@/hooks/useAuth";
 import { redirect } from "next/navigation";
-import AdminPanel from "@Panel/admin";
-import { FC, ReactNode } from "react";
-import useAuth from "@Hooks/useAuth";
+import { FC, ReactNode} from "react";
 
 interface Props {
     children: ReactNode;
 }
 const layout: FC<Readonly<Props>> = ({ children }) => {
     const {user} = useAuth()
-    if(!user.isAdmin) redirect('/panel/user')
-    return <AdminPanel>{children}</AdminPanel>;
+    if(user.isAdmin) redirect('/panel/admin')
+    return <>{children}</>;
 };
 
 export default layout;
