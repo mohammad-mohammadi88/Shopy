@@ -30,8 +30,8 @@
       "@App/*": [
         "./src/app/*"
       ],
-      "@Libs/*": [
-        "./src/libs/*"
+      "@Context/*": [
+        "./src/context/*"
       ],
       "@Components/*": [
         "./src/Components/*"

@@ -4,9 +4,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { Bounce, ToastContainer } from "react-toastify";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Provider } from "react-redux";
+import AuthProvider from "@Context/authentication";
 import type { Metadata } from "next";
-import store from "@Libs/store";
 import "@Styles/globals.css";
 
 const geistSans = Geist({
@@ -38,9 +37,9 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <QueryClientProvider client={queryClient}>
-          <Provider store={store}>
+          <AuthProvider>
             {children}
-          </Provider>
+          </AuthProvider>
           <ReactQueryDevtools />
         </QueryClientProvider>
         <ToastContainer

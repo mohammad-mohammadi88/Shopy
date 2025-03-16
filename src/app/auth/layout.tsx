@@ -8,8 +8,7 @@ const layout = ({children}:{children:Readonly<ReactNode>}) => {
     const {user} = useAuth();
     useLayoutEffect(()=>{
         if(user){
-            if(user.isAdmin) redirect('/panel/admin')
-            else redirect('/panel/user')
+            user.isAdmin ? redirect('/panel/admin') : redirect('/panel/user')
         }
     },[user])
     return (

@@ -18,6 +18,6 @@ export default function handler(req:NextApiRequest,res:NextApiResponse){
             res.status(500).send('Something went wrong while deleting cookie')
         }
     } else {
-        res.status(400).send('This method is unavailable')
+        res.status(405).send('This method is unavailable')
     }
 }
