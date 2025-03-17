@@ -1,6 +1,6 @@
 import useWindowWidth from "@Hooks/useWindowWidth";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 
 interface Props {
     about: any;

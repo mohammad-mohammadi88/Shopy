@@ -16,7 +16,6 @@ export const signUpApi = async (values:SignUpFormValuesInterface) :Promise<Retur
             status
         }
     } catch(err:any){
-        console.log(err)
         const errors:string[] = Object.values(err?.response?.data?.errors);
         const { status } = err;
         return { status, errors }

@@ -1,36 +1,45 @@
 "use client";
 
 import { useDeleteProduct, useReadProduct } from "@Helpers/productApi";
-import ProductInfo from "@Panel/admin/UserAndProductInfo";
-import ProductsPagination from "@Panel/admin/Pagination";
-import ProductsListHeader from "@Panel/admin/Header";
-import ProductsListBody from "@Panel/admin/Body";
-import ProductsTHead from "@Panel/admin/THead";
+import ProductInfo from "@/Components/panel/UserAndProductInfo";
+import ProductsPagination from "@/Components/panel/Pagination";
+import ProductsListHeader from "@/Components/panel/Header";
+import ProductsListBody from "@/Components/panel/Body";
+import ProductsTHead from "@/Components/panel/THead";
 import type { Product } from "@Interfaces/product";
 import { useEffect, useState } from "react";
 import { queryClient } from "@App/layout";
 import type { NextPage } from "next";
+import Link from "next/link";
 
 const page: NextPage = () => {
-    const [ page, setPage ] = useState<number>(1);
-    const { data, isSuccess, refetch, isLoading, isError } = useReadProduct(page); 
-    const { data:response, mutate,isSuccess:isDeleted} = useDeleteProduct()
+    const [page, setPage] = useState<number>(1);
+    const { data, isSuccess, refetch, isLoading, isError } =
+        useReadProduct(page);
+    const { data: response, mutate, isSuccess: isDeleted } = useDeleteProduct();
 
-    const handleDelete = async (id:string) => {
-        mutate(id)
-        console.log(response)
-        queryClient.invalidateQueries({queryKey:['products',"page"]})
-    }
-    useEffect(()=>{
-        refetch()
-    },[isDeleted])
+    const handleDelete = async (id: string) => {
+        mutate(id);
+        console.log(response);
+        queryClient.invalidateQueries({ queryKey: ["products", "page"] });
+    };
+    useEffect(() => {
+        refetch();
+    }, [isDeleted]);
     return (
         <div className='px-4 sm:px-6 lg:px-8 '>
-            <ProductsListHeader
-                buttonTitle='Add Product'
-                href='products/add'
-                paragraph='You can see all products list in this page.'
-            />
+            <ProductsListHeader paragraph='You can see all products list in this page.'>
+                <div className='mt-4 sm:mt-0 sm:ml-16 md:ml-0 sm:flex-none'>
+                    <Link href='/panel/admin/products/add'>
+                        <button
+                            type='button'
+                            className='inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto'
+                        >
+                            Add Product
+                        </button>
+                    </Link>
+                </div>
+            </ProductsListHeader>
             {isLoading && (
                 <div className='mt-6 text-3xl font-bold text-center'>
                     Loading products...
@@ -71,7 +80,9 @@ const page: NextPage = () => {
                                             id={id}
                                             canDelete={false}
                                             canEdit={false}
-                                            handleDelete={() => handleDelete(id)}
+                                            handleDelete={() =>
+                                                handleDelete(id)
+                                            }
                                             updateHref={`/panel/admin/products/update/${id}`}
                                             about={category}
                                         />

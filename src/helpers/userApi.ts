@@ -33,7 +33,6 @@ export function useUpdateUser(id: string) {
     const mutationKey = ["user", "update", id];
     const user: any = useReadOneUser(id)?.data?.user;
     const mutationFn = async (Info: any) => {
-        console.log(user, Info);
         Object.keys(Info).forEach((key: string) => {
             const item = Info[key];
             if (item == "") Info[key] = user[key];

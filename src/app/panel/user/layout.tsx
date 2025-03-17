@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import useAuth from "@Hooks/useAuth";
 import { FC, ReactNode} from "react";
+import UserPanel from "@Panel/user/UserPanel";
 
 interface Props {
     children: ReactNode;
@@ -10,7 +11,7 @@ interface Props {
 const layout: FC<Readonly<Props>> = ({ children }) => {
     const {user} = useAuth()
     if(user.isAdmin) redirect('/panel/admin')
-    return <>{children}</>;
+    return <UserPanel>{children}</UserPanel>;
 };
 
 export default layout;

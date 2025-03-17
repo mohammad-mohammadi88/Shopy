@@ -1,22 +1,25 @@
 "use client";
 
-import type { userNavigationInterface } from "./admin/AdminPanel";
+import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { useRemoveUserToken } from "@Helpers/userToken";
 import { Menu, Transition } from "@headlessui/react";
+import { useRouter } from "next/navigation";
 import { queryClient } from "@App/layout";
 import useAuth from "@Hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
 
 interface Props {
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
     userNavigation: userNavigationInterface[];
 }
 
+export interface userNavigationInterface {
+    name: string;
+    href: string;
+}
 const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
     const { refetch } = useAuth()
     const router = useRouter()

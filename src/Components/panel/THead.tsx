@@ -1,7 +1,7 @@
 'use client'
 
 import useWindowWidth from '@Hooks/useWindowWidth';
-import { FC } from 'react';
+import type { FC } from 'react';
 interface Props{
     title:string,
     about:string;

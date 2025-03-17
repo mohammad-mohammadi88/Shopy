@@ -1,12 +1,26 @@
-import type { navigationInterface } from './admin/AdminPanel';
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import type { Dispatch, FC, SetStateAction } from 'react';
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Dialog, Transition } from "@headlessui/react";
 import NavLink from '@Contracts/NavLink';
 import { Fragment } from "react";
 import Image from "next/image";
+import type {
+    ForwardRefExoticComponent,
+    RefAttributes,
+    SVGProps,
+} from "react";
 import "./style.css"
 
+export interface navigationInterface {
+    name: string;
+    href: string;
+    icon: ForwardRefExoticComponent<
+        Omit<SVGProps<SVGSVGElement>, "ref"> & {
+            title?: string;
+            titleId?: string;
+        } & RefAttributes<SVGSVGElement>
+    >;
+}
 interface Props{
     sidebarOpen:boolean,
     setSidebarOpen:Dispatch<SetStateAction<boolean>>,

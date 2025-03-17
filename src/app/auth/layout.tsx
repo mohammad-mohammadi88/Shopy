@@ -10,6 +10,7 @@ const layout = ({children}:{children:Readonly<ReactNode>}) => {
         if(user){
             user.isAdmin ? redirect('/panel/admin') : redirect('/panel/user')
         }
+        return () => {}
     },[user])
     return children
 }

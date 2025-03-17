@@ -1,7 +1,7 @@
+import type { navigationInterface } from './MobileSidebar';
 import NavLink from '@Contracts/NavLink';
-import type { navigationInterface } from './admin/AdminPanel';
-import Image from "next/image";
 import type { FC } from "react";
+import Image from "next/image";
 
 interface Props{
     navigation:navigationInterface[]

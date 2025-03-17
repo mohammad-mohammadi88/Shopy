@@ -32,14 +32,15 @@ const UpdateProductForm = ({
                         label='Phone'
                     />
                 </div>
-
-                <div className='col-span-full'>
-                    <Checkbox 
-                        label="Is this user an admin (not admin)"
-                        name="isAdmin"
-                        defaultChecked={isAdmin}
-                    />
-                </div>
+                {typeof isAdmin !== "undefined" && 
+                    <div className='col-span-full'>
+                        <Checkbox 
+                            label="Is this user an admin (not admin)"
+                            name="isAdmin"
+                            defaultChecked={isAdmin}
+                            />
+                    </div>
+                }
             </div>
 
             <div className='p-6 py-4 border-t border-gray-200 flex items-center'>
