@@ -3,29 +3,30 @@
 import type { userNavigationInterface } from "./admin/AdminPanel";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
+import { useRemoveUserToken } from "@Helpers/userToken";
 import { Menu, Transition } from "@headlessui/react";
-import { removeUserToken } from "@Helpers/userToken";
 import { queryClient } from "@App/layout";
 import useAuth from "@Hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import {
-    Bars3BottomLeftIcon,
-    BellIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 
-interface Props{
-    setSidebarOpen:Dispatch<SetStateAction<boolean>>,
-    userNavigation:userNavigationInterface[]
+interface Props {
+    setSidebarOpen: Dispatch<SetStateAction<boolean>>;
+    userNavigation: userNavigationInterface[];
 }
 
-const Navbar :FC<Props> = ({setSidebarOpen,userNavigation}) => {
+const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
     const { refetch } = useAuth()
-    const handleLogout = async () => {
-        await removeUserToken();
-        queryClient.removeQueries({ queryKey: ['user_info'] })
-        await refetch()
-    }
+    const router = useRouter()
+    const { mutate } = useRemoveUserToken()
+    const handleLogout = () => {
+        mutate()
+        queryClient.removeQueries({ queryKey: ["user_info"] });
+        refetch()
+        router.push('/')
+    };
     return (
         <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
             <button
@@ -35,10 +36,7 @@ const Navbar :FC<Props> = ({setSidebarOpen,userNavigation}) => {
             >
                 <span className='sr-only'>Open sidebar</span>
 
-                <Bars3BottomLeftIcon
-                    className='h-6 w-6'
-                    aria-hidden='true'
-                />
+                <Bars3BottomLeftIcon className='h-6 w-6' aria-hidden='true' />
             </button>
 
             <div className='flex flex-1 justify-between px-4'>
@@ -48,10 +46,7 @@ const Navbar :FC<Props> = ({setSidebarOpen,userNavigation}) => {
                         action='#'
                         method='GET'
                     >
-                        <label
-                            htmlFor='search-field'
-                            className='sr-only'
-                        >
+                        <label htmlFor='search-field' className='sr-only'>
                             Search
                         </label>
 
@@ -79,23 +74,16 @@ const Navbar :FC<Props> = ({setSidebarOpen,userNavigation}) => {
                         type='button'
                         className='rounded-full mr-3 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                     >
-                        <span className='sr-only'>
-                            View notifications
-                        </span>
+                        <span className='sr-only'>View notifications</span>
 
-                        <BellIcon
-                            className='h-6 w-6'
-                            aria-hidden='true'
-                        />
+                        <BellIcon className='h-6 w-6' aria-hidden='true' />
                     </button>
                     {/* Profile dropdown */}
-                    
+
                     <Menu as='div' className='relative mr-3'>
                         <div>
                             <Menu.Button className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
-                                <span className='sr-only'>
-                                    Open user menu
-                                </span>
+                                <span className='sr-only'>Open user menu</span>
 
                                 <Image
                                     className='rounded-full'
@@ -121,7 +109,9 @@ const Navbar :FC<Props> = ({setSidebarOpen,userNavigation}) => {
                                     <Menu.Item key={item.name}>
                                         {({ active }) => (
                                             <Link
-                                                className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700`}
+                                                className={`${
+                                                    active && "bg-gray-100"
+                                                } block px-4 py-2 text-sm text-gray-700`}
                                                 href={item.href}
                                             >
                                                 {item.name}
@@ -130,24 +120,21 @@ const Navbar :FC<Props> = ({setSidebarOpen,userNavigation}) => {
                                     </Menu.Item>
                                 ))}
                                 <Menu.Item>
-                                        {({ active }) => (
-                                            <Link
-                                                className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700`}
-                                                href="/"
-                                            >
-                                                <button onClick={handleLogout}>
-                                                    Sign out
-                                                </button>
-                                            </Link>
-                                        )}
-                                    </Menu.Item>
+                                    {({ active }) => (
+                                        <div className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700 cursor-pointer`}>
+                                            <button onClick={handleLogout}>
+                                                Sign out
+                                            </button>
+                                        </div>
+                                    )}
+                                </Menu.Item>
                             </Menu.Items>
                         </Transition>
                     </Menu>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

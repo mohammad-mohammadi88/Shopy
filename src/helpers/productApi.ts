@@ -23,11 +23,22 @@ export function useCreateProduct() {
     });
 }
 
-// Read Products
+// Read All Products
 export function useReadProduct(page: number = 1) {
     const queryKey = ["products", "page", page];
     const queryFn = async () =>
         (await axios.get(`products?per_page=10&page=${page}`)).data;
+    return useQuery({
+        queryFn,
+        queryKey,
+    });
+}
+
+// Read Admin Products
+export function useReadUserProducts(page: number = 1,user_id:number) {
+    const queryKey = ["products","user", "page", page];
+    const queryFn = async () =>
+        (await axios.get(`products/userProducts/${user_id}?per_page=10&page=${page}`)).data;
     return useQuery({
         queryFn,
         queryKey,

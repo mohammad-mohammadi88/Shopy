@@ -1,5 +1,3 @@
-"use client";
-
 import Dashboard from '@Panel/Dashboard';
 import type { NextPage } from 'next';
 

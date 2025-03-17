@@ -1,5 +1,3 @@
-'use client';
-
 import FormsLayout from "@Auth/FormsLayout";
 import React from 'react';
 

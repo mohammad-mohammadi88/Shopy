@@ -1,10 +1,10 @@
 'use client';
 
-import { VerifyFormValuesInterface } from "@/interfaces/forms";
-import { ReactNode, useEffect, useRef } from "react";
-import { FormikProps } from "formik";
-import Button from "../../../contracts/Button";
-import Input from "../../../contracts/Input";
+import type { VerifyFormValuesInterface } from "@Interfaces/forms";
+import { type ReactNode, useEffect, useRef } from "react";
+import type { FormikProps } from "formik";
+import Button from "@Contracts/Button";
+import Input from "@Contracts/Input";
 import Link from "next/link";
 
 const Form = ({

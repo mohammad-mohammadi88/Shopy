@@ -1,12 +1,12 @@
 "use client";
 
 import AddProductForm from "@Panel/admin/Products/AddProductForm";
-import { ProductFormInterFace } from "@Interfaces/forms";
+import type { ProductFormInterFace } from "@Interfaces/forms";
 import { useCreateProduct } from "@Helpers/productApi";
 import { number, object, string } from "yup";
 import { useRouter } from "next/navigation";
 import { Formik } from "formik";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import { queryClient } from "@/app/layout";
 
 const initialValues: ProductFormInterFace = {

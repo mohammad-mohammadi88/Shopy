@@ -1,6 +1,4 @@
-'use client';
-
-import { VerifyFormValuesInterface } from "@/interfaces/forms";
+import type { VerifyFormValuesInterface } from "@Interfaces/forms";
 import Form from "./VerifyFormLogic";
 import { object, string } from "yup";
 import { withFormik } from "formik";

@@ -1,6 +1,6 @@
 'use client';
 
-import { SignUpFormValuesInterface } from '@/interfaces/forms';
+import type { SignUpFormValuesInterface } from '@Interfaces/forms';
 import { object, string } from 'yup';
 import Form from "./SignUpFormLogic";
 import { withFormik } from 'formik';

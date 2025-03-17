@@ -1,6 +1,5 @@
 import { LoginFormValuesInterface, SignUpFormValuesInterface } from "@/interfaces/forms";
 import axios, { AxiosResponse } from "axios";
-import { storeUserToken } from "./userToken";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL
 
@@ -37,12 +36,10 @@ export const LoginApi = async (values:LoginFormValuesInterface) :Promise<ReturnT
 
 export const VerifyPhoneApi = async (code:number,token:string) :Promise<ReturnTypesInterface> => {
     try{
-        
         const { data, status }: AxiosResponse = await axios.post('auth/login/verify-phone',{
             code,
             token
         });
-        storeUserToken(data?.user?.token)
         return {
             data:data?.user,
             status

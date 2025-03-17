@@ -21,9 +21,6 @@
       "@/*": [
         "./src/*"
       ],
-      "@Pages/*": [
-        "./src/pages/*"
-      ],
       "@Styles/*": [
         "./src/styles/*"
       ],

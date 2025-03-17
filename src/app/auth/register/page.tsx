@@ -15,9 +15,7 @@ const register: NextPage = () :ReactNode => {
         showAuthToast( false , 'Your new account created!' , status , 201  , errors)
         if(status === 201) router.push('login')
     }
-    return (
-        <SignInLayout handleSubmit={handleSubmit}/>
-    );
+    return <SignInLayout handleSubmit={handleSubmit}/>
 };
 
 export default register;

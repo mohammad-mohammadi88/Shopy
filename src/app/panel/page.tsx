@@ -7,14 +7,14 @@ import Link from 'next/link';
 
 const page:NextPage = () :ReactNode => {
     const { user } = useAuth()
-
     return (
         <>
             {user &&
-            <>
-                <div>{user?.name}</div>
-                <Link href="panel/admin">admin</Link><br />
-            </>}
+                <>
+                    <div>{user?.name}</div>
+                    <Link href="panel/admin">admin</Link><br />
+                </>
+            }
         </>
     )
     

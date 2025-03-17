@@ -6,10 +6,10 @@ import ProductsPagination from "@Panel/admin/Pagination";
 import ProductsListHeader from "@Panel/admin/Header";
 import ProductsListBody from "@Panel/admin/Body";
 import ProductsTHead from "@Panel/admin/THead";
-import { Product } from "@Interfaces/product";
+import type { Product } from "@Interfaces/product";
 import { useEffect, useState } from "react";
 import { queryClient } from "@App/layout";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
 const page: NextPage = () => {
     const [ page, setPage ] = useState<number>(1);
@@ -29,7 +29,7 @@ const page: NextPage = () => {
             <ProductsListHeader
                 buttonTitle='Add Product'
                 href='products/add'
-                paragraph='You can see products list in this page.'
+                paragraph='You can see all products list in this page.'
             />
             {isLoading && (
                 <div className='mt-6 text-3xl font-bold text-center'>
@@ -69,6 +69,8 @@ const page: NextPage = () => {
                                             info={price + "$"}
                                             name={title}
                                             id={id}
+                                            canDelete={false}
+                                            canEdit={false}
                                             handleDelete={() => handleDelete(id)}
                                             updateHref={`/panel/admin/products/update/${id}`}
                                             about={category}

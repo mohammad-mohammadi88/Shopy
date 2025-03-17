@@ -1,10 +1,7 @@
-'use client';
-
-import { LoginFormValuesInterface } from "@/interfaces/forms";
+import type { LoginFormValuesInterface } from "@Interfaces/forms";
 import Form from "./SignInFormLogic";
 import { object, string } from "yup";
 import { withFormik } from "formik";
-
 
 const validationSchema = object({
     phone:string().required().min(11).max(15)

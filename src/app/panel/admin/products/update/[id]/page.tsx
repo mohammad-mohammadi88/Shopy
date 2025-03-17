@@ -4,9 +4,9 @@ import { useReadOneProduct, useUpdateProduct } from "@Helpers/productApi";
 import UpdateProductForm from "@Panel/admin/Products/UpdateProductForm";
 import { useParams, useRouter } from "next/navigation";
 import { number, object, string } from "yup";
-import { queryClient } from "@/app/layout";
+import { queryClient } from "@App/layout";
 import { Formik } from "formik";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
 
 const validationSchema = object().shape({

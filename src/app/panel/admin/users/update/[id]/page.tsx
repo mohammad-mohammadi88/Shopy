@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { boolean, object, string } from "yup";
 import { queryClient } from "@App/layout";
 import { Formik } from "formik";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
 
 const validationSchema = object().shape({
@@ -27,7 +27,6 @@ const UpdateUser:NextPage = () => {
     };
     if(data && data.user){
         const initialValues = data.user
-        
         return (
             <>
                 <h2 className='text-xl font-bold leading-tight text-gray-800 py-5 px-7  border-b'>

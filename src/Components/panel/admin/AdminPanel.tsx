@@ -36,7 +36,6 @@ const navigation: navigationInterface[] = [
 
 const userNavigation: userNavigationInterface[] = [
     { name: "Your Profile", href: "/panel/admin" },
-    { name: "Settings", href: "#" },
 ];
 
 const adminPanel = ({ children }: { children: ReactNode }) => {

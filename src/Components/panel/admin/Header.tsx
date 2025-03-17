@@ -14,7 +14,7 @@ const Header: FC<Props> = ({ buttonTitle, paragraph,href }) => {
                     {paragraph}
                 </p>
             </div>
-            <div className='mt-4 sm:mt-0 sm:ml-16 sm:flex-none'>
+            <div className='mt-4 sm:mt-0 sm:ml-16 md:ml-0 sm:flex-none'>
                 <Link href={href}>
                     <button
                         type='button'

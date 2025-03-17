@@ -1,8 +1,6 @@
-"use client";
-
 import type { navigationInterface } from './admin/AdminPanel';
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Dispatch, FC, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 import { Dialog, Transition } from "@headlessui/react";
 import NavLink from '@Contracts/NavLink';
 import { Fragment } from "react";

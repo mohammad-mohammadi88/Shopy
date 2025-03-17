@@ -6,13 +6,17 @@ interface Props {
     about: any;
     name: string;
     info: string;
+    canEdit:boolean;
+    canDelete:boolean;
     id: number;
-    handleDelete:() => void
-    updateHref: string;
+    handleDelete?:() => void
+    updateHref?: string;
 }
 const UserAndProductInfo: FC<Props> = ({
     updateHref,
     name,
+    canEdit,
+    canDelete,
     about,
     handleDelete,
     info,
@@ -43,19 +47,23 @@ const UserAndProductInfo: FC<Props> = ({
                 </td>
             )}
             <td className=' relative py-4 pr-3 pl-4 text-right text-sm font-medium sm:pl-6'>
-                <Link
-                    href={updateHref}
-                    className='text-indigo-600 hover:text-indigo-900 mr-4'
-                >
-                    Edit
-                </Link>
-                <button
-                    type="button"
-                    onClick={handleDelete}
-                    className='text-indigo-600 hover:text-indigo-900'
-                >
-                    Delete
-                </button>
+                {canEdit && updateHref &&
+                    <Link
+                        href={updateHref}
+                        className='text-indigo-600 hover:text-indigo-900 mr-4'
+                    >
+                        Edit
+                    </Link>
+                }
+                {canDelete && handleDelete &&
+                    <button
+                        type="button"
+                        onClick={handleDelete}
+                        className='text-indigo-600 hover:text-indigo-900'
+                    >
+                        Delete
+                    </button>
+                }
             </td>
         </tr>
     );

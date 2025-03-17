@@ -1,9 +1,7 @@
-"use client";
-
 import NavLink from '@Contracts/NavLink';
 import type { navigationInterface } from './admin/AdminPanel';
 import Image from "next/image";
-import { FC } from "react";
+import type { FC } from "react";
 
 interface Props{
     navigation:navigationInterface[]

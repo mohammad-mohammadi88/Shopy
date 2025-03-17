@@ -1,7 +1,7 @@
 "use client";
 
-import useAuth from "@/hooks/useAuth";
 import { redirect } from "next/navigation";
+import useAuth from "@Hooks/useAuth";
 import { FC, ReactNode} from "react";
 
 interface Props {

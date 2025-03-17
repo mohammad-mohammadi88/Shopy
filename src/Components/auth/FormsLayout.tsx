@@ -1,7 +1,5 @@
-'use client';
 import Image from 'next/image'
-
-import { FC, ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 
 interface Props{
     children:ReactNode,

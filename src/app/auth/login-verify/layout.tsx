@@ -1,10 +1,9 @@
 'use client';
 
-import { redirect } from 'next/navigation';
-import FormsLayout from "@Auth/FormsLayout";
-import { useEffect } from 'react';
 import { InitialAuthStateInterface, useAuthState } from '@Context/authentication';
-
+import FormsLayout from "@Auth/FormsLayout";
+import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
 
 const layout = ({
     children,
@@ -15,9 +14,7 @@ const layout = ({
     useEffect(()=>{
         if( authState?.phoneVerifyToken === undefined ) redirect('login');
     },[authState])
-    return (
-        <FormsLayout title='Verify the code'>{children}</FormsLayout>
-    )
+    return <FormsLayout title='Verify the code'>{children}</FormsLayout>
 }
 
 export default layout
