@@ -3,11 +3,11 @@
 import AddProductForm from "@Panel/admin/Products/AddProductForm";
 import type { ProductFormInterFace } from "@Interfaces/forms";
 import { useCreateProduct } from "@Helpers/productApi";
+import { queryClient } from "@Index/IndexLayout";
 import { number, object, string } from "yup";
 import { useRouter } from "next/navigation";
-import { Formik } from "formik";
 import type { NextPage } from "next";
-import { queryClient } from "@/app/layout";
+import { Formik } from "formik";
 
 const initialValues: ProductFormInterFace = {
     title: "",

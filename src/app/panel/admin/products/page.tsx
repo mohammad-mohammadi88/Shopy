@@ -8,7 +8,7 @@ import ProductsListBody from "@/Components/panel/Body";
 import ProductsTHead from "@/Components/panel/THead";
 import type { Product } from "@Interfaces/product";
 import { useEffect, useState } from "react";
-import { queryClient } from "@App/layout";
+import { queryClient } from "@Index/IndexLayout";
 import type { NextPage } from "next";
 import Link from "next/link";
 

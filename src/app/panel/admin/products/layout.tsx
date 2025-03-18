@@ -1,10 +1,10 @@
 import Dashboard from '@Panel/Dashboard';
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 interface Props{
     children:ReactNode
 }
-const layout:FC<Readonly<Props>> = ({ children }) => {
+const layout:FC<Readonly<Props>> = async ({ children }) => {
     return <Dashboard header='Products List'>{children}</Dashboard>
 }
 

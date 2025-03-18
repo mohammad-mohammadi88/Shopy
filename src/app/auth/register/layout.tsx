@@ -1,7 +1,7 @@
 import FormsLayout from "@Auth/FormsLayout"
 import { ReactNode } from "react"
 
-const layout = ({
+const layout = async ({
     children,
 }: Readonly<{
     children: ReactNode;

@@ -14,7 +14,8 @@ export async function DELETE(){
             },
             statusText:"",
         })
-    } catch(err) {
+    } catch(e) {
+        console.log(e)
         return new Response('Something went wrong while deleting cookie',{
             status:500,
             statusText:'Something went wrong while deleting cookie',

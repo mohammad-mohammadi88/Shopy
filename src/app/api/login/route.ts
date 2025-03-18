@@ -15,7 +15,8 @@ export async function POST(req:Request){
             },
             statusText:"",
         })
-    } catch(err) {
+    } catch(e) {
+        console.log(e)
         return new Response('Something went wrong while setting cookie',{
             status:500,
             statusText:'Something went wrong while setting cookie',

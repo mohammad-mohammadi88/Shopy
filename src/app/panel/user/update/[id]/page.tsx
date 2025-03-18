@@ -4,7 +4,7 @@ import { useReadOneUser, useUpdateUser } from "@Helpers/userApi";
 import UpdateUserForm from "@Panel/UpdateUserForm";
 import { useParams, useRouter } from "next/navigation";
 import { boolean, object, string } from "yup";
-import { queryClient } from "@App/layout";
+import { queryClient } from "@Index/IndexLayout";
 import { Formik } from "formik";
 import type { NextPage } from "next";
 import Dashboard from "@Panel/Dashboard";

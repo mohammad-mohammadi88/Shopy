@@ -4,9 +4,9 @@ import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { useRemoveUserToken } from "@Helpers/userToken";
-import { Menu, Transition } from "@headlessui/react";
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
-import { queryClient } from "@App/layout";
+import { queryClient } from "@Index/IndexLayout";
 import useAuth from "@Hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
@@ -73,19 +73,12 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                 </div>
 
                 <div className='ml-6 flex items-center md:ml-8'>
-                    <button
-                        type='button'
-                        className='rounded-full mr-3 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                    >
-                        <span className='sr-only'>View notifications</span>
 
-                        <BellIcon className='h-6 w-6' aria-hidden='true' />
-                    </button>
                     {/* Profile dropdown */}
 
                     <Menu as='div' className='relative mr-3'>
                         <div>
-                            <Menu.Button className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+                            <MenuButton className='flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
                                 <span className='sr-only'>Open user menu</span>
 
                                 <Image
@@ -95,7 +88,7 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                                     height='32'
                                     width='32'
                                 />
-                            </Menu.Button>
+                            </MenuButton>
                         </div>
 
                         <Transition
@@ -107,9 +100,9 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                             leaveFrom='transform opacity-100 scale-100'
                             leaveTo='transform opacity-0 scale-95'
                         >
-                            <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                            <MenuItems className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                                 {userNavigation.map((item) => (
-                                    <Menu.Item key={item.name}>
+                                    <MenuItem key={item.name}>
                                         {({ active }) => (
                                             <Link
                                                 className={`${
@@ -120,9 +113,9 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                                                 {item.name}
                                             </Link>
                                         )}
-                                    </Menu.Item>
+                                    </MenuItem>
                                 ))}
-                                <Menu.Item>
+                                <MenuItem>
                                     {({ active }) => (
                                         <div className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700 cursor-pointer`}>
                                             <button onClick={handleLogout}>
@@ -130,8 +123,8 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                                             </button>
                                         </div>
                                     )}
-                                </Menu.Item>
-                            </Menu.Items>
+                                </MenuItem>
+                            </MenuItems>
                         </Transition>
                     </Menu>
                 </div>

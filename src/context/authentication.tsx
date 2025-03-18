@@ -1,3 +1,4 @@
+'use client'
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import AuthReducer, { AuthActions } from "./authReducer";
 

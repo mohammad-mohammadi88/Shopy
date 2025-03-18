@@ -4,7 +4,7 @@ import { FC, ReactNode } from 'react';
 interface Props{
     children:ReactNode
 }
-const layout:FC<Readonly<Props>> = ({ children }) => {
+const layout:FC<Readonly<Props>> = async ({ children }) => {
     return <Dashboard header='Users List'>{children}</Dashboard>
 }
 

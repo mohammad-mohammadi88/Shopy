@@ -33,6 +33,9 @@
       "@Components/*": [
         "./src/Components/*"
       ],
+      "@Index/*": [
+        "./src/Components/index/*"
+      ],
       "@Auth/*": [
         "./src/Components/auth/*"
       ],

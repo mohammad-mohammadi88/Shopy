@@ -22,6 +22,7 @@ const navigation: navigationInterface[] = [
 const adminPanel = ({ children }: { children: ReactNode }) => {
     const { user } = useAuth()
     const userNavigation: userNavigationInterface[] = [
+        { name: "Home Page", href: "/" },
         { name: "Your Profile", href: "/panel/admin" },
         { name: "Edit Profile", href: `/panel/admin/users/update/${user.id}` },
     ];

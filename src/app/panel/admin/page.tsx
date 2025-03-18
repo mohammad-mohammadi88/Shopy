@@ -8,7 +8,7 @@ import ProductsListHeader from "@Panel/Header";
 import capitalize from "@Helpers/capitalize";
 import { useEffect, useState } from "react";
 import ProductsListBody from "@Panel/Body";
-import { queryClient } from "@App/layout";
+import { queryClient } from "@Index/IndexLayout";
 import ProductsTHead from "@Panel/THead";
 import Dashboard from "@Panel/Dashboard";
 import useAuth from "@Hooks/useAuth";
