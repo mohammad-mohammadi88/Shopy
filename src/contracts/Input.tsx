@@ -1,6 +1,6 @@
 "use client";
 
-import { Option } from "@Panel/admin/Products/AddProductForm";
+import { Option } from "./categories";
 import type { FC, ReactNode, Ref } from "react";
 import { ErrorMessage } from "formik";
 import { Field } from "formik";

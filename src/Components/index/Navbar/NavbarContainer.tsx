@@ -1,3 +1,4 @@
+'use client';
 import MobileDisclosureButton from "./MobileDisclosureButton";
 import MobileDisclosurePanel from "./MobileDisclosurePanel";
 import DesktopLeftSideMenu from "./DesktopLeftSideMenu";
@@ -11,24 +12,24 @@ export interface NavigationInterface {
     href: string;
 }
 const NavbarContainer: FC = () => {
-    const { user, isSuccess } = useAuth();
-    const navigation = user
-        ? [{ name: "About us", href: "/about" }]
-        : [
-            { name: "About-Us", href: "/about" },
+    const { user, isSuccess,isFetching } = useAuth();
+    const navigation = !user
+        ? [
+            { name: "About us", href: "/about" },
             { name: "Login", href: "/auth/login" },
             { name: "Sign Up", href: "/auth/register" },
-        ];
+        ]
+        : [{ name: "About us", href: "/about" }];
     return (
-        <Disclosure as='nav' className='bg-white shadow-2xl'>
+        <Disclosure as='nav' className='shadow-2xl'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                 <div className='relative flex h-16 items-center justify-between'>
                     <MobileDisclosureButton />
-                    <DesktopLeftSideMenu navigation={navigation} />
+                    {(isFetching || isSuccess) && <DesktopLeftSideMenu navigation={navigation} />}
                     {user && isSuccess && <RightSideMenu />}
                 </div>
             </div>
-            <MobileDisclosurePanel navigation={navigation} />
+            {(isFetching || isSuccess) && <MobileDisclosurePanel navigation={navigation} />}
         </Disclosure>
     );
 };

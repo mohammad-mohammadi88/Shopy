@@ -1,29 +1,15 @@
 import { ProductFormInterFace } from "@Interfaces/forms";
+import { categories } from "@Contracts/categories";
 import Input from "@Contracts/Input";
 import { FormikProps } from "formik";
 import Link from "next/link";
-
-export interface Option{
-    value:string,
-    children:string
-}
-const options:Option[] = [
-    {value:"Back-end",children:"Back-end"},
-    {value:"Front-end",children:"Front-end"},
-    {value:"Mobile",children:"Mobile"},
-    {value:"Game",children:"Game"},
-    {value:"AI",children:"AI"},
-    {value:"Data Science",children:"Data Science"},
-    {value:"Desktop",children:"Desktop"},
-]
-
 
 const AddProductForm = ({
     values,
     handleChange,
     handleSubmit
 }:FormikProps<ProductFormInterFace>) => {
-    const { price, title, body ,category } = values;
+    const { price, title,body ,category } = values;
     return (
         <form onSubmit={handleSubmit}>
             <div className='p-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 xl:grid-cols-3 sm:gap-x-8'>
@@ -55,7 +41,7 @@ const AddProductForm = ({
                         className="resize-y h-auto min-h-10 max-h-32"
                         value={category}
                         onChange={handleChange}
-                        options={options}
+                        options={categories}
                     />
                 </div>
 

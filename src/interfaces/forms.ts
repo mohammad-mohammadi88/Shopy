@@ -16,6 +16,7 @@ export interface SignUpFormValuesInterface {
 export interface ProductFormInterFace{
     title: string,
     price: number,
+    image: any;
     body: string,
     category: string,
 }

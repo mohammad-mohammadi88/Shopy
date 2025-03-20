@@ -6,7 +6,7 @@ interface Props{
     page:number;
     setPage: Dispatch<SetStateAction<number>>
 }
-const UsersPagination:FC<Props> = ({totalPages=0,setPage,page}) => {
+const Pagination:FC<Props> = ({totalPages=0,setPage,page}) => {
     if(totalPages < 1) return
     let arr:number[] = []
     for(let i = 1;i<=totalPages;i++){
@@ -14,7 +14,7 @@ const UsersPagination:FC<Props> = ({totalPages=0,setPage,page}) => {
     }
     return (
         <div className='p-4 mt-2 text-center border-t border-gray-200'>
-            <nav
+            <section
                 className='isolate inline-flex -space-x-px rounded-md shadow-sm'
                 aria-label='Pagination'
             >
@@ -51,9 +51,9 @@ const UsersPagination:FC<Props> = ({totalPages=0,setPage,page}) => {
                         aria-hidden='true'
                     />
                 </button>
-            </nav>
+            </section>
         </div>
     )
 }
 
-export default UsersPagination
+export default Pagination

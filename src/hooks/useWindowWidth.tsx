@@ -3,8 +3,11 @@
 import { useState, useEffect } from 'react';
 
 function getWindowWidth() {
-  const { innerWidth: width } = window;
-  return width
+    if(typeof window !== 'undefined'){
+        const { innerWidth: width } = window;
+        return width
+    }
+    return 0
 }
 
 export default function useWindowWidth() {

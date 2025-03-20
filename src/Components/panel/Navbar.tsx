@@ -2,7 +2,7 @@
 
 import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { Dispatch, FC, Fragment, SetStateAction } from "react";
+import { Dispatch, FC, Fragment, SetStateAction, useEffect } from "react";
 import { useRemoveUserToken } from "@Helpers/userToken";
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,9 @@ import { queryClient } from "@Index/IndexLayout";
 import useAuth from "@Hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
+import { useDeleteProduct } from "@/helpers/productApi";
+import { showAuthToast } from "@/contracts/toast";
+import { useDeleteUser } from "@/helpers/userApi";
 
 interface Props {
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
@@ -21,15 +24,31 @@ export interface userNavigationInterface {
     href: string;
 }
 const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
-    const { refetch } = useAuth()
+    const { refetch,user } = useAuth()
     const router = useRouter()
-    const { mutate } = useRemoveUserToken()
+    const { mutate, isSuccess } = useRemoveUserToken()
+    const { mutate:DeleteMyAcount, isSuccess: isDeleted, error } = useDeleteUser();
+    const handleDelete = () => {
+        DeleteMyAcount(user.id);
+        queryClient.invalidateQueries({ queryKey: ["users"] });
+        showAuthToast(
+            false,
+            "Your Account deleted successfully!",
+            isDeleted ? 200 : 500,
+            200,
+            error
+        );
+    };
     const handleLogout = () => {
         mutate()
-        queryClient.removeQueries({ queryKey: ["user_info"] });
-        refetch()
-        router.push('/')
+        queryClient.removeQueries({ queryKey: ['user_info'] });
     };
+    useEffect(() => {
+        refetch();
+        if(isSuccess || isDeleted){
+            router.push('/')
+        }
+    }, [isDeleted,isSuccess]);
     return (
         <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
             <button
@@ -101,6 +120,15 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                             leaveTo='transform opacity-0 scale-95'
                         >
                             <MenuItems className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                                <MenuItem>
+                                    {({ active }) => (
+                                        <div className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700 cursor-pointer`}>
+                                            <button onClick={handleDelete}>
+                                                Delete Acount
+                                            </button>
+                                        </div>
+                                    )}
+                                </MenuItem>
                                 {userNavigation.map((item) => (
                                     <MenuItem key={item.name}>
                                         {({ active }) => (

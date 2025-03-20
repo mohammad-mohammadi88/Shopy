@@ -5,7 +5,7 @@ import { UserFormInterFace } from "@Interfaces/forms";
 import UserInfo from "@Panel/UserAndProductInfo";
 import { showAuthToast } from "@Contracts/toast";
 import { queryClient } from "@Index/IndexLayout";
-import UsersPagination from "@Panel/Pagination";
+import UsersPagination from "@/contracts/Pagination";
 import UsersListHeader from "@Panel/Header";
 import { useEffect, useState } from "react";
 import UsersListBody from "@Panel/Body";
@@ -22,7 +22,7 @@ const page: NextPage = () => {
         queryClient.invalidateQueries({ queryKey: ["users"] });
         showAuthToast(
             false,
-            "This Product deleted successfully!",
+            "User deleted successfully!",
             isDeleted ? 200 : 500,
             200,
             error
@@ -81,8 +81,8 @@ const page: NextPage = () => {
                                         updateHref={`/panel/admin/users/update/${id}`}
                                         name={name}
                                         id={id}
-                                        canDelete={true}
-                                        canEdit={true}
+                                        canDelete={!isAdmin}
+                                        canEdit={!isAdmin}
                                         handleDelete={() => handleDelete(id)}
                                         info={phone}
                                         about={Boolean(isAdmin)}

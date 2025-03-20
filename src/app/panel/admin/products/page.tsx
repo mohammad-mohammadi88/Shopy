@@ -2,7 +2,7 @@
 
 import { useDeleteProduct, useReadProduct } from "@Helpers/productApi";
 import ProductInfo from "@/Components/panel/UserAndProductInfo";
-import ProductsPagination from "@/Components/panel/Pagination";
+import ProductsPagination from "@/contracts/Pagination";
 import ProductsListHeader from "@/Components/panel/Header";
 import ProductsListBody from "@/Components/panel/Body";
 import ProductsTHead from "@/Components/panel/THead";

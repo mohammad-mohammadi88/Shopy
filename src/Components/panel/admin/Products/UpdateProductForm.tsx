@@ -1,21 +1,9 @@
+import { categories } from "@Contracts/categories";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
 import { FormikProps } from "formik";
 import Link from "next/link";
 
-export interface Option{
-    value:string,
-    children:string
-}
-const options:Option[] = [
-    {value:"Back-end",children:"Back-end"},
-    {value:"Front-end",children:"Front-end"},
-    {value:"Mobile",children:"Mobile"},
-    {value:"Game",children:"Game"},
-    {value:"AI",children:"AI"},
-    {value:"Data Science",children:"Data Science"},
-    {value:"Desktop",children:"Desktop"},
-]
 
 
 const UpdateProductForm = ({
@@ -55,7 +43,7 @@ const UpdateProductForm = ({
                         className="resize-y h-auto min-h-10 max-h-32"
                         value={category}
                         onChange={handleChange}
-                        options={options}
+                        options={categories}
                     />
                 </div>
 

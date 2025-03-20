@@ -41,8 +41,8 @@ const RightSideMenu: FC = () => {
             <h2 className='mr-2 text-xl max-w-40 truncate text-right'>
                 Hello {capitalize(name)}
             </h2>
-            <Menu as='div' className='relative ml-3'>
-                <MenuButton className='relative flex rounded-full  text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-400 focus:outline-hidden'>
+            <Menu as='div' className='relative ml-3 border-2 border-gray-400 border-dotted rounded-full'>
+                <MenuButton className='relative flex rounded-full p-1 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-400 focus:outline-hidden'>
                     <span className='absolute -inset-1.5' />
                     <span className='sr-only'>Open user menu</span>
                     <Image
