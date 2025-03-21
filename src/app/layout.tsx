@@ -25,7 +25,7 @@ export default async function RootLayout({
 }: any) {
   return (
     <html lang="en" dir="ltr">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`overflow-x-hidden ${geistSans.variable} ${geistMono.variable}`}>
         <IndexLayout>
           <AuthProvider>
             {children}

@@ -1,13 +1,15 @@
-import type { FC } from "react";
+import { lazy, type FC } from "react";
 import Navbar from "./Navbar";
 import HeroHeader from "./HeroHeader"
-import Example from "./Courses";
+import Courses from "./Courses";
 const HomePage: FC = () => {
+    const Footer = lazy(()=> import('./Footer'))
     return (
         <>
             <Navbar />
             <HeroHeader />
-            <Example />
+            <Courses />
+            <Footer />
         </>
     );
 };

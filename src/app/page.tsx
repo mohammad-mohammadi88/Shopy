@@ -1,7 +1,7 @@
 import HomePage from '@Index/HomePage';
 import type { NextPage } from 'next';
   
-const page : NextPage = async () => {
+const page : NextPage = () => {
     return <HomePage />
 }
 
