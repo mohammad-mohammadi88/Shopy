@@ -41,7 +41,7 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
     };
     const handleLogout = () => {
         mutate()
-        queryClient.removeQueries({ queryKey: ['user_info'] });
+        queryClient.invalidateQueries({ queryKey: ['user_info'] });
     };
     useEffect(() => {
         refetch();

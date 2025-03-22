@@ -40,7 +40,7 @@ const Footer = () => {
     return (
         <footer className='w-screen mt-24 bg-gray-800'>
             <div className='container py-8 text-white mx-auto flex flex-wrap'>
-                <div className='w-full pt-3 border-t md:border-t-0 mt-8 md:mt-0 px-5 flex order-4 md:order-1 flex-col items-center justify-center sm:px-0 md:w-1/3 lg:w-1/4'>
+                <div className='w-full -translate-x-2 pt-3 border-t md:border-t-0 mt-8 md:mt-0 px-5 flex order-4 md:order-1 flex-col items-center justify-center sm:px-0 md:w-1/3 lg:w-1/4'>
                     <h2 className='text-3xl mb-3'>About us</h2>
                     <p className='text-gray-100'>
                         We build a company to teach and improve your programming
@@ -80,7 +80,7 @@ const Footer = () => {
                         <ul className='flex justify-center flex-wrap'>
                             {socialMedia.map(
                                 ({ url, ...props }: SocialMediaInterface) => (
-                                    <li className='mx-2'>
+                                    <li className='mx-2' key={url}>
                                         <SocialIcon url={url} {...props} />
                                     </li>
                                 )

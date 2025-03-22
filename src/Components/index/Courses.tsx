@@ -7,22 +7,19 @@ import type { Product } from "@Interfaces/product";
 import { Bounce, toast } from "react-toastify";
 import Pagination from "@Contracts/Pagination";
 import Course from "./Courses/Course";
+import fetchHanler from "./fetcher";
 
-interface Response {
-    data: Product[];
-    status: string;
-    total_page: number;
-}
 
-interface ActionInterface {
+
+export interface ActionInterface {
     type: string;
     payload?: any;
 }
 
-interface initialStateInterface {
+export interface initialStateInterface {
     isLoading: boolean;
     products: Product[];
-    total_page: number | undefined;
+    total_page?: number;
     error: any;
     isError: boolean;
     isSuccess: boolean;
@@ -37,7 +34,7 @@ const initialState: initialStateInterface = {
     isSuccess: false,
 };
 
-enum ActionTypes {
+export enum ActionTypes {
     FETCH = "course/fetch",
     SUCCESS = "course/success",
     ERROR = "course/error",
@@ -76,57 +73,22 @@ const reducer = (
             return state;
     }
 };
-const FetchDispatch = () :ActionInterface => ({ type: ActionTypes.FETCH });
-const SuccessDispatch = (total_page: number, products: Product[]) :ActionInterface => ({
-    type: ActionTypes.SUCCESS,
-    payload: { total_page, products },
-});
-const ErrorDispatch = (error: any) :ActionInterface => ({
-    type: ActionTypes.ERROR,
-    payload: error,
-});
+
 const Courses: FC = () => {
     const windowWidth = useWindowWidth()
     const [perPage, setPerPage] = useState(windowWidth < 1024 ? 8 : 9)
     const [page, setPage] = useState<number>(1);
     const [
-        { isError, isLoading, isSuccess, error, products, total_page },
+        state,
         dispatch,
     ] = useReducer(reducer, initialState);
 
-    const fetchHanler = async () => {
-        dispatch(FetchDispatch())
-        try {
-            const response = await fetch(
-                `http://localhost:5000/api/products?per_page=${perPage}&page=${page}`
-            );
-            if(response.ok){
-                const data: Response = await response.json();
-                dispatch(SuccessDispatch(data.total_page,data.data))
-                const statusCode = 200;
-                return {
-                    data,
-                    statusCode,
-                };
-            } else {
-                throw new Error('Oops! Please refresh')
-            }
-        } catch (err: any) {
-            console.log(err);
-            dispatch(ErrorDispatch(err))
-            const data = err;
-            const statusCode = 500;
-            return {
-                data,
-                statusCode,
-            };
-        }
-    };
+    const { isError, isLoading, isSuccess, error, products, total_page } = state;
     useEffect(()=>{
-        fetchHanler()
+        fetchHanler(dispatch,perPage,page,state)
     },[isError])
     useEffect(() => {
-        fetchHanler();
+        fetchHanler(dispatch,perPage,page,state);
     },[page,perPage]);
     useEffect(() => {
         const newPerPage = windowWidth < 1024 ? 8 : 9

@@ -1,0 +1,8 @@
+.product-image{
+    position: static !important;
+}
+@media screen and (width >= 768px) {
+    .product-image{
+        position: absolute !important;
+    }
+}

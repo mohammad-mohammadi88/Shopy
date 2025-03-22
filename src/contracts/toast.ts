@@ -51,7 +51,7 @@ export function showAuthToast(
     }
 }
 
-export const updateToast = (toastName:string,render:string,type:any='success') => toast.update(toastName,{
+export const updateToast = (toastName:string,render:string,type:any='success') :void => toast.update(toastName,{
     render,
     type,
     isLoading: false,

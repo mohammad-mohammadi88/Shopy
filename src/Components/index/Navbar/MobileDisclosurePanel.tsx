@@ -6,6 +6,7 @@ import {
     DisclosurePanel,
     Transition,
 } from "@headlessui/react";
+import Link from "next/link";
 
 interface Props {
     navigation: NavigationInterface[];
@@ -33,7 +34,7 @@ const MobileDisclosurePanel: FC<Props> = ({ navigation }) => {
                     {navigation.map(({ name, href }) => (
                         <DisclosureButton
                             key={name}
-                            as='a'
+                            as={Link}
                             href={href}
                             className='text-black hover:bg-gray-700 
                             duration-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium'

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 interface Props {
     href: string;
-    children: ReactNode | string;
+    children: ReactNode;
     className: string;
     [key: string]: any;
 }
