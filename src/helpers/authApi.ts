@@ -16,7 +16,7 @@ export const signUpApi = async (values:SignUpFormValuesInterface) :Promise<Retur
             status
         }
     } catch(err:any){
-        const errors:string[] = Object.values(err?.response?.data?.errors);
+        const errors:string[] | any = typeof err === "object" ?  Object.values(err?.response?.data?.errors) : err;
         const { status } = err;
         return { status, errors }
     }
@@ -27,7 +27,7 @@ export const LoginApi = async (values:LoginFormValuesInterface) :Promise<ReturnT
         const { data, status }: AxiosResponse = await axios.post('auth/login',values)
         return { data, status }
     } catch(err:any){
-        const errors:string[] = Object.values(err?.response?.data?.errors)
+        const errors:string[] = typeof err === "object" ?  Object.values(err?.response?.data?.errors) : err
         const { status } = err
         return { errors, status }
     }
@@ -44,7 +44,7 @@ export const VerifyPhoneApi = async (code:number,token:string) :Promise<ReturnTy
             status
         }
     } catch(err:any){
-        const errors:string[] = Object.values(err?.response?.data?.errors);
+        const errors:string[] = typeof err === "object" ?  Object.values(err?.response?.data?.errors) : err;
         const { status } = err
         return { errors, status }
     }

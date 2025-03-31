@@ -18,7 +18,6 @@ const layout = ({
     }
    
     return (
-
         <>
             {isPending && <h2>Loading...</h2>}
             {isSuccess && children}

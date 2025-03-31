@@ -1,6 +1,6 @@
-import { SignUpFormValuesInterface } from "@Interfaces/forms";
+import type { SignUpFormValuesInterface } from "@Interfaces/forms";
 import Checkbox from "@Contracts/Checkbox";
-import { FormikProps } from "formik";
+import type { FormikProps } from "formik";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
 import Link from "next/link";

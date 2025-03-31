@@ -1,10 +1,8 @@
 import Checkbox from "@Contracts/Checkbox";
+import type { FormikProps } from "formik";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
-import { FormikProps } from "formik";
 import Link from "next/link";
-
-
 
 const UpdateProductForm = ({
     values,
@@ -32,7 +30,7 @@ const UpdateProductForm = ({
                         label='Phone'
                     />
                 </div>
-                {typeof isAdmin !== "undefined" && 
+                {isAdmin === true && 
                     <div className='col-span-full'>
                         <Checkbox 
                             label="Is this user an admin (not admin)"

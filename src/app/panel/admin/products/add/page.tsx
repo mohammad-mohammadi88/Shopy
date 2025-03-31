@@ -8,7 +8,6 @@ import { number, object, string } from "yup";
 import { useRouter } from "next/navigation";
 import type { NextPage } from "next";
 import { Formik } from "formik";
-import { useState } from "react";
 
 const initialValues: ProductFormInterFace = {
     title: "",
@@ -28,9 +27,8 @@ const validationSchema = object().shape({
 const AddProduct: NextPage = () => {
     const { mutate } = useCreateProduct();
     const router = useRouter()
-    const [image, setImage] = useState<any>(undefined)
     const handleFormSubmit = (values: ProductFormInterFace) => {
-        mutate({...values,image});
+        mutate({...values});
         queryClient.invalidateQueries({queryKey:['products',"page",1]})
         router.push('/panel/admin/products')
     };

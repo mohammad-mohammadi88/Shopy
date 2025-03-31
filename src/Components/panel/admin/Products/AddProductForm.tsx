@@ -1,7 +1,7 @@
-import { ProductFormInterFace } from "@Interfaces/forms";
+import type { ProductFormInterFace } from "@Interfaces/forms";
 import { categories } from "@Contracts/categories";
+import type { FormikProps } from "formik";
 import Input from "@Contracts/Input";
-import { FormikProps } from "formik";
 import Link from "next/link";
 
 const AddProductForm = ({

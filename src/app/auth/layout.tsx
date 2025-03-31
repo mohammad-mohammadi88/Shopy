@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useLayoutEffect } from 'react'
+import { type ReactNode, useLayoutEffect } from 'react'
 import { redirect } from 'next/navigation';
 import useAuth from '@Hooks/useAuth';
 

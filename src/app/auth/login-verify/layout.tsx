@@ -1,14 +1,14 @@
 'use client';
 
-import { InitialAuthStateInterface, useAuthState } from '@Context/authentication';
+import { type InitialAuthStateInterface, useAuthState } from '@Context/authentication';
 import FormsLayout from "@Auth/FormsLayout";
 import { redirect } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, type ReactNode } from 'react';
 
 const layout = ({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) => {    
     const authState:InitialAuthStateInterface | undefined = useAuthState()
     useEffect(()=>{

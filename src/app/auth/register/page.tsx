@@ -1,12 +1,12 @@
 'use client';
 
-import { SignUpFormValuesInterface } from "@Interfaces/forms";
+import type { SignUpFormValuesInterface } from "@Interfaces/forms";
 import { showAuthToast } from "@Contracts/toast";
 import { signUpApi } from "@Helpers/authApi";
 import { useRouter } from "next/navigation";
 import SignInLayout from "@Auth/signup";
 import type { NextPage } from "next";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const register: NextPage = () :ReactNode => {
     const router = useRouter()

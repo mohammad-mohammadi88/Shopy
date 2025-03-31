@@ -3,14 +3,15 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL
+axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
 
 // Read Users
 export function useReadUser(page: number = 1) {
     const queryKey = ["users", "page", page];
     const queryFn = async () =>
-        (await axios.get(`users?per_page=10&page=${page}`)).data;
+        (await fetch(`${baseUrl}users?per_page=10&page=${page}`,{next:{revalidate:300}}))?.json();
 
     return useQuery({
         queryFn,
@@ -21,7 +22,7 @@ export function useReadUser(page: number = 1) {
 // Read One user
 export function useReadOneUser(id: string) {
     const queryKey = ["users", id];
-    const queryFn = async () => (await axios.get(`users/${id}`)).data;
+    const queryFn = async () => (await fetch(`${baseUrl}users/${id}`,{next:{revalidate:300}}))?.json();
     return useQuery({
         queryFn,
         queryKey,

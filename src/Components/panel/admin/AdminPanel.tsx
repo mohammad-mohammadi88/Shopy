@@ -1,16 +1,14 @@
 "use client";
 
 import { FolderIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
-import DesktopSidebar from "../DesktopSidebar";
 import MobileSidebar, { type navigationInterface } from "../MobileSidebar";
 import Navbar, { type userNavigationInterface } from "../Navbar";
+import DesktopSidebar from "../DesktopSidebar";
+import useAuth from "@Hooks/useAuth";
 import {
-    ReactNode,
+    type ReactNode,
     useState,
 } from "react";
-import useAuth from "@Hooks/useAuth";
-
-
 
 const navigation: navigationInterface[] = [
     { name: "Dashboard", href: "/panel/admin", icon: HomeIcon },

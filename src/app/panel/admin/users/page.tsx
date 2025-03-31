@@ -1,16 +1,16 @@
 "use client";
 
 import { useDeleteUser, useReadUser } from "@Helpers/userApi";
-import { UserFormInterFace } from "@Interfaces/forms";
+import type { UserFormInterFace } from "@Interfaces/forms";
+import UsersPagination from "@Contracts/Pagination";
 import UserInfo from "@Panel/UserAndProductInfo";
 import { showAuthToast } from "@Contracts/toast";
 import { queryClient } from "@Index/IndexLayout";
-import UsersPagination from "@/contracts/Pagination";
 import UsersListHeader from "@Panel/Header";
 import { useEffect, useState } from "react";
 import UsersListBody from "@Panel/Body";
 import UsersTHead from "@Panel/THead";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import Link from "next/link";
 
 const page: NextPage = () => {

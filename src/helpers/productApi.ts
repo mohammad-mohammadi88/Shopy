@@ -1,17 +1,23 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ProductFormInterFace } from "@Interfaces/forms";
 import { updateToast } from "@Contracts/toast";
+import { GetUserToken } from "./userToken";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
 
 // Create Product
 export function useCreateProduct() {
     const mutationKey = ["product", "create"];
     const mutationFn = async (Info: ProductFormInterFace) =>
-        await axios.post("/products/create", Info);
+        await axios.post("products/create", Info, {
+            headers: {
+                Authorization: await GetUserToken(),
+            },
+        });
 
     return useMutation({
         mutationKey,
@@ -19,7 +25,8 @@ export function useCreateProduct() {
         onMutate: () =>
             toast.loading("Creating product...", { toastId: "createProduct" }),
         onSuccess: () => updateToast("createProduct", "New product creaated!"),
-        onError: () => updateToast("createProduct", "Oops! Please try again!"),
+        onError: () =>
+            updateToast("createProduct", "Oops! Please try again!", "error"),
     });
 }
 
@@ -27,7 +34,11 @@ export function useCreateProduct() {
 export function useReadProduct(page: number = 1) {
     const queryKey = ["products", "page", page];
     const queryFn = async () =>
-        (await axios.get(`products?per_page=10&page=${page}`)).data;
+        (
+            await fetch(`${baseUrl}products?per_page=10&page=${page}`, {
+                next: { revalidate: 300 },
+            })
+        )?.json();
     return useQuery({
         queryFn,
         queryKey,
@@ -35,10 +46,15 @@ export function useReadProduct(page: number = 1) {
 }
 
 // Read Admin Products
-export function useReadUserProducts(page: number = 1,user_id:number) {
-    const queryKey = ["products","user", "page", page];
+export function useReadUserProducts(page: number = 1, user_id: number) {
+    const queryKey = ["products", "user", "page", page];
     const queryFn = async () =>
-        (await axios.get(`products/userProducts/${user_id}?per_page=10&page=${page}`)).data;
+        (
+            await fetch(
+                `${baseUrl}products/userProducts/${user_id}?per_page=10&page=${page}`,
+                { next: { revalidate: 300 } }
+            )
+        )?.json();
     return useQuery({
         queryFn,
         queryKey,
@@ -48,7 +64,12 @@ export function useReadUserProducts(page: number = 1,user_id:number) {
 // Read One Product
 export function useReadOneProduct(id: string) {
     const queryKey = ["products", id];
-    const queryFn = async () => (await axios.get(`products/${id}`)).data;
+    const queryFn = async () =>
+        (
+            await fetch(`${baseUrl}products/${id}`, {
+                next: { revalidate: 300 },
+            })
+        )?.json();
     return useQuery({
         queryFn,
         queryKey,
@@ -64,7 +85,11 @@ export function useUpdateProduct(id: string) {
             const item = Info[key];
             if (item == "") Info[key] = product[key];
         });
-        return await axios.patch(`products/${id}/update`, Info);
+        return await axios.patch(`products/${id}/update`, Info,{
+            headers: {
+                Authorization: await GetUserToken(),
+            },
+        });
     };
     return useMutation({
         mutationKey,
@@ -85,7 +110,11 @@ export function useUpdateProduct(id: string) {
 export function useDeleteProduct() {
     const mutationKey = ["product", "delete"];
     const mutationFn = async (id: string) =>
-        await axios.delete(`products/${id}/delete`);
+        await axios.delete(`products/${id}/delete`,{
+            headers: {
+                Authorization: await GetUserToken(),
+            },
+        });
     return useMutation({
         mutationKey,
         mutationFn,

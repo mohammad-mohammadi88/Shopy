@@ -1,18 +1,18 @@
 "use client";
 
-import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { Dispatch, FC, Fragment, SetStateAction, useEffect } from "react";
-import { useRemoveUserToken } from "@Helpers/userToken";
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
+import { Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import type { Dispatch, FC, SetStateAction } from "react";
+import { useRemoveUserToken } from "@Helpers/userToken";
 import { queryClient } from "@Index/IndexLayout";
+import { showAuthToast } from "@Contracts/toast";
+import { useDeleteUser } from "@Helpers/userApi";
+import { useRouter } from "next/navigation";
+import { Fragment, useEffect } from "react"
 import useAuth from "@Hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import { useDeleteProduct } from "@/helpers/productApi";
-import { showAuthToast } from "@/contracts/toast";
-import { useDeleteUser } from "@/helpers/userApi";
 
 interface Props {
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
@@ -26,7 +26,7 @@ export interface userNavigationInterface {
 const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
     const { refetch,user } = useAuth()
     const router = useRouter()
-    const { mutate, isSuccess } = useRemoveUserToken()
+    const { mutate,isSuccess } = useRemoveUserToken()
     const { mutate:DeleteMyAcount, isSuccess: isDeleted, error } = useDeleteUser();
     const handleDelete = () => {
         DeleteMyAcount(user.id);
@@ -39,15 +39,10 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
             error
         );
     };
-    const handleLogout = () => {
-        mutate()
-        queryClient.invalidateQueries({ queryKey: ['user_info'] });
-    };
+    const handleLogout = () => mutate();
     useEffect(() => {
         refetch();
-        if(isSuccess || isDeleted){
-            router.push('/')
-        }
+        if(isDeleted || isSuccess) router.push('/')
     }, [isDeleted,isSuccess]);
     return (
         <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>

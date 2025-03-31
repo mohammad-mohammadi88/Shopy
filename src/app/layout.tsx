@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children
 }: any) {
+
   return (
     <html lang="en" dir="ltr">
       <body className={`overflow-x-hidden ${geistSans.variable} ${geistMono.variable}`}>

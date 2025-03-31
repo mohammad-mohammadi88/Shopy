@@ -1,10 +1,10 @@
 import FormsLayout from "@Auth/FormsLayout";
-import React from 'react';
+import type { ReactNode } from 'react';
 
 const layout = async ({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) => {
     return (
         <FormsLayout title='Login to Shopy'>

@@ -29,7 +29,6 @@ const UpdateProduct:NextPage = () => {
     };
     if(data && data.product){
         const initialValues = data.product
-        
         return (
             <>
                 <h2 className='text-xl font-bold leading-tight text-gray-800 py-5 px-7  border-b'>

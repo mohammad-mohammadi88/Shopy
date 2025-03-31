@@ -1,14 +1,14 @@
 "use client";
 
 import { useDeleteProduct, useReadUserProducts } from "@Helpers/productApi";
+import ProductsPagination from "@Contracts/Pagination";
 import ProductInfo from "@Panel/UserAndProductInfo";
 import type { Product } from "@Interfaces/product";
-import ProductsPagination from "@Contracts/Pagination";
+import { queryClient } from "@Index/IndexLayout";
 import ProductsListHeader from "@Panel/Header";
 import capitalize from "@Helpers/capitalize";
 import { useEffect, useState } from "react";
 import ProductsListBody from "@Panel/Body";
-import { queryClient } from "@Index/IndexLayout";
 import ProductsTHead from "@Panel/THead";
 import Dashboard from "@Panel/Dashboard";
 import useAuth from "@Hooks/useAuth";

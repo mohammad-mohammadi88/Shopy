@@ -1,6 +1,6 @@
-import ProductPage from '@Product/ProductPage';
 import fetchProduct from '@Product/fetchProduct'
-import { Metadata, NextPage } from 'next'
+import ProductPage from '@Product/ProductPage';
+import type { Metadata, NextPage } from 'next';
 interface Props{
     params:Promise<{productId:string}>,
     searchParams:Promise<any>,
@@ -16,8 +16,6 @@ export const generateMetadata = async ({params}:Props) :Promise<Metadata>  => {
         description
     }
 }
-const page: NextPage<Props> = async ({params}) => {
-    return <ProductPage productId={(await params).productId}/>
-}
+const page: NextPage<Props> = async ({params}) => <ProductPage productId={(await params).productId}/>
 
 export default page

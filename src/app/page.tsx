@@ -1,9 +1,7 @@
 import HomePage from '@Index/HomePage';
+import type { ReactNode } from 'react';
 import type { NextPage } from 'next';
-import { ReactNode } from 'react';
   
-const page : NextPage = async () :Promise<ReactNode> => {
-    return <HomePage />
-}
+const page : NextPage = async () :Promise<ReactNode> => <HomePage />
 
 export default page

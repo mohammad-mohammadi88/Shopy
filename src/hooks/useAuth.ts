@@ -1,20 +1,24 @@
+import { GetUserToken } from "@Helpers/userToken";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 axios.defaults.withCredentials = true;
 
-export const getUser = () => axios.get('/user')
+export const getUser = async () =>( await axios.get(baseUrl+'user',{
+    headers: {
+        Authorization: await GetUserToken(),
+    }
+})).data
 
 const useAuth = () => {
     const queryKey = ['user_info'];
-    const queryFn = () => getUser()
+    const queryFn = async () => await getUser()
     const res = useQuery({
         queryKey,
-        queryFn,
-        
+        queryFn
     })
-    const user = res?.data?.data?.user;
+    const user = res?.data?.user;
     return {
         user,
         ...res

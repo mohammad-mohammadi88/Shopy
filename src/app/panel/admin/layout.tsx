@@ -1,8 +1,8 @@
 "use client";
 
 import { redirect } from "next/navigation";
+import type { FC, ReactNode } from "react";
 import AdminPanel from "@Panel/admin";
-import { FC, ReactNode } from "react";
 import useAuth from "@Hooks/useAuth";
 
 interface Props {

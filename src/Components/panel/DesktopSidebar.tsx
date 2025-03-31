@@ -33,11 +33,9 @@ const DesktopSidebar:FC<Props> = ({navigation}) => {
                                     className="mr-3 flex-shrink-0 h-6 w-6"
                                     aria-hidden='true'
                                 />
-
                                 <span>{item.name}</span>
                             </NavLink>
-                        ))}
-                        
+                        ))} 
                     </nav>
                 </div>
             </div>

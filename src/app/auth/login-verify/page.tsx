@@ -1,13 +1,13 @@
 'use client';
 
-import { InitialAuthStateInterface, useAuthState } from '@Context/authentication';
+import { type InitialAuthStateInterface, useAuthState } from '@Context/authentication';
 import { useStoreUserToken } from '@Helpers/userToken';
 import { VerifyPhoneApi } from "@Helpers/authApi";
 import { showAuthToast } from '@Contracts/toast';
 import { useRouter } from 'next/navigation';
 import VerifyForm from '@Auth/signinVerify';
+import type { ReactNode } from 'react';
 import type { NextPage } from 'next';
-import { ReactNode } from 'react';
 
 
 const loginVerify: NextPage = () :ReactNode => {

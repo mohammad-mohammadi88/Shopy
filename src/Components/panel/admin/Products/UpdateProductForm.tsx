@@ -1,10 +1,8 @@
 import { categories } from "@Contracts/categories";
+import type { FormikProps } from "formik";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
-import { FormikProps } from "formik";
 import Link from "next/link";
-
-
 
 const UpdateProductForm = ({
     values,

@@ -1,17 +1,13 @@
-import { serialize } from "cookie"
+import { cookies } from "next/headers"
 
 export async function DELETE(){
+    const cookie = await cookies()
     try{
+        cookie.set('shopy_user_token', "",{
+            maxAge:0
+        }) 
         return new Response('the cookie set successfully!',{
             status:200,
-            headers:{
-                'Set-Cookie': serialize('shopy_user_token', '' ,{
-                    httpOnly: true,
-                    path: '/',
-                    maxAge: 0,
-                    sameSite:"lax"
-                })
-            },
             statusText:"",
         })
     } catch(e) {
