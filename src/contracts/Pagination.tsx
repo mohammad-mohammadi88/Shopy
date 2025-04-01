@@ -2,7 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import type { Dispatch, FC, SetStateAction } from "react";
 
 interface Props{
-    totalPages:number;
+    totalPages?:number;
     page:number;
     setPage: Dispatch<SetStateAction<number>>
 }

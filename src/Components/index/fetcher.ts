@@ -15,7 +15,7 @@ const ErrorDispatch = (error: any) :ActionInterface => ({
     type: ActionTypes.ERROR,
     payload: error,
 });
-const fetchHanler = async (dispatch:any,perPage:number,page:number,state:initialStateInterface) => {
+const fetchHanler = async (dispatch:any,perPage:number,page:number) => {
     dispatch(FetchDispatch())
     try {
         const response = await fetch(

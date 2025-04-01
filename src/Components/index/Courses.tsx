@@ -10,7 +10,6 @@ import Course from "./Courses/Course";
 import fetchHanler from "./fetcher";
 
 
-
 export interface ActionInterface {
     type: string;
     payload?: any;
@@ -83,12 +82,12 @@ const Courses: FC = () => {
         dispatch,
     ] = useReducer(reducer, initialState);
 
-    const { isError, isLoading, isSuccess, error, products, total_page } = state;
+    const { isError, isLoading, isSuccess, products, total_page } = state;
     useEffect(()=>{
-        fetchHanler(dispatch,perPage,page,state)
+        fetchHanler(dispatch,perPage,page)
     },[isError])
     useEffect(() => {
-        fetchHanler(dispatch,perPage,page,state);
+        fetchHanler(dispatch,perPage,page);
     },[page,perPage]);
     useEffect(() => {
         const newPerPage = windowWidth < 1024 ? 8 : 9

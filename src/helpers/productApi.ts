@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ProductFormInterFace } from "@Interfaces/forms";
 import { updateToast } from "@Contracts/toast";
+import { Product } from "@Interfaces/product";
 import { GetUserToken } from "./userToken";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -46,7 +47,7 @@ export function useReadProduct(page: number = 1) {
 }
 
 // Read Admin Products
-export function useReadUserProducts(page: number = 1, user_id: number) {
+export function useReadUserProducts( user_id: number,page: number = 1) {
     const queryKey = ["products", "user", "page", page];
     const queryFn = async () =>
         (
@@ -125,4 +126,65 @@ export function useDeleteProduct() {
         onError: () =>
             updateToast("deleteProduct", "Oops! Please try again!", "error"),
     });
+}
+
+
+interface Response<T>{
+    data:T,
+    isSuccess:boolean,
+    isError:boolean
+}
+// Read Product From Server
+export const fetchProduct = async (productId:string) :Promise<Response<Product>> => {
+    try{
+        const result = await fetch(`${baseUrl}products/${productId}`,{next:{revalidate:300}});
+        if(result.ok){
+            const data = (await result.json())?.product;
+            return {
+                data,
+                isError:false,
+                isSuccess:true
+            }
+        }
+        throw new Error('Something went wrong while getting product')
+    } catch (data: any) {
+        return {
+            data,
+            isError:true,
+            isSuccess:false
+        }
+    }
+}
+
+// Read Product With Same Category From Server
+interface SameCategoryRes{
+    data:Product[];
+    total_page?:number;
+    status:string
+}
+export type SameCategoryResInterface = Response<SameCategoryRes>
+export const initialSameCategory:SameCategoryResInterface = {
+    data:{data:[],status:'pending'},
+    isError:false,
+    isSuccess:false
+}
+export const fetchSameCategory = async (category:string,productId:string,page:number=1,per_page:number=10) :Promise<SameCategoryResInterface> => {
+    try{
+        const result = await fetch(`${baseUrl}products?category=${category}&productId=${productId}&page=${page}&per_page=${per_page}`,{next:{revalidate:300}});
+        if(result.ok){
+            const data = (await result.json());
+            return {
+                data,
+                isError:false,
+                isSuccess:true
+            }
+        }
+        throw new Error('Something went wrong while getting products')
+    } catch (data: any) {
+        return {
+            data,
+            isError:true,
+            isSuccess:false
+        }
+    }
 }

@@ -1,9 +1,8 @@
-'use client'
+import RandomImage from '@Contracts/RandomImage'
+import capitalize from '@Helpers/capitalize'
 import type { FC } from 'react'
 import Link from 'next/link'
-import capitalize from '@Helpers/capitalize'
 import Image from 'next/image'
-import RandomImage from '@Contracts/RandomImage'
 
 interface Props{
     body:string,

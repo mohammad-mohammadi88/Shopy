@@ -1,9 +1,9 @@
-import Image from 'next/image';
+import { ShoppingCartIcon } from '@heroicons/react/16/solid';
 import type { Product } from '@Interfaces/product';
-import { FC } from 'react';
 import RandomImage from '@Contracts/RandomImage';
 import capitalize from '@Helpers/capitalize';
-import { ShoppingCartIcon } from '@heroicons/react/16/solid';
+import type { FC } from 'react';
+import Image from 'next/image';
 import "./style.css";
 interface Props{
     product:Product

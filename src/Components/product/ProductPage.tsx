@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import Footer from '@Index/Footer';
+import type { FC } from 'react';
 import Navbar from './NavBar';
 import Main from './Main';
-import Footer from '@Index/Footer';
+import SameCategory from './SameCategory';
 
 interface Props{
     productId:string
@@ -12,6 +13,7 @@ const ProductPage :FC<Props> = ({productId}) => {
         <>
             <Navbar />
             <Main productId={productId}/>
+            <SameCategory productId={productId} />
             <Footer />
         </>
     )

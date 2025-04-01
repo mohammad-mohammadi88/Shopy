@@ -1,4 +1,4 @@
-import fetchProduct from '@Product/fetchProduct'
+import { fetchProduct } from '@Helpers/productApi';
 import ProductPage from '@Product/ProductPage';
 import type { Metadata, NextPage } from 'next';
 interface Props{

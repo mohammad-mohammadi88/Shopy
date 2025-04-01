@@ -3,9 +3,7 @@ import { cookies } from "next/headers"
 export async function DELETE(){
     const cookie = await cookies()
     try{
-        cookie.set('shopy_user_token', "",{
-            maxAge:0
-        }) 
+        cookie.delete('shopy_user_token') 
         return new Response('the cookie set successfully!',{
             status:200,
             statusText:"",

@@ -8,7 +8,6 @@ export async function POST(req:Request){
             httpOnly: true,
             path: '/',
             maxAge: maxDay * 24 * 3600,
-            sameSite:"lax"
         })
         return new Response('the cookie set successfully!',{
             status:201,
