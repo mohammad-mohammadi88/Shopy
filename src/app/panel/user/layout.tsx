@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import useAuth from "@Hooks/useAuth";
 import { FC, ReactNode} from "react";
-import UserPanel from "@Panel/user/UserPanel";
+import UserPanel from "@Panel/user/User";
 
 interface Props {
     children: ReactNode;
