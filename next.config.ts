@@ -13,7 +13,8 @@ const nextConfig: NextConfig = {
       "riseuplabs.com",
       "img.freepik.com"
     ]
-  }
+  },
+  // output:"standalone"
 };
 
 export default nextConfig;
