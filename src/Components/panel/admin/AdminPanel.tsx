@@ -17,7 +17,7 @@ const navigation: navigationInterface[] = [
 ];
 
 
-const adminPanel = ({ children }: { children: ReactNode }) => {
+const AdminPanel = ({ children }: { children: ReactNode }) => {
     const { user } = useAuth()
     const userNavigation: userNavigationInterface[] = [
         { name: "Home Page", href: "/" },
@@ -47,4 +47,4 @@ const adminPanel = ({ children }: { children: ReactNode }) => {
     );
 };
 
-export default adminPanel;
+export default AdminPanel;

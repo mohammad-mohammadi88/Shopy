@@ -3,7 +3,7 @@
 import MobileSidebar, { type navigationInterface } from "../MobileSidebar";
 import Navbar, { type userNavigationInterface } from "../Navbar";
 import { HomeIcon } from "@heroicons/react/24/outline";
-import { type ReactNode, useState } from "react";
+import { FC, type ReactNode, useState } from "react";
 import DesktopSidebar from "../DesktopSidebar";
 import useAuth from "@Hooks/useAuth";
 
@@ -11,7 +11,9 @@ const navigation: navigationInterface[] = [
     { name: "Dashboard", href: "/panel/user", icon: HomeIcon },
 ];
 
-const UserPanel = ({ children }: { children: ReactNode }) => {
+interface Props{ children: ReactNode }
+
+const UserPanel:FC<Props> = ({ children }) => {
     const {
         user: { id },
     } = useAuth();
