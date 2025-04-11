@@ -16,11 +16,10 @@ const page: NextPage = () => {
     const [page, setPage] = useState<number>(1);
     const { data, isSuccess, refetch, isLoading, isError } =
         useReadProduct(page);
-    const { data: response, mutate, isSuccess: isDeleted } = useDeleteProduct();
+    const { mutate, isSuccess: isDeleted } = useDeleteProduct();
 
     const handleDelete = async (id: string) => {
         mutate(id);
-        console.log(response);
         queryClient.invalidateQueries({ queryKey: ["products", "page"] });
     };
     useEffect(() => {

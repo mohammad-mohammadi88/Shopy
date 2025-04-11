@@ -47,8 +47,8 @@ export function useReadProduct(page: number = 1) {
 }
 
 // Read Admin Products
-export function useReadUserProducts( user_id: number,page: number = 1) {
-    const queryKey = ["products", "user", "page", page];
+export function useReadUserProducts(page: number = 1 ,user_id: number) {
+    const queryKey = ["products", "user","page", page];
     const queryFn = async () =>
         (
             await fetch(

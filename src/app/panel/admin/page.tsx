@@ -25,7 +25,7 @@ const page: NextPage = () => {
     const handleDelete = async (id: string) => {
         mutate(id);
         queryClient.invalidateQueries({
-            queryKey: ["products", "user", "page"],
+            queryKey: ["products", "user","page"],
         });
     };
     useEffect(() => {
