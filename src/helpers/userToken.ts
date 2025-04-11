@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@Index/IndexLayout";
 import { updateToast } from "@Contracts/toast";
 import { toast } from "react-toastify";
