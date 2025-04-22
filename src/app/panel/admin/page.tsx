@@ -14,6 +14,7 @@ import Dashboard from "@Panel/Dashboard";
 import useAuth from "@Hooks/useAuth";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { RotatingLines } from "react-loader-spinner";
 
 const page: NextPage = () => {
     const { user } = useAuth();
@@ -51,7 +52,14 @@ const page: NextPage = () => {
                 </ProductsListHeader>
                 {isLoading && (
                     <div className='mt-6 text-3xl font-bold text-center'>
-                        Loading products...
+                        <RotatingLines
+                            visible={true}
+                            width="96"
+                            strokeColor="blue"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            ariaLabel="rotating-lines-loading"
+                        />
                     </div>
                 )}
                 {data?.total_page < 1 && (

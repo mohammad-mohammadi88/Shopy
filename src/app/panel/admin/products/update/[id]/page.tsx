@@ -7,6 +7,7 @@ import { number, object, string } from "yup";
 import { queryClient } from "@Index/IndexLayout";
 import { Formik } from "formik";
 import type { NextPage } from "next";
+import { Bars } from "react-loader-spinner";
 
 
 const validationSchema = object().shape({
@@ -52,7 +53,15 @@ const UpdateProduct:NextPage = () => {
         );
     } else {
         return <div className='mt-6 text-3xl font-bold text-center'>
-            Loading product...
+            <Bars
+                height="80"
+                width="80"
+                color="blue"
+                ariaLabel="bars-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
         </div>
     }
 };

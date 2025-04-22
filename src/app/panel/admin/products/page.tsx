@@ -11,6 +11,7 @@ import { queryClient } from "@Index/IndexLayout";
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
 
 const page: NextPage = () => {
     const [page, setPage] = useState<number>(1);
@@ -41,7 +42,16 @@ const page: NextPage = () => {
             </ProductsListHeader>
             {isLoading && (
                 <div className='mt-6 text-3xl font-bold text-center'>
-                    Loading products...
+                    <BallTriangle
+                        height={100}
+                        width={100}
+                        radius={5}
+                        color="blue"
+                        ariaLabel="ball-triangle-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    />
                 </div>
             )}
             {data?.total_page < 1 && (

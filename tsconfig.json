@@ -1,79 +1,41 @@
 {
-  "compilerOptions": {
-    "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@Public/*": [
-        "./public/*"
-      ],
-      "@Styles/*": [
-        "./src/styles/*"
-      ],
-      "@App/*": [
-        "./src/app/*"
-      ],
-      "@Context/*": [
-        "./src/context/*"
-      ],
-      "@Components/*": [
-        "./src/Components/*"
-      ],
-      "@Index/*": [
-        "./src/Components/index/*"
-      ],
-      "@Product/*": [
-        "./src/Components/product/*"
-      ],
-      "@Auth/*": [
-        "./src/Components/auth/*"
-      ],
-      "@Contracts/*": [
-        "./src/contracts/*"
-      ],
-      "@Helpers/*": [
-        "./src/helpers/*"
-      ],
-      "@Panel/*": [
-        "./src/Components/panel/*"
-      ],
-      "@Interfaces/*": [
-        "./src/interfaces/*"
-      ],
-      "@Hooks/*": [
-        "./src/hooks/*"
-      ]
+    "compilerOptions": {
+        "target": "ES2017",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "types": ["node"],
+        "paths": {
+            "@/*": ["./src/*"],
+            "@Public/*": ["./public/*"],
+            "@Styles/*": ["./src/styles/*"],
+            "@App/*": ["./src/app/*"],
+            "@Context/*": ["./src/context/*"],
+            "@Components/*": ["./src/Components/*"],
+            "@Index/*": ["./src/Components/index/*"],
+            "@Product/*": ["./src/Components/product/*"],
+            "@Auth/*": ["./src/Components/auth/*"],
+            "@Contracts/*": ["./src/contracts/*"],
+            "@Helpers/*": ["./src/helpers/*"],
+            "@Panel/*": ["./src/Components/panel/*"],
+            "@Interfaces/*": ["./src/interfaces/*"],
+            "@Hooks/*": ["./src/hooks/*"]
+        },
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
 }

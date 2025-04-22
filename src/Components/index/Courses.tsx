@@ -8,6 +8,7 @@ import { Bounce, toast } from "react-toastify";
 import Pagination from "@Contracts/Pagination";
 import Course from "./Courses/Course";
 import fetchHanler from "./fetcher";
+import { RotatingLines } from "react-loader-spinner";
 
 
 export interface ActionInterface {
@@ -112,11 +113,16 @@ const Courses: FC = () => {
                 <h2 className='text-3xl inline'>Courses</h2> &ensp;
                 <CodeBracketIcon height={32} />
             </div>
-            <div className='flex flex-wrap 2xl:px-28 mt-4'>
+            <div className='flex justify-center flex-wrap 2xl:px-28 mt-4'>
                 {isLoading && (
-                    <div className='mt-6 text-3xl font-bold text-center'>
-                        Loading products...
-                    </div>
+                    <RotatingLines
+                        visible={true}
+                        width="96"
+                        strokeColor="blue"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        ariaLabel="rotating-lines-loading"
+                    />
                 )}
                 {total_page && total_page < 1 && (
                     <div className='mt-6 text-3xl font-bold text-center'>

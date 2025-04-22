@@ -9,6 +9,7 @@ import {
 import { Suspense, useEffect, useLayoutEffect, useState, type FC } from "react";
 import Pagination from "@Contracts/Pagination";
 import Course from "@Index/Courses/Course";
+import { RotatingLines } from "react-loader-spinner";
 
 interface Props {
     productId: string;
@@ -49,8 +50,15 @@ const SameCategory: FC<Props> = ({ productId }) => {
             <h2 className='font-bold pl-3 text-3xl '>Other Products</h2>
             <div className='flex flex-wrap 2xl:px-28 mt-4'>
                 {!isError && !isSuccess && (
-                    <div className='mt-6 text-3xl font-bold text-center'>
-                        Loading products...
+                    <div className='mt-6 flex justify-center text-3xl font-bold text-center'>
+                        <RotatingLines
+                            visible={true}
+                            width="96"
+                            strokeColor="blue"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            ariaLabel="rotating-lines-loading"
+                        />
                     </div>
                 )}
                 {total_page == 0 && (

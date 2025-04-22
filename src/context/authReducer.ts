@@ -1,6 +1,6 @@
 import type { InitialAuthStateInterface } from "./authentication";
 
-interface Action{
+export interface Action{
     type:string,
     payload:any
 }

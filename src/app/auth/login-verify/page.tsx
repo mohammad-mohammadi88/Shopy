@@ -12,7 +12,7 @@ import type { NextPage } from 'next';
 
 const loginVerify: NextPage = () :ReactNode => {
     const router = useRouter()
-    const authState:InitialAuthStateInterface | undefined = useAuthState()
+    const authState:InitialAuthStateInterface = useAuthState()
     const { mutate } = useStoreUserToken()
     async function handleSubmit(code:number) : Promise<void> {
         const verifyToken:string = authState?.phoneVerifyToken ?? ''; 

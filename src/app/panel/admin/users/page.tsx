@@ -12,6 +12,7 @@ import UsersListBody from "@Panel/Body";
 import UsersTHead from "@Panel/THead";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { FallingLines } from "react-loader-spinner";
 
 const page: NextPage = () => {
     const [page, setPage] = useState<number>(1);
@@ -47,7 +48,11 @@ const page: NextPage = () => {
             </UsersListHeader>
             {isLoading && (
                 <div className='mt-6 text-3xl font-bold text-center'>
-                    Loading users...
+                    <FallingLines
+                        color="blue"
+                        width="100"
+                        visible={true}
+                    />
                 </div>
             )}
             {data?.total_page < 1 && (

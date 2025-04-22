@@ -1,6 +1,6 @@
 "use client";
 
-import { Option } from "./categories";
+import type { Option } from "./categories";
 import type { FC, ReactNode, Ref } from "react";
 import { ErrorMessage } from "formik";
 import { Field } from "formik";
@@ -36,11 +36,15 @@ const Input: FC<Props> = ({
                     name={name}
                     ref={ref}
                     id={name}
-                    className={`mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1  border-2  outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 outline focus:outline-indigo-600 sm:text-sm/6 ${ className ?? "" }`}
+                    className={`mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1  border-2  outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 outline focus:outline-indigo-600 sm:text-sm/6 ${
+                        className ?? ""
+                    }`}
                     {...attrs}
                 >
                     {options?.map(({ value }: Option) => (
-                        <option key={value} value={value}>{value}</option>
+                        <option key={value} value={value}>
+                            {value}
+                        </option>
                     ))}
                 </Field>
             ) : (
@@ -49,15 +53,16 @@ const Input: FC<Props> = ({
                     name={name}
                     ref={ref}
                     id={name}
-                    className={`mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1  border-2  outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 outline focus:outline-indigo-600 sm:text-sm/6 ${ className ?? "" }`}
+                    className={`mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1  border-2  outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 outline focus:outline-indigo-600 sm:text-sm/6 ${
+                        className ?? ""
+                    }`}
                     {...attrs}
                 />
             )}
-
             <ErrorMessage
                 name={name}
                 component='div'
-                className='text-red-500 text-sm '
+                className='text-red-500 text-sm'
             />
         </div>
     );
