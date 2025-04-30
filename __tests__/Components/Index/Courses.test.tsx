@@ -120,7 +120,7 @@ describe("Courses tests", () => {
             screen.getByText(/Oops! Please refresh the page to see products/)
         );
     });
-    it("displays 8 course and 2 page paggination when window width is less than 1024px", () => {
+    it("displays 8 course and 2 page pagination when window width is less than 1024px", () => {
         // arrange
         (fetchHandler as jest.Mock).mockImplementationOnce((dispatch) => {
             dispatch({
@@ -136,9 +136,9 @@ describe("Courses tests", () => {
         // assert
         expect(fetchHandler).toHaveBeenCalledWith(expect.anything(),8,1)
         expect(screen.getAllByRole("contentinfo")).toHaveLength(8);
-        expect(screen.getAllByRole('button', { name: /pagePagginate/i })).toHaveLength(2)
+        expect(screen.getAllByRole('button', { name: /pagePaginate/i })).toHaveLength(2)
     });
-    it("displays 9 course and 1 page paggination when window width is more and equal to 1024px", () => {
+    it("displays 9 course and 1 page pagination when window width is more and equal to 1024px", () => {
         // arrange
         (fetchHandler as jest.Mock).mockImplementationOnce((dispatch) => {
             dispatch({
@@ -155,6 +155,6 @@ describe("Courses tests", () => {
         // assert
         expect(fetchHandler).toHaveBeenCalledWith(expect.anything(),9,1)
         expect(screen.getAllByRole("contentinfo")).toHaveLength(9);
-        expect(screen.getAllByRole('button', { name: /pagePagginate/i })).toHaveLength(1)
+        expect(screen.getAllByRole('button', { name: /pagePaginate/i })).toHaveLength(1)
     });
 });

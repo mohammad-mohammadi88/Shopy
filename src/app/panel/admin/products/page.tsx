@@ -1,15 +1,15 @@
 "use client";
 
 import { useDeleteProduct, useReadProduct } from "@Helpers/productApi";
-import ProductInfo from "@Components/panel/UserAndProductInfo";
-import ProductsListHeader from "@Components/panel/Header";
 import ProductsPagination from "@Contracts/Pagination";
-import ProductsListBody from "@Components/panel/Body";
-import ProductsTHead from "@Components/panel/THead";
 import { BallTriangle } from "react-loader-spinner";
+import ProductInfo from "@Panel/UserAndProductInfo";
 import type { Product } from "@Interfaces/product";
 import { queryClient } from "@Index/IndexLayout";
+import ProductsListHeader from "@Panel/Header";
 import { useEffect, useState } from "react";
+import ProductsListBody from "@Panel/Body";
+import ProductsTHead from "@Panel/THead";
 import type { NextPage } from "next";
 import Link from "next/link";
 

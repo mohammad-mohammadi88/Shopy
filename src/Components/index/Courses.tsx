@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useReducer, useState, type FC } from "react";
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
-import { RotatingLines } from "react-loader-spinner";
+import { InfinitySpin, RotatingLines } from "react-loader-spinner";
 import useWindowWidth from "@Hooks/useWindowWidth";
 import type { Product } from "@Interfaces/product";
 import { Bounce, toast } from "react-toastify";
@@ -132,9 +132,11 @@ const Courses: FC = () => {
                         Ops! We have Error
                     </div>
                 )}
-                <Suspense fallback={<div className='mt-6 text-3xl font-bold text-center'>
-                    Loading products...
-                </div>}>
+                <Suspense fallback={<InfinitySpin
+                    width="200"
+                    color="blue"
+                    aria-label="infinity-spin-loading"
+                />}>
                     {isSuccess && total_page && !isLoading && <>
                         {products.map(({body,title,category,id})=><Course key={id} body={body} title={title} category={category} id={id}/>)}
                         <div className="w-full">

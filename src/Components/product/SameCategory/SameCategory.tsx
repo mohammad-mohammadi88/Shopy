@@ -1,11 +1,11 @@
 "use client";
 
-import { Suspense, useEffect, useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import Pagination from "@Contracts/Pagination";
-import Course from "@/Components/index/Course/Course";
+import Course from "@Index/Course/Course";
 import {
-    SameCategoryResInterface,
+    type SameCategoryResInterface,
     initialSameCategory,
     fetchSameCategory,
     fetchProduct,
@@ -22,7 +22,7 @@ const SameCategory: FC<Props> = ({ productId }) => {
             data: { category },
         },
         setCategory,
-    ] = useState({ data: { category: "Front-end" } });
+    ] = useState({ data: { category: "" } });
     const [
         {
             data: { total_page, data: products },
@@ -47,7 +47,7 @@ const SameCategory: FC<Props> = ({ productId }) => {
 
     return (
         <section className='container mt-16 xl:px-24 mx-auto'>
-            <h2 className='font-bold pl-3 text-3xl '>Other Products</h2>
+            <h2 className='font-bold pl-3 text-3xl'>Other Products</h2>
             <div className='flex flex-wrap 2xl:px-28 mt-4'>
                 {!isError && !isSuccess && (
                     <div className='mt-6 flex justify-center text-3xl font-bold text-center'>
@@ -63,7 +63,7 @@ const SameCategory: FC<Props> = ({ productId }) => {
                 )}
                 {total_page == 0 && (
                     <div className='mt-6 text-3xl font-bold text-center'>
-                        There is no product on the database!
+                        There is no other course with this category on the database!
                     </div>
                 )}
                 {isError && (
@@ -71,28 +71,26 @@ const SameCategory: FC<Props> = ({ productId }) => {
                         Ops! We have Error
                     </div>
                 )}
-                <Suspense fallback={<></>}>
-                    {isSuccess && total_page && (
-                        <>
-                            {products.map(({ body, title, category, id }) => (
-                                <Course
-                                    key={id}
-                                    body={body}
-                                    title={title}
-                                    category={category}
-                                    id={id}
-                                />
-                            ))}
-                            <div className='w-full'>
-                                <Pagination
-                                    totalPages={total_page}
-                                    page={page}
-                                    setPage={setPage}
-                                />
-                            </div>
-                        </>
-                    )}
-                </Suspense>
+                {isSuccess && total_page && (
+                    <>
+                        {products.map(({ body, title, category, id }) => (
+                            <Course
+                                key={id}
+                                body={body}
+                                title={title}
+                                category={category}
+                                id={id}
+                            />
+                        ))}
+                        <div className='w-full'>
+                            <Pagination
+                                totalPages={total_page}
+                                page={page}
+                                setPage={setPage}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
         </section>
     );

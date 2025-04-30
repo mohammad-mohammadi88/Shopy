@@ -13,7 +13,7 @@ const Product :FC<Props> = ({product}) => {
     const {category,title,price,body} = product;
     const imageSrc = RandomImage(category)
     return (
-        <div className="shadow-2xl bg-white container p-8 rounded-xl">
+        <div aria-label={category + " course"} role="contentinfo" className="shadow-2xl bg-white container p-8 rounded-xl">
             <section className="w-full flex flex-wrap flex-col md:flex-row justify-center md:justify-normal md:h-full ">
                 <div className="w-full md:w-2/5 relative h-full">
                     <Image src={imageSrc} className='pr-4 product-image' layout='fill' alt={title} />

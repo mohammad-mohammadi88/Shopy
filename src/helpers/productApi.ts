@@ -164,7 +164,7 @@ interface SameCategoryRes{
 }
 export type SameCategoryResInterface = Response<SameCategoryRes>
 export const initialSameCategory:SameCategoryResInterface = {
-    data:{data:[],status:'pending'},
+    data:{data:[],status:'pending',total_page:0},
     isError:false,
     isSuccess:false
 }
