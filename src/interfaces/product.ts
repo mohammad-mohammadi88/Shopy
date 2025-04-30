@@ -1,6 +1,8 @@
+import { CategoryType } from "@Contracts/categories";
+
 export interface Product{
 	body:string;
-	category:string;
+	category:CategoryType;
 	created_at:number;
 	id:any;
 	title:string;

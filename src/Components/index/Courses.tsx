@@ -2,14 +2,13 @@
 
 import { Suspense, useEffect, useReducer, useState, type FC } from "react";
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
+import { RotatingLines } from "react-loader-spinner";
 import useWindowWidth from "@Hooks/useWindowWidth";
 import type { Product } from "@Interfaces/product";
 import { Bounce, toast } from "react-toastify";
 import Pagination from "@Contracts/Pagination";
-import Course from "./Courses/Course";
-import fetchHanler from "./fetcher";
-import { RotatingLines } from "react-loader-spinner";
-
+import Course from "./Course";
+import fetchHandler from "./fetcher";
 
 export interface ActionInterface {
     type: string;
@@ -82,13 +81,12 @@ const Courses: FC = () => {
         state,
         dispatch,
     ] = useReducer(reducer, initialState);
-
     const { isError, isLoading, isSuccess, products, total_page } = state;
     useEffect(()=>{
-        fetchHanler(dispatch,perPage,page)
+        fetchHandler(dispatch,perPage,page)
     },[isError])
     useEffect(() => {
-        fetchHanler(dispatch,perPage,page);
+        fetchHandler(dispatch,perPage,page);
     },[page,perPage]);
     useEffect(() => {
         const newPerPage = windowWidth < 1024 ? 8 : 9
@@ -124,7 +122,7 @@ const Courses: FC = () => {
                         ariaLabel="rotating-lines-loading"
                     />
                 )}
-                {total_page && total_page < 1 && (
+                {total_page == 0 && (
                     <div className='mt-6 text-3xl font-bold text-center'>
                         There is no product on the database!
                     </div>

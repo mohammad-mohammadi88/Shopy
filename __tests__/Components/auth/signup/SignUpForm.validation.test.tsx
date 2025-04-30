@@ -1,6 +1,7 @@
-import { screen, waitFor } from '@testing-library/react';
-import { beInDom, fillSignUpForm } from './SignUpForm.api.test';
-
+import { waitFor } from '@testing-library/react';
+import { fillSignUpForm } from './SignUpForm.api.test';
+import { beInDom } from "@Tests/testFunction.test";
+import { screen } from "./SignUpForm.api.test"
 interface validateSignUpFormInputsInterface {
     username: string;
     phone: string;

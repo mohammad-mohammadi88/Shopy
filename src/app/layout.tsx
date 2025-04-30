@@ -1,8 +1,8 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import IndexLayout from "@/Components/index/IndexLayout";
 import { Bounce, ToastContainer } from "react-toastify";
 import { Geist, Geist_Mono } from "next/font/google";
 import AuthProvider from "@Context/authentication";
-import IndexLayout from "@Index/IndexLayout"
 import type { Metadata } from "next";
 // import "@Styles/globals.css";
 import "@Public/output.css"
@@ -24,7 +24,6 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children
 }: any) {
-
   return (
     <html lang="en" dir="ltr">
       <body className={`overflow-x-hidden ${geistSans.variable} ${geistMono.variable}`}>

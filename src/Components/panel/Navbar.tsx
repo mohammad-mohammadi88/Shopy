@@ -1,18 +1,24 @@
 "use client";
 
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import type { Dispatch, FC, SetStateAction } from "react";
 import { useRemoveUserToken } from "@Helpers/userToken";
-import { queryClient } from "@Index/IndexLayout";
 import { showAuthToast } from "@Contracts/toast";
 import { useDeleteUser } from "@Helpers/userApi";
 import { useRouter } from "next/navigation";
-import { Fragment, useEffect } from "react"
+import { Fragment, useEffect } from "react";
 import useAuth from "@Hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
+import {
+    Transition,
+    MenuButton,
+    MenuItems,
+    MenuItem,
+    Menu,
+} from "@headlessui/react";
+import { queryClient } from "../index/IndexLayout";
 
 interface Props {
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
@@ -24,10 +30,14 @@ export interface userNavigationInterface {
     href: string;
 }
 const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
-    const { refetch,user } = useAuth()
-    const router = useRouter()
-    const { mutate,isSuccess } = useRemoveUserToken()
-    const { mutate:DeleteMyAcount, isSuccess: isDeleted, error } = useDeleteUser();
+    const { refetch, user } = useAuth();
+    const router = useRouter();
+    const { mutate, isSuccess } = useRemoveUserToken();
+    const {
+        mutate: DeleteMyAcount,
+        isSuccess: isDeleted,
+        error,
+    } = useDeleteUser();
     const handleDelete = () => {
         DeleteMyAcount(user.id);
         queryClient.invalidateQueries({ queryKey: ["users"] });
@@ -42,8 +52,8 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
     const handleLogout = () => mutate();
     useEffect(() => {
         refetch();
-        if(isDeleted || isSuccess) router.push('/')
-    }, [isDeleted,isSuccess]);
+        if (isDeleted || isSuccess) router.push("/");
+    }, [isDeleted, isSuccess]);
     return (
         <div className='sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow'>
             <button
@@ -87,7 +97,6 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                 </div>
 
                 <div className='ml-6 flex items-center md:ml-8'>
-
                     {/* Profile dropdown */}
 
                     <Menu as='div' className='relative mr-3'>
@@ -117,7 +126,11 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                             <MenuItems className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                                 <MenuItem>
                                     {({ active }) => (
-                                        <div className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700 cursor-pointer`}>
+                                        <div
+                                            className={`${
+                                                active && "bg-gray-100"
+                                            } block px-4 py-2 text-sm text-gray-700 cursor-pointer`}
+                                        >
                                             <button onClick={handleDelete}>
                                                 Delete Acount
                                             </button>
@@ -140,7 +153,11 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                                 ))}
                                 <MenuItem>
                                     {({ active }) => (
-                                        <div className={`${active && "bg-gray-100"} block px-4 py-2 text-sm text-gray-700 cursor-pointer`}>
+                                        <div
+                                            className={`${
+                                                active && "bg-gray-100"
+                                            } block px-4 py-2 text-sm text-gray-700 cursor-pointer`}
+                                        >
                                             <button onClick={handleLogout}>
                                                 Sign out
                                             </button>

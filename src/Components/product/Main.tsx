@@ -1,6 +1,6 @@
-import type { FC } from 'react';
 import { fetchProduct } from '@Helpers/productApi';
 import Product from './Main/Product';
+import type { FC } from 'react';
 
 interface Props{
     productId:string

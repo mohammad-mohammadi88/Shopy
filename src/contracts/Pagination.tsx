@@ -35,7 +35,8 @@ const Pagination:FC<Props> = ({totalPages=0,setPage,page}) => {
                         key={item}
                         type="button"
                         onClick={()=>setPage(item)}
-                        className={`relative  inline-flex items-center border px-4 py-2 text-sm font-medium duration-150 ${item === page ? "z-50 border-indigo-500 bg-indigo-50 text-indigo-600 hover:bg-indigo-100" : "border-gray-300 bg-white text-gray-500 hover:bg-gray-50"}`}
+                        aria-label="pagePagginate"
+                        className={`relative inline-flex items-center border px-4 py-2 text-sm font-medium duration-150 ${item === page ? "z-50 border-indigo-500 bg-indigo-50 text-indigo-600 hover:bg-indigo-100" : "border-gray-300 bg-white text-gray-500 hover:bg-gray-50"}`}
                     >
                         {item}
                     </button>

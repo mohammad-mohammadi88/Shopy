@@ -20,9 +20,8 @@ const HeroHeader: FC = () => {
                     <h1 className='text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl'>
                         Shopy Programming School
                     </h1>
-                    <p className='mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8'>
-                        Shopy is a great choice to learn programming with known
-                        professors and always update courses.
+                    <p role="article" className='mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8'>
+                        Shopy is a great choice to learn programming with known professors and always update courses.
                     </p>
                     <div className='mt-10 flex items-center justify-center gap-x-6'>
                         <Link

@@ -1,5 +1,5 @@
-import Dashboard from '@Panel/Dashboard';
 import type { FC, ReactNode } from 'react';
+import Dashboard from '@Panel/Dashboard';
 
 interface Props{
     children:ReactNode

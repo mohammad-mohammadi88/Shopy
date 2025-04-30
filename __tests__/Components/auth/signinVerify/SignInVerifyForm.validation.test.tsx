@@ -1,5 +1,6 @@
+import { fillValidationForm } from './SignInVerifyForm.api.test';
 import { screen, waitFor } from '@testing-library/react';
-import { beInDom, fillValidationForm } from './SignInVerifyForm.api.test';
+import { beInDom } from "@Tests/testFunction.test";
 
 interface validateVerifyFormInputsInterface {
     code: string;

@@ -1,15 +1,15 @@
 "use client";
 
-import {
-    fetchProduct,
-    fetchSameCategory,
-    initialSameCategory,
-    SameCategoryResInterface,
-} from "@Helpers/productApi";
-import { Suspense, useEffect, useLayoutEffect, useState, type FC } from "react";
-import Pagination from "@Contracts/Pagination";
-import Course from "@Index/Courses/Course";
+import { Suspense, useEffect, useState, type FC } from "react";
 import { RotatingLines } from "react-loader-spinner";
+import Pagination from "@Contracts/Pagination";
+import Course from "@/Components/index/Course/Course";
+import {
+    SameCategoryResInterface,
+    initialSameCategory,
+    fetchSameCategory,
+    fetchProduct,
+} from "@Helpers/productApi";
 
 interface Props {
     productId: string;

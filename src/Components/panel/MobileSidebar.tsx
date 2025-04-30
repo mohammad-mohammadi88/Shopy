@@ -9,7 +9,6 @@ import type {
     RefAttributes,
     SVGProps,
 } from "react";
-import "./style.css"
 
 export interface navigationInterface {
     name: string;

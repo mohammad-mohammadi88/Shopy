@@ -16,6 +16,7 @@
         "types": ["node"],
         "paths": {
             "@/*": ["./src/*"],
+            "@Tests/*": ["./__tests__/*"],
             "@Public/*": ["./public/*"],
             "@Styles/*": ["./src/styles/*"],
             "@App/*": ["./src/app/*"],

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { beInDom } from "@Tests/testFunction.test";
 import FormsLayout from "@Auth/FormsLayout";
 
 // Before Each
@@ -12,9 +13,9 @@ beforeEach(() => {
 
 describe("FormsLayout tests", () => {
     it("displays title and children correctly", () => {
-        expect(
+        beInDom(
             screen.getByRole("heading", { name: "sign up" })
-        ).toBeInTheDocument();
-        expect(screen.getByRole("article")).toBeInTheDocument();
+        );
+        beInDom(screen.getByRole("article"));
     });
 });

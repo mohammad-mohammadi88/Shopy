@@ -1,6 +1,5 @@
 import type { NavigationInterface } from "./NavbarContainer";
 import { useRemoveUserToken } from "@Helpers/userToken";
-import { queryClient } from "@Index/IndexLayout";
 import capitalize from "@Helpers/capitalize";
 import { useRouter } from "next/navigation";
 import useAuth from "@Hooks/useAuth";
@@ -14,6 +13,7 @@ import {
     MenuItems,
     Transition,
 } from "@headlessui/react";
+import { queryClient } from "../IndexLayout";
 
 const RightSideMenu: FC = () => {
     const { user, refetch } = useAuth();
@@ -43,8 +43,7 @@ const RightSideMenu: FC = () => {
             </h2>
             <Menu as='div' className='relative ml-3 border-2 border-gray-400 border-dotted rounded-full'>
                 <MenuButton className='relative flex rounded-full p-1 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-400 focus:outline-hidden'>
-                    <span className='absolute -inset-1.5' />
-                    <span className='sr-only'>Open user menu</span>
+                    <span className='sr-only absolute -inset-1.5'>Open User Menu</span>
                     <Image
                         alt='your image'
                         src='https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500'

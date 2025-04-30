@@ -2,8 +2,8 @@
 
 import MobileSidebar, { type navigationInterface } from "../MobileSidebar";
 import Navbar, { type userNavigationInterface } from "../Navbar";
+import { type FC, type ReactNode, useState } from "react";
 import { HomeIcon } from "@heroicons/react/24/outline";
-import { FC, type ReactNode, useState } from "react";
 import DesktopSidebar from "../DesktopSidebar";
 import useAuth from "@Hooks/useAuth";
 

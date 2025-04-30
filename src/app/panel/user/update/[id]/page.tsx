@@ -1,13 +1,13 @@
 "use client";
 
 import { useReadOneUser, useUpdateUser } from "@Helpers/userApi";
-import UpdateUserForm from "@Panel/UpdateUserForm";
 import { useParams, useRouter } from "next/navigation";
-import { boolean, object, string } from "yup";
+import UpdateUserForm from "@Panel/UpdateUserForm";
 import { queryClient } from "@Index/IndexLayout";
-import { Formik } from "formik";
-import type { NextPage } from "next";
+import { boolean, object, string } from "yup";
 import Dashboard from "@Panel/Dashboard";
+import type { NextPage } from "next";
+import { Formik } from "formik";
 
 const validationSchema = object().shape({
     name: string().min(2).max(25),

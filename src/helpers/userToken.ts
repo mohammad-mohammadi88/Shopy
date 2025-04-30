@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "@Index/IndexLayout";
 import { updateToast } from "@Contracts/toast";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { queryClient } from "@Index/IndexLayout";
 
 export const useStoreUserToken = (): any => {
     const mutationKey = ["token", "create"];

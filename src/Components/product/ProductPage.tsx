@@ -1,8 +1,8 @@
+import SameCategory from './SameCategory';
 import Footer from '@Index/Footer';
 import type { FC } from 'react';
 import Navbar from './NavBar';
 import Main from './Main';
-import SameCategory from './SameCategory';
 
 interface Props{
     productId:string

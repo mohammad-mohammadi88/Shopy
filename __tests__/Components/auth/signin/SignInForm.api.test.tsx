@@ -2,9 +2,9 @@ import { pushMock, RenderWithContext } from "./SignInForm.setup.test";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import AuthProvider from "@Context/authentication";
+import { beInDom } from "@Tests/testFunction.test";
 import { LoginApi } from "@/helpers/authApi";
-
-export const beInDom = (expects: any) => expect(expects).toBeInTheDocument();
+export { screen }
 export const fillSignInForm = async (phone: string) => {
     const phoneInput = screen.getByRole("textbox", { name: "Mobile Phone:" });
     await userEvent.clear(phoneInput); 
@@ -24,8 +24,8 @@ jest.mock("@helpers/authApi", () => ({
             status: 200,
             errors: [],
         }),
-}));
-// Before Each
+    }));
+    // Before Each
 beforeEach(() => {
     render(
         <AuthProvider>
@@ -36,6 +36,23 @@ beforeEach(() => {
 
 
 describe("SignInForm api tests", () => {
+    it("saves right token in context", async () => {
+        // arrange
+        (LoginApi as jest.Mock).mockResolvedValue({
+            data: {
+                token: "token",
+                code: "123456",
+            },
+            status: 200,
+            errors: [],
+        })
+
+        // act
+        await fillSignInForm("09146360528");
+        
+        // assert
+        expect(screen.getByTestId("verifyToken")).toHaveTextContent("token");
+    });
     it("shows error when phone is taken", async () => {
         // arrange
         (LoginApi as jest.Mock).mockResolvedValueOnce({
@@ -68,12 +85,5 @@ describe("SignInForm api tests", () => {
         await waitFor(() => {
             expect(pushMock).toHaveBeenCalledWith("login-verify");
         });
-    });
-    it("saves right token in context", async () => {
-        // act
-        await fillSignInForm("09146360528");
-
-        // assert
-        expect(screen.getByTestId("verifyToken")).toHaveTextContent("token");
     });
 });

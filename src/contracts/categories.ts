@@ -1,5 +1,6 @@
+export type CategoryType = "Mobile" | "Game" | "AI" | "Desktop" | "Back-end" | "Front-end" | "Data Science"
 export interface Option{
-    value:string
+    value:CategoryType
 }
 export const categories:Option[] = [
     {value:"Back-end"},

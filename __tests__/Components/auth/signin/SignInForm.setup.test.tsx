@@ -1,9 +1,9 @@
 import type { LoginFormValuesInterface } from "@Interfaces/forms";
 import { Bounce, ToastContainer } from "react-toastify";
+import { beInDom } from "@Tests/testFunction.test";
 import { showAuthToast } from "@Contracts/toast";
 import SignInForm from "@Auth/signin/SignInForm";
-import { beInDom } from "./SignInForm.api.test";
-import { screen } from "@testing-library/react";
+import { screen } from "./SignInForm.api.test";
 import { LoginApi } from "@/helpers/authApi";
 import { useRouter } from "next/navigation";
 import {
@@ -18,14 +18,7 @@ it("renders sign in form elements correctly", () => {
 });
 
 jest.mock("@helpers/authApi", () => ({
-    LoginApi: jest.fn().mockResolvedValue({
-        data: {
-            token: "token",
-            code: "123456",
-        },
-        status: 200,
-        errors: [],
-    }),
+    LoginApi: jest.fn(),
 }));
 export const pushMock = jest.fn();
 jest.mock("next/navigation", () => ({

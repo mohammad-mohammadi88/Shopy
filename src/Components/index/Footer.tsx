@@ -1,8 +1,7 @@
-import { categories, Option } from "@Contracts/categories";
+import { categories,type Option } from "@Contracts/categories";
 import { SocialIcon } from "react-social-icons";
 interface SocialMediaInterface {
     url: string;
-    [key: string]: any;
 }
 const Footer = () => {
     const langs = [
@@ -42,7 +41,7 @@ const Footer = () => {
             <div className='container py-8 text-white mx-auto flex flex-wrap'>
                 <div className='w-full -translate-x-2 pt-3 border-t md:border-t-0 mt-8 md:mt-0 px-5 flex order-4 md:order-1 flex-col items-center justify-center sm:px-0 md:w-1/3 lg:w-1/4'>
                     <h2 className='text-3xl mb-3'>About us</h2>
-                    <p className='text-gray-100'>
+                    <p role="article" className='text-gray-100'>
                         We build a company to teach and improve your programming
                         skills and make you ready for working with big
                         companies.
@@ -55,6 +54,7 @@ const Footer = () => {
                             <li
                                 className='duration-300 hover:translate-x-2'
                                 key={value}
+                                aria-description="Course category"
                             >
                                 {value}
                             </li>
@@ -67,6 +67,7 @@ const Footer = () => {
                         {langs.map((lang: string) => (
                             <li
                                 className='duration-300 hover:translate-x-2'
+                                aria-description="programming languages"
                                 key={lang}
                             >
                                 {lang}
@@ -79,9 +80,9 @@ const Footer = () => {
                         <h2 className='text-3xl mb-5'>Contact us</h2>
                         <ul className='flex justify-center flex-wrap'>
                             {socialMedia.map(
-                                ({ url, ...props }: SocialMediaInterface) => (
-                                    <li className='mx-2' key={url}>
-                                        <SocialIcon url={url} {...props} />
+                                ({ url }: SocialMediaInterface) => (
+                                    <li className='mx-2' key={url} aria-description="social media icons">
+                                        <SocialIcon url={url} />
                                     </li>
                                 )
                             )}

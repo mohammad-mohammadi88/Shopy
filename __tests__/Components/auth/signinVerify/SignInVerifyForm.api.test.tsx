@@ -1,10 +1,11 @@
+import { pushMock, RenderWithContext } from "./SignInVerifyForm.setup.test";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { pushMock, RenderWithContext } from "./SignInVerifyForm.setup.test";
-import AuthProvider from "@/context/authentication";
-import { VerifyPhoneApi } from "./SignInVerifyForm.setup.test";
+import AuthProvider from "@Context/authentication";
+import { beInDom } from "@Tests/testFunction.test";
+import { VerifyPhoneApi } from "@Helpers/authApi";
+export { screen }
 
-export const beInDom = (expects: any) => expect(expects).toBeInTheDocument();
 export const fillValidationForm = async (code: string) => {
     const codeInput = screen.getByRole("textbox", { name: "Verify Code:" });
     await userEvent.clear(codeInput);
@@ -25,9 +26,7 @@ beforeEach(() => {
 
 const fakeUser = (isAdmin:boolean) => ({
     name: "max",
-    phone: "01234567890",
     isAdmin: Number(isAdmin),
-    token: "some token",
 })
 
 

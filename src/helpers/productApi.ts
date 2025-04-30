@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { ProductFormInterFace } from "@Interfaces/forms";
+import type { ProductFormInterFace } from "@Interfaces/forms";
 import { updateToast } from "@Contracts/toast";
 import { Product } from "@Interfaces/product";
 import { GetUserToken } from "./userToken";

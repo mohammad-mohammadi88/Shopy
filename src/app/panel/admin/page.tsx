@@ -2,6 +2,7 @@
 
 import { useDeleteProduct, useReadUserProducts } from "@Helpers/productApi";
 import ProductsPagination from "@Contracts/Pagination";
+import { RotatingLines } from "react-loader-spinner";
 import ProductInfo from "@Panel/UserAndProductInfo";
 import type { Product } from "@Interfaces/product";
 import { queryClient } from "@Index/IndexLayout";
@@ -14,7 +15,6 @@ import Dashboard from "@Panel/Dashboard";
 import useAuth from "@Hooks/useAuth";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { RotatingLines } from "react-loader-spinner";
 
 const page: NextPage = () => {
     const { user } = useAuth();

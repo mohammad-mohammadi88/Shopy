@@ -1,9 +1,9 @@
 "use client";
 
+import type { FC, ReactNode } from "react";
 import { redirect } from "next/navigation";
-import useAuth from "@Hooks/useAuth";
-import { FC, ReactNode} from "react";
 import UserPanel from "@Panel/user/User";
+import useAuth from "@Hooks/useAuth";
 
 interface Props {
     children: ReactNode;

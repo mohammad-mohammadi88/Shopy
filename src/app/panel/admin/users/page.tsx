@@ -3,6 +3,7 @@
 import { useDeleteUser, useReadUser } from "@Helpers/userApi";
 import type { UserFormInterFace } from "@Interfaces/forms";
 import UsersPagination from "@Contracts/Pagination";
+import { FallingLines } from "react-loader-spinner";
 import UserInfo from "@Panel/UserAndProductInfo";
 import { showAuthToast } from "@Contracts/toast";
 import { queryClient } from "@Index/IndexLayout";
@@ -12,7 +13,6 @@ import UsersListBody from "@Panel/Body";
 import UsersTHead from "@Panel/THead";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { FallingLines } from "react-loader-spinner";
 
 const page: NextPage = () => {
     const [page, setPage] = useState<number>(1);

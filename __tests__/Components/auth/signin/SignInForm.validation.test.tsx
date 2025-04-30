@@ -1,5 +1,6 @@
-import { beInDom, fillSignInForm } from './SignInForm.api.test';
 import { screen, waitFor } from '@testing-library/react';
+import { fillSignInForm } from './SignInForm.api.test';
+import { beInDom } from "@Tests/testFunction.test";
 
 interface validateSignInFormInputsInterface {
     phone: string;

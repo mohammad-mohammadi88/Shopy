@@ -6,12 +6,12 @@ import ProductsListHeader from "@Components/panel/Header";
 import ProductsPagination from "@Contracts/Pagination";
 import ProductsListBody from "@Components/panel/Body";
 import ProductsTHead from "@Components/panel/THead";
+import { BallTriangle } from "react-loader-spinner";
 import type { Product } from "@Interfaces/product";
 import { queryClient } from "@Index/IndexLayout";
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { BallTriangle, RotatingLines } from "react-loader-spinner";
 
 const page: NextPage = () => {
     const [page, setPage] = useState<number>(1);
