@@ -1,5 +1,5 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import IndexLayout from "@/Components/index/IndexLayout";
+import IndexLayout from "@Components/index/IndexLayout";
 import { Bounce, ToastContainer } from "react-toastify";
 import { Geist, Geist_Mono } from "next/font/google";
 import AuthProvider from "@Context/authentication";

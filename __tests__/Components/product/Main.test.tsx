@@ -1,8 +1,9 @@
-import { fetchProduct } from "@/helpers/productApi";
-import Main from "@Product/Main";
 import { render, screen, waitFor } from "@testing-library/react";
+import { fetchProduct } from "@Helpers/productApi";
 import { beInDom } from "@Tests/testFunction.test";
+import Main from "@Product/Main";
 
+// mocking
 jest.mock("@helpers/productApi", () => ({
     fetchProduct: jest.fn(),
 }));
@@ -29,7 +30,7 @@ describe("Main tests", () => {
         });
     });
     it("displays error message in rejected request", async () => {
-        (fetchProduct as jest.Mock).mockImplementationOnce((productId: string) => ({
+        (fetchProduct as jest.Mock).mockImplementationOnce(() => ({
             data: "",
             isError: true,
             isSuccess: false,

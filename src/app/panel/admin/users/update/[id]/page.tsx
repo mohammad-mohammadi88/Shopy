@@ -1,20 +1,14 @@
 "use client";
 
+import { userValidationSchema } from "@App/panel/user/update/[id]/page";
 import { useReadOneUser, useUpdateUser } from "@Helpers/userApi";
 import { useParams, useRouter } from "next/navigation";
 import UpdateUserForm from "@Panel/UpdateUserForm";
 import { queryClient } from "@Index/IndexLayout";
-import { boolean, object, string } from "yup";
 import { Bars } from "react-loader-spinner";
 import type { NextPage } from "next";
 import { Formik } from "formik";
 
-
-const validationSchema = object().shape({
-    name: string().min(2).max(25),
-    phone:string().matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/ ,'your mobile is not valid!').min(11).max(15),
-    isAdmin: boolean(),
-});
 
 const UpdateUser:NextPage = () => {
     const params:any = useParams()
@@ -36,7 +30,7 @@ const UpdateUser:NextPage = () => {
                 {initialValues &&
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={validationSchema}
+                        validationSchema={userValidationSchema}
                         onSubmit={handleSubmit}
                     >
                         {({ values, handleChange, ...props }) => (

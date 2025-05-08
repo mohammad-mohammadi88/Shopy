@@ -1,7 +1,7 @@
-import { fetchProduct, fetchSameCategory } from "@/helpers/productApi";
-import SameCategory from "@Product/SameCategory";
 import { render, screen, waitFor } from "@testing-library/react";
+import { fetchSameCategory } from "@/helpers/productApi";
 import { beInDom } from "@Tests/testFunction.test";
+import SameCategory from "@Product/SameCategory";
 
 const DesktopCourses = [
     {
@@ -17,6 +17,8 @@ const DesktopCourses = [
         body: "Desktop coure",
     },
 ]
+
+// mocking
 jest.mock("@helpers/productApi", () => ({
     fetchSameCategory: jest.fn(),
     initialSameCategory: {

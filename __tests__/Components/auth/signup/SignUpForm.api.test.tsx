@@ -1,6 +1,6 @@
 import type { SignUpFormValuesInterface } from "@Interfaces/forms";
 import { render, screen, waitFor } from "@testing-library/react";
-import { Bounce, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import userEvent from "@testing-library/user-event";
 import { beInDom } from "@Tests/testFunction.test";
 import { showAuthToast } from "@Contracts/toast";
@@ -30,6 +30,7 @@ export const fillSignUpForm = async (info: FormTypes) => {
     await userEvent.click(screen.getByRole("button", { name: "Sign Up" }));
 };
 
+// mocking
 jest.mock("@helpers/authApi", () => ({
     signUpApi: jest
         .fn((s) => s)
@@ -38,7 +39,6 @@ jest.mock("@helpers/authApi", () => ({
             errors: [],
         }),
 }));
-
 const pushMock = jest.fn();
 jest.mock("next/navigation", () => ({
     useRouter: () => ({
@@ -46,6 +46,7 @@ jest.mock("next/navigation", () => ({
     }),
 }));
 let handleSubmit: (values: SignUpFormValuesInterface) => Promise<void>;
+
 // Before Each
 beforeEach(() => {
     handleSubmit = async (values) => {

@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { beInDom } from "@Tests/testFunction.test";
 import HeroHeader from '@Index/HeroHeader';
 
+// before each
 beforeEach(() => {
     render(<HeroHeader />)
 })

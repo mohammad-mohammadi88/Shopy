@@ -7,7 +7,7 @@ interface Props{
     setPage: Dispatch<SetStateAction<number>>
 }
 const Pagination:FC<Props> = ({totalPages=0,setPage,page}) => {
-    if(totalPages < 1) return
+    if(totalPages < 1) return <></>
     let arr:number[] = []
     for(let i = 1;i<=totalPages;i++){
         arr.push(i)

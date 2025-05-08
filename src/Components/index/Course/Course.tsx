@@ -19,7 +19,7 @@ const Course:FC<Props> = ({body,title,category,id}) => {
             <div className="w-full flex flex-col cursor-pointer rounded-lg sm:hover:bg-gray-100 duration-300 border p-2">
                 <div className='w-full h-40 relative'>
                     <Image
-                        layout="fill"
+                        fill
                         src={image}
                         alt={`${category} course image`}
                     />

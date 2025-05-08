@@ -84,8 +84,7 @@ const page: NextPage = () => {
                                     <UserInfo
                                         key={id}
                                         updateHref={`/panel/admin/users/update/${id}`}
-                                        name={name}
-                                        id={id}
+                                        title={name}
                                         canDelete={!isAdmin}
                                         canEdit={!isAdmin}
                                         handleDelete={() => handleDelete(id)}

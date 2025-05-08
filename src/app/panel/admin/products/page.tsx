@@ -85,8 +85,7 @@ const page: NextPage = () => {
                                         <ProductInfo
                                             key={id}
                                             info={price + "$"}
-                                            name={title}
-                                            id={id}
+                                            title={title}
                                             canDelete={false}
                                             canEdit={false}
                                             handleDelete={() =>

@@ -1,11 +1,12 @@
 import NavbarContainer from "@Index/Navbar/NavbarContainer";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "@testing-library/react";
-import { queryClient } from "@Index/IndexLayout";
-import useAuth from "@/hooks/useAuth";
 import userEvent from "@testing-library/user-event";
+import { queryClient } from "@Index/IndexLayout";
+import useAuth from "@Hooks/useAuth";
 
-jest.mock("@/hooks/useAuth", () => ({
+// mocking
+jest.mock("@hooks/useAuth", () => ({
     __esModule: true,
     default: jest
         .fn((s) => s)
@@ -26,6 +27,8 @@ jest.mock("next/navigation", () => ({
         push: pushMock,
     }),
 }));
+
+// before each
 beforeEach(() => {
     (useAuth as jest.Mock).mockClear();
     const notLoginNavigation = [
@@ -43,6 +46,8 @@ beforeEach(() => {
         </QueryClientProvider>
     );
 });
+
+
 describe("MobileDisclosurePanel tests", () => {
     it("displays navigation desktop and mobile links when user is logined successfully", async () => {
         // assert

@@ -3,12 +3,14 @@ import type { FormikProps } from "formik";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
 import Link from "next/link";
+import useAuth from "@Hooks/useAuth";
 
-const UpdateProductForm = ({
+const UpdateUserForm = ({
     values,
     handleChange,
     handleSubmit
 }:FormikProps<any>) => {
+    const { user } = useAuth()
     const { phone, name, isAdmin } = values;
     return (
         <form onSubmit={handleSubmit}>
@@ -30,12 +32,12 @@ const UpdateProductForm = ({
                         label='Phone'
                     />
                 </div>
-                {isAdmin === true && 
+                {user.isAdmin == true && 
                     <div className='col-span-full'>
                         <Checkbox 
                             label="Is this user an admin (not admin)"
                             name="isAdmin"
-                            defaultChecked={isAdmin}
+                            defaultChecked={!!isAdmin}
                             />
                     </div>
                 }
@@ -47,7 +49,7 @@ const UpdateProductForm = ({
                     value="Update User"
                 />
                    
-                <Link href="/panel/admin/users">
+                <Link href={`/panel/${user.isAdmin ? "admin/users" : "user"}`}>
                     <button
                         type='button'
                         className='inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
@@ -60,4 +62,4 @@ const UpdateProductForm = ({
     );
 };
 
-export default UpdateProductForm;
+export default UpdateUserForm;

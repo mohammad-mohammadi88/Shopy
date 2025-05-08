@@ -1,16 +1,14 @@
-import type { SignUpFormValuesInterface } from "@Interfaces/forms";
 import Checkbox from "@Contracts/Checkbox";
 import type { FormikProps } from "formik";
 import Button from "@Contracts/Button";
 import Input from "@Contracts/Input";
 import Link from "next/link";
 
-
-const AddProductForm = ({
+const AddUserForm = ({
     values,
     handleChange,
     handleSubmit
-}: FormikProps<SignUpFormValuesInterface>) => {
+}: FormikProps<any>) => {
     const { phone, name, isAdmin } = values;
     return (
         <form onSubmit={handleSubmit}>
@@ -37,7 +35,7 @@ const AddProductForm = ({
                     <Checkbox 
                         label="Is this user an admin (not admin)"
                         name="isAdmin"
-                        checked={isAdmin}
+                        checked={!!isAdmin}
                     />
                 </div>
             </div>
@@ -61,4 +59,4 @@ const AddProductForm = ({
     );
 };
 
-export default AddProductForm;
+export default AddUserForm;

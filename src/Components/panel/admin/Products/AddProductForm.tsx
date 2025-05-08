@@ -1,4 +1,3 @@
-import type { ProductFormInterFace } from "@Interfaces/forms";
 import { categories } from "@Contracts/categories";
 import type { FormikProps } from "formik";
 import Input from "@Contracts/Input";
@@ -8,8 +7,8 @@ const AddProductForm = ({
     values,
     handleChange,
     handleSubmit
-}:FormikProps<ProductFormInterFace>) => {
-    const { price, title,body ,category } = values;
+}:FormikProps<any>) => {
+    const { price, title, body, category } = values;
     return (
         <form onSubmit={handleSubmit}>
             <div className='p-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 xl:grid-cols-3 sm:gap-x-8'>

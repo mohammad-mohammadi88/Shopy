@@ -4,19 +4,18 @@ import type { FC } from "react";
 
 interface Props {
     about: any;
-    name: string;
+    title: string;
     info: string;
-    canEdit:boolean;
-    canDelete:boolean;
-    id: number;
-    handleDelete?:() => void
+    canEdit?: boolean;
+    canDelete?: boolean;
+    handleDelete?: () => void;
     updateHref?: string;
 }
 const UserAndProductInfo: FC<Props> = ({
     updateHref,
-    name,
-    canEdit,
-    canDelete,
+    title,
+    canEdit = false,
+    canDelete = false,
     about,
     handleDelete,
     info,
@@ -26,9 +25,9 @@ const UserAndProductInfo: FC<Props> = ({
         <tr className='table-auto justify-between sm:table-row'>
             <td
                 className='max-w-36 lg:max-w-52 truncate py-4 pr-4 pl-3 text-sm font-medium text-gray-900 sm:pr-6'
-                title={name}
+                title={title}
             >
-                {name}
+                {title}
             </td>
             {windowWidth >= 640 && (
                 <td
@@ -47,23 +46,23 @@ const UserAndProductInfo: FC<Props> = ({
                 </td>
             )}
             <td className=' relative py-4 pr-3 pl-4 text-right text-sm font-medium sm:pl-6'>
-                {canEdit && updateHref &&
+                {canEdit && updateHref && (
                     <Link
                         href={updateHref}
                         className='text-indigo-600 hover:text-indigo-900 mr-4'
                     >
                         Edit
                     </Link>
-                }
-                {canDelete && handleDelete &&
+                )}
+                {canDelete && handleDelete && (
                     <button
-                        type="button"
+                        type='button'
                         onClick={handleDelete}
                         className='text-indigo-600 hover:text-indigo-900'
                     >
                         Delete
                     </button>
-                }
+                )}
             </td>
         </tr>
     );

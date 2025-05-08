@@ -1,9 +1,9 @@
-import fetchHandler from "@Index/fetcher";
-import Courses, { ActionTypes } from "@Index/Courses";
 import { render, screen } from "@testing-library/react";
+import Courses, { ActionTypes } from "@Index/Courses";
+import useWindowWidth from "@Hooks/useWindowWidth";
 import { beInDom } from "@Tests/testFunction.test";
 import { ToastContainer } from "react-toastify";
-import useWindowWidth from "@Hooks/useWindowWidth";
+import fetchHandler from "@Index/fetcher";
 
 interface SimpleCourseInterface{
     id:number,
@@ -68,6 +68,7 @@ const simpleCourses:SimpleCourseInterface[] = [
     },
 ];
 
+// mocking
 jest.mock("@hooks/useWindowWidth",() => ({
     __esModule:true,
     default: jest.fn().mockImplementation(()=>600)

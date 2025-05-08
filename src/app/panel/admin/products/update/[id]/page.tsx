@@ -8,14 +8,7 @@ import { number, object, string } from "yup";
 import { Bars } from "react-loader-spinner";
 import type { NextPage } from "next";
 import { Formik } from "formik";
-
-
-const validationSchema = object().shape({
-    title: string().min(4).max(25),
-    price: number().min(1),
-    body: string().min(5).max(1000),
-    category: string()
-});
+import { productValidationSchema } from "../../add/page";
 
 const UpdateProduct:NextPage = () => {
     const params:any = useParams()
@@ -38,7 +31,7 @@ const UpdateProduct:NextPage = () => {
                 {initialValues &&
                 <Formik
                     initialValues={initialValues}
-                    validationSchema={validationSchema}
+                    validationSchema={productValidationSchema}
                     onSubmit={handleFormSubmit}
                 >
                     {({ values, handleChange, ...props }) => (

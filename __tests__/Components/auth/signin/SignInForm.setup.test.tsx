@@ -1,8 +1,8 @@
 import type { LoginFormValuesInterface } from "@Interfaces/forms";
-import { Bounce, ToastContainer } from "react-toastify";
 import { beInDom } from "@Tests/testFunction.test";
 import { showAuthToast } from "@Contracts/toast";
 import SignInForm from "@Auth/signin/SignInForm";
+import { ToastContainer } from "react-toastify";
 import { screen } from "./SignInForm.api.test";
 import { LoginApi } from "@/helpers/authApi";
 import { useRouter } from "next/navigation";
@@ -12,11 +12,7 @@ import {
     useAuthState,
 } from "@Context/authentication";
 
-it("renders sign in form elements correctly", () => {
-    beInDom(screen.getByRole("textbox", { name: "Mobile Phone:" }));
-    beInDom(screen.getByRole("button", { name: "Login" }));
-});
-
+// mocking
 jest.mock("@helpers/authApi", () => ({
     LoginApi: jest.fn(),
 }));
@@ -26,6 +22,12 @@ jest.mock("next/navigation", () => ({
         push: pushMock,
     }),
 }));
+
+
+it("renders sign in form elements correctly", () => {
+    beInDom(screen.getByRole("textbox", { name: "Mobile Phone:" }));
+    beInDom(screen.getByRole("button", { name: "Login" }));
+});
 const DisplayVerifyToken = () => (
     <div data-testid='verifyToken'>{useAuthState().phoneVerifyToken}</div>
 );
@@ -53,19 +55,7 @@ export const RenderWithContext = () => {
         <>
             <SignInForm handleSubmit={handleSubmit} />
             <DisplayVerifyToken />
-            <ToastContainer
-                position='bottom-right'
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme='light'
-                transition={Bounce}
-            />
+            <ToastContainer />
         </>
     );
 };

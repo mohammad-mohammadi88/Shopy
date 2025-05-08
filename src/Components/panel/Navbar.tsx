@@ -30,7 +30,7 @@ export interface userNavigationInterface {
     href: string;
 }
 const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
-    const { refetch, user } = useAuth();
+    const { refetch, user:{id} } = useAuth();
     const router = useRouter();
     const { mutate, isSuccess } = useRemoveUserToken();
     const {
@@ -39,7 +39,7 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
         error,
     } = useDeleteUser();
     const handleDelete = () => {
-        DeleteMyAcount(user.id);
+        DeleteMyAcount(id);
         queryClient.invalidateQueries({ queryKey: ["users"] });
         showAuthToast(
             false,
@@ -132,7 +132,7 @@ const Navbar: FC<Props> = ({ setSidebarOpen, userNavigation }) => {
                                             } block px-4 py-2 text-sm text-gray-700 cursor-pointer`}
                                         >
                                             <button onClick={handleDelete}>
-                                                Delete Acount
+                                                Delete Account
                                             </button>
                                         </div>
                                     )}

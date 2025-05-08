@@ -1,9 +1,11 @@
-import { Product } from "@/interfaces/product";
+import type { Product } from "@Interfaces/product";
 import fetchHandler, {
+    SuccessDispatch,
     ErrorDispatch,
     FetchDispatch,
-    SuccessDispatch,
 } from "@Index/fetcher";
+
+// mocking
 global.fetch = jest.fn();
 
 describe("fetchHandler", () => {

@@ -4,7 +4,8 @@ import userEvent from "@testing-library/user-event";
 import AuthProvider from "@Context/authentication";
 import { beInDom } from "@Tests/testFunction.test";
 import { LoginApi } from "@/helpers/authApi";
-export { screen }
+export { screen };
+
 export const fillSignInForm = async (phone: string) => {
     const phoneInput = screen.getByRole("textbox", { name: "Mobile Phone:" });
     await userEvent.clear(phoneInput); 
@@ -17,6 +18,7 @@ export const fillSignInForm = async (phone: string) => {
     await userEvent.click(screen.getByRole("button", { name: "Login" }));
 };
 
+// mocking
 jest.mock("@helpers/authApi", () => ({
     LoginApi: jest
         .fn((s) => s)
@@ -24,8 +26,9 @@ jest.mock("@helpers/authApi", () => ({
             status: 200,
             errors: [],
         }),
-    }));
-    // Before Each
+}));
+
+// Before Each
 beforeEach(() => {
     render(
         <AuthProvider>

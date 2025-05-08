@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { beInDom } from "@Tests/testFunction.test";
 import Course from "@Index/Course";
 
+// before each
 beforeEach(() => {
     render(
         <Course

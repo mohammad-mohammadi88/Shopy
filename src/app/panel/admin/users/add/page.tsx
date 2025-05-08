@@ -8,18 +8,13 @@ import { signUpApi } from "@Helpers/authApi";
 import { useRouter } from "next/navigation";
 import { Formik } from "formik";
 import type { FC } from "react";
+import { userValidationSchema } from "@/app/panel/user/update/[id]/page";
 
 const initialValues:SignUpFormValuesInterface = {
     name: "",
     phone: "",
     isAdmin: false
 };
-
-const validationSchema = object().shape({
-    name: string().required().min(2).max(25),
-    phone:string().required().matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/ ,'your mobile is not valid!').min(11).max(15),
-    isAdmin: boolean().required(),
-});
 
 const AddUser: FC = () => {
     const router = useRouter()
@@ -35,7 +30,7 @@ const AddUser: FC = () => {
             </h2>
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                validationSchema={userValidationSchema}
                 onSubmit={handleSubmit}
                 >
                 {({ values, handleChange,...props }) => (

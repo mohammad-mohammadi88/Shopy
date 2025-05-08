@@ -3,13 +3,12 @@
 import { showAuthToast } from '@Contracts/toast';
 import { redirect } from 'next/navigation';
 import useAuth from '@Hooks/useAuth';
-import React from 'react';
-
+import type { ReactNode } from 'react';
 
 const layout = ({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) => {
     const {user,error,isPending,isSuccess} = useAuth();
     if(error && !user){

@@ -1,8 +1,9 @@
-import type { Product } from '@/interfaces/product';
-import Course from '@Product/Main/Product';
 import { render, screen } from '@testing-library/react';
+import type { Product } from '@/interfaces/product';
 import { beInDom } from '@Tests/testFunction.test';
+import Course from '@Product/Main/Product';
 
+// before each
 beforeEach(() => {
     const product:Product = {
         id:1,

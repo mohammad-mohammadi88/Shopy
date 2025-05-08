@@ -18,11 +18,11 @@ const navigation: navigationInterface[] = [
 
 
 const AdminPanel = ({ children }: { children: ReactNode }) => {
-    const { user } = useAuth()
+    const { user:{id} } = useAuth()
     const userNavigation: userNavigationInterface[] = [
         { name: "Home Page", href: "/" },
         { name: "Your Profile", href: "/panel/admin" },
-        { name: "Edit Profile", href: `/panel/admin/users/update/${user.id}` },
+        { name: "Edit Profile", href: `/panel/admin/users/update/${id}` },
     ];
     const [sidebarOpen, setSidebarOpen] = useState(false);
     return (

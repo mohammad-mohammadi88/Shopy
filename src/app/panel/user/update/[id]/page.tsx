@@ -9,9 +9,10 @@ import Dashboard from "@Panel/Dashboard";
 import type { NextPage } from "next";
 import { Formik } from "formik";
 
-const validationSchema = object().shape({
-    name: string().min(2).max(25),
+export const userValidationSchema = object().shape({
+    name: string().required().min(2).max(25),
     phone: string()
+        .required()
         .matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/, "your mobile is not valid!")
         .min(11)
         .max(15),
@@ -38,13 +39,13 @@ const UpdateUser: NextPage = () => {
                 {initialValues && (
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={validationSchema}
+                        validationSchema={userValidationSchema}
                         onSubmit={handleSubmit}
                     >
                         {({ values, handleChange, ...props }) => (
                             <UpdateUserForm
                                 handleChange={handleChange}
-                                values={{ ...values, isAdmin: undefined }}
+                                values={values}
                                 {...props}
                             />
                         )}
