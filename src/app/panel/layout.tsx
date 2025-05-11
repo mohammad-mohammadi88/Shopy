@@ -2,8 +2,8 @@
 
 import { showAuthToast } from '@Contracts/toast';
 import { redirect } from 'next/navigation';
-import useAuth from '@Hooks/useAuth';
 import type { ReactNode } from 'react';
+import useAuth from '@Hooks/useAuth';
 
 const layout = ({
     children,
