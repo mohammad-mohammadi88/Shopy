@@ -1,23 +1,12 @@
 "use client";
-
+import { userValidationSchema } from "@Contracts/validationSchema";
 import { useReadOneUser, useUpdateUser } from "@Helpers/userApi";
 import { useParams, useRouter } from "next/navigation";
 import UpdateUserForm from "@Panel/UpdateUserForm";
 import { queryClient } from "@Index/IndexLayout";
-import { boolean, object, string } from "yup";
 import Dashboard from "@Panel/Dashboard";
 import type { NextPage } from "next";
 import { Formik } from "formik";
-
-export const userValidationSchema = object().shape({
-    name: string().required().min(2).max(25),
-    phone: string()
-        .required()
-        .matches(/^[\+|0][1-9]{1}[0-9]{7,11}$/, "your mobile is not valid!")
-        .min(11)
-        .max(15),
-    isAdmin: boolean(),
-});
 
 const UpdateUser: NextPage = () => {
     const params: any = useParams();

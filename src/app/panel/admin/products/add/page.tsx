@@ -1,10 +1,10 @@
 "use client";
 
+import { productValidationSchema } from "@Contracts/validationSchema";
 import AddProductForm from "@Panel/admin/Products/AddProductForm";
 import type { ProductFormInterFace } from "@Interfaces/forms";
 import { useCreateProduct } from "@Helpers/productApi";
 import { queryClient } from "@Index/IndexLayout";
-import { number, object, string } from "yup";
 import { useRouter } from "next/navigation";
 import { Formik } from "formik";
 import { NextPage } from "next";
@@ -16,13 +16,6 @@ const initialValues: ProductFormInterFace = {
     body: "",
     category: "Back-end",
 };
-
-export const productValidationSchema = object().shape({
-    title: string().required().min(4).max(25),
-    price: number().required().min(2),
-    body: string().required().min(5).max(1000),
-    category: string().required(),
-});
 
 const page:NextPage = () => {
     const { mutate } = useCreateProduct();

@@ -2,13 +2,12 @@
 
 import { useReadOneProduct, useUpdateProduct } from "@Helpers/productApi";
 import UpdateProductForm from "@Panel/admin/Products/UpdateProductForm";
+import { productValidationSchema } from "@Contracts/validationSchema";
 import { useParams, useRouter } from "next/navigation";
 import { queryClient } from "@Index/IndexLayout";
-import { number, object, string } from "yup";
 import { Bars } from "react-loader-spinner";
 import type { NextPage } from "next";
 import { Formik } from "formik";
-import { productValidationSchema } from "../../add/page";
 
 const UpdateProduct:NextPage = () => {
     const params:any = useParams()
