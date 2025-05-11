@@ -6,7 +6,6 @@ import { useCreateProduct } from "@Helpers/productApi";
 import { queryClient } from "@Index/IndexLayout";
 import { number, object, string } from "yup";
 import { useRouter } from "next/navigation";
-import type { NextPage } from "next";
 import { Formik } from "formik";
 
 const initialValues: ProductFormInterFace = {
@@ -24,7 +23,7 @@ export const productValidationSchema = object().shape({
     category: string().required(),
 });
 
-const AddProduct: NextPage = () => {
+const AddProduct = () => {
     const { mutate } = useCreateProduct();
     const router = useRouter()
     const handleFormSubmit = (values: ProductFormInterFace) => {
