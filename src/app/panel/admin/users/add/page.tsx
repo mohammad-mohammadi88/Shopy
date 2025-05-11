@@ -1,14 +1,13 @@
 'use client';
 
 import type { SignUpFormValuesInterface } from "@Interfaces/forms";
+import { userValidationSchema } from "@Contracts/validationSchema";
 import AddUserForm from "@Panel/admin/Users/AddUserForm";
 import { showAuthToast } from "@Contracts/toast";
-import { boolean, object, string } from "yup";
 import { signUpApi } from "@Helpers/authApi";
 import { useRouter } from "next/navigation";
 import { Formik } from "formik";
 import type { FC } from "react";
-import { userValidationSchema } from "@Contracts/validationSchema";
 
 const initialValues:SignUpFormValuesInterface = {
     name: "",

@@ -1,6 +1,6 @@
 "use client";
 
-import { userValidationSchema } from "@App/panel/user/update/[id]/page";
+import { userValidationSchema } from "@Contracts/validationSchema";
 import { useReadOneUser, useUpdateUser } from "@Helpers/userApi";
 import { useParams, useRouter } from "next/navigation";
 import UpdateUserForm from "@Panel/UpdateUserForm";
