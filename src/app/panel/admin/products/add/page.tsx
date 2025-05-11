@@ -7,6 +7,7 @@ import { queryClient } from "@Index/IndexLayout";
 import { number, object, string } from "yup";
 import { useRouter } from "next/navigation";
 import { Formik } from "formik";
+import { NextPage } from "next";
 
 const initialValues: ProductFormInterFace = {
     title: "",
@@ -23,7 +24,7 @@ export const productValidationSchema = object().shape({
     category: string().required(),
 });
 
-const AddProduct = () => {
+const page:NextPage = () => {
     const { mutate } = useCreateProduct();
     const router = useRouter()
     const handleFormSubmit = (values: ProductFormInterFace) => {
@@ -54,4 +55,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default page;
